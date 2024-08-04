@@ -1,0 +1,7 @@
+<testsuites name="results">
+  <testsuite name="all" package="all">
+    <property name="random_seed" value="1722755999" />
+    <testcase name="test_base_func" classname="test_ras" file="/home/kurumi/XS-BPU-RAS-cocotb-env/test_ras.py" lineno="35" time="0.007481098175048828" sim_time_ns="100.001" ratio_time="13367.155150232647" />
+    <testcase name="test_base_func_001" classname="test_ras" file="/home/kurumi/.local/lib/python3.10/site-packages/cocotb/regression.py" lineno="731" time="0.0033762454986572266" sim_time_ns="100.001" ratio_time="29618.995431396088" />
+  </testsuite>
+</testsuites>
