@@ -9,18 +9,24 @@
 #define VERILATED_VTOP_H_  // guard
 
 #include "verilated.h"
+#include "verilated_cov.h"
 #include "svdpi.h"
 
 class Vtop__Syms;
 class Vtop___024root;
+class VerilatedVcdC;
 
 // This class is the main interface to the Verilated model
-class Vtop VL_NOT_FINAL {
+class alignas(VL_CACHE_LINE_BYTES) Vtop VL_NOT_FINAL : public VerilatedModel {
   private:
     // Symbol table holding complete model state (owned by this class)
     Vtop__Syms* const vlSymsp;
 
   public:
+
+    // CONSTEXPR CAPABILITIES
+    // Verilated with --trace?
+    static constexpr bool traceCapable = true;
 
     // PORTS
     // The application code writes and reads these signals to
@@ -69,7 +75,6 @@ class Vtop VL_NOT_FINAL {
     VL_IN8(&io_in_bits_resp_in_0_s3_full_pred_0_slot_valids_0,0,0);
     VL_IN8(&io_in_bits_resp_in_0_s3_full_pred_0_slot_valids_1,0,0);
     VL_IN8(&io_in_bits_resp_in_0_s3_full_pred_0_fallThroughErr,0,0);
-    VL_IN8(&io_in_bits_resp_in_0_s3_full_pred_0_multiHit,0,0);
     VL_IN8(&io_in_bits_resp_in_0_s3_full_pred_0_is_br_sharing,0,0);
     VL_IN8(&io_in_bits_resp_in_0_s3_full_pred_0_hit,0,0);
     VL_IN8(&io_in_bits_resp_in_0_s3_full_pred_1_br_taken_mask_0,0,0);
@@ -77,7 +82,6 @@ class Vtop VL_NOT_FINAL {
     VL_IN8(&io_in_bits_resp_in_0_s3_full_pred_1_slot_valids_0,0,0);
     VL_IN8(&io_in_bits_resp_in_0_s3_full_pred_1_slot_valids_1,0,0);
     VL_IN8(&io_in_bits_resp_in_0_s3_full_pred_1_fallThroughErr,0,0);
-    VL_IN8(&io_in_bits_resp_in_0_s3_full_pred_1_multiHit,0,0);
     VL_IN8(&io_in_bits_resp_in_0_s3_full_pred_1_is_br_sharing,0,0);
     VL_IN8(&io_in_bits_resp_in_0_s3_full_pred_1_hit,0,0);
     VL_IN8(&io_in_bits_resp_in_0_s3_full_pred_2_br_taken_mask_0,0,0);
@@ -85,7 +89,6 @@ class Vtop VL_NOT_FINAL {
     VL_IN8(&io_in_bits_resp_in_0_s3_full_pred_2_slot_valids_0,0,0);
     VL_IN8(&io_in_bits_resp_in_0_s3_full_pred_2_slot_valids_1,0,0);
     VL_IN8(&io_in_bits_resp_in_0_s3_full_pred_2_fallThroughErr,0,0);
-    VL_IN8(&io_in_bits_resp_in_0_s3_full_pred_2_multiHit,0,0);
     VL_IN8(&io_in_bits_resp_in_0_s3_full_pred_2_is_jalr,0,0);
     VL_IN8(&io_in_bits_resp_in_0_s3_full_pred_2_is_call,0,0);
     VL_IN8(&io_in_bits_resp_in_0_s3_full_pred_2_is_ret,0,0);
@@ -98,23 +101,22 @@ class Vtop VL_NOT_FINAL {
     VL_IN8(&io_in_bits_resp_in_0_s3_full_pred_3_offsets_0,3,0);
     VL_IN8(&io_in_bits_resp_in_0_s3_full_pred_3_offsets_1,3,0);
     VL_IN8(&io_in_bits_resp_in_0_s3_full_pred_3_fallThroughErr,0,0);
-    VL_IN8(&io_in_bits_resp_in_0_s3_full_pred_3_multiHit,0,0);
     VL_IN8(&io_in_bits_resp_in_0_s3_full_pred_3_is_br_sharing,0,0);
     VL_IN8(&io_in_bits_resp_in_0_s3_full_pred_3_hit,0,0);
+    VL_IN8(&io_in_bits_resp_in_0_last_stage_ftb_entry_valid,0,0);
+    VL_IN8(&io_in_bits_resp_in_0_last_stage_ftb_entry_brSlots_0_offset,3,0);
+    VL_IN8(&io_in_bits_resp_in_0_last_stage_ftb_entry_brSlots_0_tarStat,1,0);
+    VL_IN8(&io_in_bits_resp_in_0_last_stage_ftb_entry_brSlots_0_sharing,0,0);
+    VL_IN8(&io_in_bits_resp_in_0_last_stage_ftb_entry_brSlots_0_valid,0,0);
+    VL_IN8(&io_in_bits_resp_in_0_last_stage_ftb_entry_tailSlot_offset,3,0);
+    VL_IN8(&io_in_bits_resp_in_0_last_stage_ftb_entry_tailSlot_tarStat,1,0);
+    VL_IN8(&io_in_bits_resp_in_0_last_stage_ftb_entry_tailSlot_sharing,0,0);
+    VL_IN8(&io_in_bits_resp_in_0_last_stage_ftb_entry_tailSlot_valid,0,0);
+    VL_IN8(&io_in_bits_resp_in_0_last_stage_ftb_entry_pftAddr,3,0);
+    VL_IN8(&io_in_bits_resp_in_0_last_stage_ftb_entry_carry,0,0);
     VL_IN8(&io_in_bits_resp_in_0_last_stage_ftb_entry_isCall,0,0);
     VL_IN8(&io_in_bits_resp_in_0_last_stage_ftb_entry_isRet,0,0);
     VL_IN8(&io_in_bits_resp_in_0_last_stage_ftb_entry_isJalr,0,0);
-    VL_IN8(&io_in_bits_resp_in_0_last_stage_ftb_entry_valid,0,0);
-    VL_IN8(&io_in_bits_resp_in_0_last_stage_ftb_entry_brSlots_0_offset,3,0);
-    VL_IN8(&io_in_bits_resp_in_0_last_stage_ftb_entry_brSlots_0_sharing,0,0);
-    VL_IN8(&io_in_bits_resp_in_0_last_stage_ftb_entry_brSlots_0_valid,0,0);
-    VL_IN8(&io_in_bits_resp_in_0_last_stage_ftb_entry_brSlots_0_tarStat,1,0);
-    VL_IN8(&io_in_bits_resp_in_0_last_stage_ftb_entry_tailSlot_offset,3,0);
-    VL_IN8(&io_in_bits_resp_in_0_last_stage_ftb_entry_tailSlot_sharing,0,0);
-    VL_IN8(&io_in_bits_resp_in_0_last_stage_ftb_entry_tailSlot_valid,0,0);
-    VL_IN8(&io_in_bits_resp_in_0_last_stage_ftb_entry_tailSlot_tarStat,1,0);
-    VL_IN8(&io_in_bits_resp_in_0_last_stage_ftb_entry_pftAddr,3,0);
-    VL_IN8(&io_in_bits_resp_in_0_last_stage_ftb_entry_carry,0,0);
     VL_IN8(&io_in_bits_resp_in_0_last_stage_ftb_entry_last_may_be_rvi_call,0,0);
     VL_IN8(&io_in_bits_resp_in_0_last_stage_ftb_entry_always_taken_0,0,0);
     VL_IN8(&io_in_bits_resp_in_0_last_stage_ftb_entry_always_taken_1,0,0);
@@ -156,7 +158,6 @@ class Vtop VL_NOT_FINAL {
     VL_OUT8(&io_out_s3_full_pred_0_slot_valids_0,0,0);
     VL_OUT8(&io_out_s3_full_pred_0_slot_valids_1,0,0);
     VL_OUT8(&io_out_s3_full_pred_0_fallThroughErr,0,0);
-    VL_OUT8(&io_out_s3_full_pred_0_multiHit,0,0);
     VL_OUT8(&io_out_s3_full_pred_0_is_br_sharing,0,0);
     VL_OUT8(&io_out_s3_full_pred_0_hit,0,0);
     VL_OUT8(&io_out_s3_full_pred_1_br_taken_mask_0,0,0);
@@ -164,7 +165,6 @@ class Vtop VL_NOT_FINAL {
     VL_OUT8(&io_out_s3_full_pred_1_slot_valids_0,0,0);
     VL_OUT8(&io_out_s3_full_pred_1_slot_valids_1,0,0);
     VL_OUT8(&io_out_s3_full_pred_1_fallThroughErr,0,0);
-    VL_OUT8(&io_out_s3_full_pred_1_multiHit,0,0);
     VL_OUT8(&io_out_s3_full_pred_1_is_br_sharing,0,0);
     VL_OUT8(&io_out_s3_full_pred_1_hit,0,0);
     VL_OUT8(&io_out_s3_full_pred_2_br_taken_mask_0,0,0);
@@ -172,7 +172,6 @@ class Vtop VL_NOT_FINAL {
     VL_OUT8(&io_out_s3_full_pred_2_slot_valids_0,0,0);
     VL_OUT8(&io_out_s3_full_pred_2_slot_valids_1,0,0);
     VL_OUT8(&io_out_s3_full_pred_2_fallThroughErr,0,0);
-    VL_OUT8(&io_out_s3_full_pred_2_multiHit,0,0);
     VL_OUT8(&io_out_s3_full_pred_2_is_br_sharing,0,0);
     VL_OUT8(&io_out_s3_full_pred_2_hit,0,0);
     VL_OUT8(&io_out_s3_full_pred_3_br_taken_mask_0,0,0);
@@ -182,31 +181,30 @@ class Vtop VL_NOT_FINAL {
     VL_OUT8(&io_out_s3_full_pred_3_offsets_0,3,0);
     VL_OUT8(&io_out_s3_full_pred_3_offsets_1,3,0);
     VL_OUT8(&io_out_s3_full_pred_3_fallThroughErr,0,0);
-    VL_OUT8(&io_out_s3_full_pred_3_multiHit,0,0);
     VL_OUT8(&io_out_s3_full_pred_3_is_br_sharing,0,0);
     VL_OUT8(&io_out_s3_full_pred_3_hit,0,0);
     VL_OUT8(&io_out_last_stage_spec_info_ssp,3,0);
-    VL_OUT8(&io_out_last_stage_spec_info_sctr,2,0);
+    VL_OUT8(&io_out_last_stage_spec_info_sctr,1,0);
     VL_OUT8(&io_out_last_stage_spec_info_TOSW_flag,0,0);
     VL_OUT8(&io_out_last_stage_spec_info_TOSW_value,4,0);
     VL_OUT8(&io_out_last_stage_spec_info_TOSR_flag,0,0);
     VL_OUT8(&io_out_last_stage_spec_info_TOSR_value,4,0);
     VL_OUT8(&io_out_last_stage_spec_info_NOS_flag,0,0);
     VL_OUT8(&io_out_last_stage_spec_info_NOS_value,4,0);
+    VL_OUT8(&io_out_last_stage_ftb_entry_valid,0,0);
+    VL_OUT8(&io_out_last_stage_ftb_entry_brSlots_0_offset,3,0);
+    VL_OUT8(&io_out_last_stage_ftb_entry_brSlots_0_tarStat,1,0);
+    VL_OUT8(&io_out_last_stage_ftb_entry_brSlots_0_sharing,0,0);
+    VL_OUT8(&io_out_last_stage_ftb_entry_brSlots_0_valid,0,0);
+    VL_OUT8(&io_out_last_stage_ftb_entry_tailSlot_offset,3,0);
+    VL_OUT8(&io_out_last_stage_ftb_entry_tailSlot_tarStat,1,0);
+    VL_OUT8(&io_out_last_stage_ftb_entry_tailSlot_sharing,0,0);
+    VL_OUT8(&io_out_last_stage_ftb_entry_tailSlot_valid,0,0);
+    VL_OUT8(&io_out_last_stage_ftb_entry_pftAddr,3,0);
+    VL_OUT8(&io_out_last_stage_ftb_entry_carry,0,0);
     VL_OUT8(&io_out_last_stage_ftb_entry_isCall,0,0);
     VL_OUT8(&io_out_last_stage_ftb_entry_isRet,0,0);
     VL_OUT8(&io_out_last_stage_ftb_entry_isJalr,0,0);
-    VL_OUT8(&io_out_last_stage_ftb_entry_valid,0,0);
-    VL_OUT8(&io_out_last_stage_ftb_entry_brSlots_0_offset,3,0);
-    VL_OUT8(&io_out_last_stage_ftb_entry_brSlots_0_sharing,0,0);
-    VL_OUT8(&io_out_last_stage_ftb_entry_brSlots_0_valid,0,0);
-    VL_OUT8(&io_out_last_stage_ftb_entry_brSlots_0_tarStat,1,0);
-    VL_OUT8(&io_out_last_stage_ftb_entry_tailSlot_offset,3,0);
-    VL_OUT8(&io_out_last_stage_ftb_entry_tailSlot_sharing,0,0);
-    VL_OUT8(&io_out_last_stage_ftb_entry_tailSlot_valid,0,0);
-    VL_OUT8(&io_out_last_stage_ftb_entry_tailSlot_tarStat,1,0);
-    VL_OUT8(&io_out_last_stage_ftb_entry_pftAddr,3,0);
-    VL_OUT8(&io_out_last_stage_ftb_entry_carry,0,0);
     VL_OUT8(&io_out_last_stage_ftb_entry_last_may_be_rvi_call,0,0);
     VL_OUT8(&io_out_last_stage_ftb_entry_always_taken_0,0,0);
     VL_OUT8(&io_out_last_stage_ftb_entry_always_taken_1,0,0);
@@ -226,10 +224,10 @@ class Vtop VL_NOT_FINAL {
     VL_IN8(&io_s3_fire_2,0,0);
     VL_IN8(&io_s3_redirect_2,0,0);
     VL_IN8(&io_update_valid,0,0);
-    VL_IN8(&io_update_bits_ftb_entry_isCall,0,0);
-    VL_IN8(&io_update_bits_ftb_entry_isRet,0,0);
     VL_IN8(&io_update_bits_ftb_entry_tailSlot_offset,3,0);
     VL_IN8(&io_update_bits_ftb_entry_tailSlot_valid,0,0);
+    VL_IN8(&io_update_bits_ftb_entry_isCall,0,0);
+    VL_IN8(&io_update_bits_ftb_entry_isRet,0,0);
     VL_IN8(&io_update_bits_cfi_idx_valid,0,0);
     VL_IN8(&io_update_bits_cfi_idx_bits,3,0);
     VL_IN8(&io_update_bits_jmp_taken,0,0);
@@ -239,7 +237,7 @@ class Vtop VL_NOT_FINAL {
     VL_IN8(&io_redirect_bits_cfiUpdate_pd_isCall,0,0);
     VL_IN8(&io_redirect_bits_cfiUpdate_pd_isRet,0,0);
     VL_IN8(&io_redirect_bits_cfiUpdate_ssp,3,0);
-    VL_IN8(&io_redirect_bits_cfiUpdate_sctr,2,0);
+    VL_IN8(&io_redirect_bits_cfiUpdate_sctr,1,0);
     VL_IN8(&io_redirect_bits_cfiUpdate_TOSW_flag,0,0);
     VL_IN8(&io_redirect_bits_cfiUpdate_TOSW_value,4,0);
     VL_IN8(&io_redirect_bits_cfiUpdate_TOSR_flag,0,0);
@@ -249,9 +247,9 @@ class Vtop VL_NOT_FINAL {
     VL_IN16(&io_in_bits_resp_in_0_last_stage_ftb_entry_brSlots_0_lower,11,0);
     VL_OUT16(&io_out_last_stage_ftb_entry_brSlots_0_lower,11,0);
     VL_IN(&io_in_bits_resp_in_0_last_stage_ftb_entry_tailSlot_lower,19,0);
-    VL_OUTW(&io_out_last_stage_meta,259,0,9);
+    VL_OUTW(&io_out_last_stage_meta,222,0,7);
     VL_OUT(&io_out_last_stage_ftb_entry_tailSlot_lower,19,0);
-    VL_INW(&io_update_bits_meta,259,0,9);
+    VL_INW(&io_update_bits_meta,222,0,7);
     VL_IN64(&io_reset_vector,35,0);
     VL_IN64(&io_in_bits_s0_pc_0,40,0);
     VL_IN64(&io_in_bits_s0_pc_1,40,0);
@@ -355,11 +353,29 @@ class Vtop VL_NOT_FINAL {
     void eval_end_step() {}
     /// Simulation complete, run final blocks.  Application must call on completion.
     void final();
-    /// Return current simulation context for this model.
-    /// Used to get to e.g. simulation time via contextp()->time()
-    VerilatedContext* contextp() const;
+    /// Are there scheduled events to handle?
+    bool eventsPending();
+    /// Returns time at next time slot. Aborts if !eventsPending()
+    uint64_t nextTimeSlot();
+    /// Trace signals in the model; called by application code
+    void trace(VerilatedTraceBaseC* tfp, int levels, int options = 0) { contextp()->trace(tfp, levels, options); }
     /// Retrieve name of this model instance (as passed to constructor).
     const char* name() const;
-} VL_ATTR_ALIGNED(VL_CACHE_LINE_BYTES);
+
+    // Abstract methods from VerilatedModel
+    const char* hierName() const override final;
+    const char* modelName() const override final;
+    unsigned threads() const override final;
+    /// Prepare for cloning the model at the process level (e.g. fork in Linux)
+    /// Release necessary resources. Called before cloning.
+    void prepareClone() const;
+    /// Re-init after cloning the model at the process level (e.g. fork in Linux)
+    /// Re-allocate necessary resources. Called after cloning.
+    void atClone() const;
+    std::unique_ptr<VerilatedTraceConfig> traceConfig() const override final;
+  private:
+    // Internal functions - trace registration
+    void traceBaseModel(VerilatedTraceBaseC* tfp, int levels, int options);
+};
 
 #endif  // guard

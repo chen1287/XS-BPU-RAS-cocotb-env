@@ -19,19 +19,25 @@
 // DPI TYPES for DPI Export callbacks (Internal use)
 
 // SYMS CLASS (contains all model state)
-class Vtop__Syms final : public VerilatedSyms {
+class alignas(VL_CACHE_LINE_BYTES)Vtop__Syms final : public VerilatedSyms {
   public:
     // INTERNAL STATE
     Vtop* const __Vm_modelp;
+    bool __Vm_activity = false;  ///< Used by trace routines to determine change occurred
+    uint32_t __Vm_baseCode = 0;  ///< Used by trace routines when tracing multiple models
+    VlDeleter __Vm_deleter;
     bool __Vm_didInit = false;
 
     // MODULE INSTANCE STATE
     Vtop___024root                 TOP;
 
+    // COVERAGE
+    uint32_t __Vcoverage[8042];
+
     // SCOPE NAMES
     VerilatedScope __Vscope_RAS;
     VerilatedScope __Vscope_RAS__RASStack;
-    VerilatedScope __Vscope_RAS__reset_vector_pipMod;
+    VerilatedScope __Vscope_RAS__reset_vector_delay;
     VerilatedScope __Vscope_TOP;
 
     // SCOPE HIERARCHY
@@ -43,6 +49,6 @@ class Vtop__Syms final : public VerilatedSyms {
 
     // METHODS
     const char* name() { return TOP.name(); }
-} VL_ATTR_ALIGNED(VL_CACHE_LINE_BYTES);
+};
 
 #endif  // guard

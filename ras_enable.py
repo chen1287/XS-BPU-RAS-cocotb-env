@@ -1,21 +1,21 @@
-def cmd_rest_on():
-    return {"control": {"io_reset_vector": 1, "reset": 1, "io_ctrl_ras_enable": 1,  "io_s2_fire_2": 1}}
+import cocotb
+import random
+from cocotb.regression import TestFactory
+from cocotb.triggers import Timer, FallingEdge
+from ras_enable import *
 
-
-def cmd_rest_off():
-    return {"control": {"reset":0, "io_ctrl_ras_enable": 1,  "io_s2_fire_2": 1}}
-
-
-def cmd_zero(n=0, cb=None):
-        ret = {
-            "control": {"io_ctrl_ras_enable": 1,  "io_s2_fire_2": 1, "io_s3_fire_2": 1},
-            "*":0,
-           }
-        if cb is not None:
-            ret.update({"func": cb})
-        if n <= 0:
-            return ret
-        return [ret] * n
+def get_meta(dut):
+    meta = {}
+    meta['ssp'] = dut.io_out_last_stage_spec_info_ssp.value
+    meta['sctr'] = dut.io_out_last_stage_spec_info_sctr.value
+    meta['TOSW_flag'] = dut.io_out_last_stage_spec_info_TOSW_flag.value
+    meta['TOSW_value'] = dut.io_out_last_stage_spec_info_TOSW_value.value
+    meta['TOSR_flag'] = dut.io_out_last_stage_spec_info_TOSR_flag.value
+    meta['TOSR_value'] = dut.io_out_last_stage_spec_info_TOSR_value.value
+    meta['NOS_flag'] = dut.io_out_last_stage_spec_info_NOS_flag.value
+    meta['NOS_value'] = dut.io_out_last_stage_spec_info_NOS_value.value
+    meta['topAddr'] = dut.io_out_last_stage_spec_info_topAddr.value
+    return meta 
 
 def s2_push(dut, addr):
     dut.io_s3_redirect_2.value = 0
@@ -73,88 +73,141 @@ def s3_push(dut, addr):
     dut.io_in_bits_resp_in_0_s3_full_pred_2_is_br_sharing.value = 0
     dut.io_in_bits_resp_in_0_s3_full_pred_2_hit.value = 1
 
+def set_push_valid_zero(dut):
+    dut.io_s3_redirect_2.value = 0
+    # fire
+    dut.io_s2_fire_2.value = 1
+    dut.io_s3_fire_2.value = 1
 
-# def cmd_push(address):
-#     return [{
-#             "control": {"io_s3_redirect_2": 0, "io_ctrl_ras_enable": 1,  "io_s2_fire_2": 1, "io_s3_fire_2": 1},
-#             "in_full_pred_s2_2": {"is_call": 1, "is_ret": 0, "is_br_sharing": 0, "hit": 1, "slot_valids_1": 1, "br_taken_mask_1": 1, "fallThroughAddr": address,
-#                                   "slot_valids_0": 0, "br_taken_mask_0": 0},
-#             "in_full_pred_s3_2": {"is_call": 0, "is_ret": 0, "is_br_sharing": 0, "hit": 1, "slot_valids_1": 1, "br_taken_mask_1": 1, "fallThroughAddr": address,
-#                                   "slot_valids_0": 0, "br_taken_mask_0": 0},
-#            },
-#             {
-#             "control": {"io_s3_redirect_2": 0, "io_ctrl_ras_enable": 1,  "io_s2_fire_2": 1, "io_s3_fire_2": 1},
-#             "in_full_pred_s2_2": {"is_call": 0, "is_ret": 0, "is_br_sharing": 0, "hit": 1, "slot_valids_1": 1, "br_taken_mask_1": 1, "fallThroughAddr": address,
-#                                   "slot_valids_0": 0, "br_taken_mask_0": 0},
-#             "in_full_pred_s3_2": {"is_call": 1, "is_ret": 0, "is_br_sharing": 0, "hit": 1, "slot_valids_1": 1, "br_taken_mask_1": 1, "fallThroughAddr": address,
-#                                   "slot_valids_0": 0, "br_taken_mask_0": 0},           }]
+    #s2 set zero
+    dut.io_in_bits_resp_in_0_s2_full_pred_2_br_taken_mask_0.value = 0
+    dut.io_in_bits_resp_in_0_s2_full_pred_2_br_taken_mask_1.value = 0
+    dut.io_in_bits_resp_in_0_s2_full_pred_2_slot_valids_0.value = 0
+    dut.io_in_bits_resp_in_0_s2_full_pred_2_slot_valids_1.value = 0
+    dut.io_in_bits_resp_in_0_s2_full_pred_2_fallThroughAddr.value = 0
+    dut.io_in_bits_resp_in_0_s2_full_pred_2_is_call.value = 0
+    dut.io_in_bits_resp_in_0_s2_full_pred_2_is_ret.value = 0
+    dut.io_in_bits_resp_in_0_s2_full_pred_2_is_br_sharing.value = 0
+    dut.io_in_bits_resp_in_0_s2_full_pred_2_hit.value = 0
 
+    # s3
+    dut.io_in_bits_resp_in_0_s3_full_pred_2_br_taken_mask_0.value = 0
+    dut.io_in_bits_resp_in_0_s3_full_pred_2_br_taken_mask_1.value = 0
+    dut.io_in_bits_resp_in_0_s3_full_pred_2_slot_valids_0.value = 0
+    dut.io_in_bits_resp_in_0_s3_full_pred_2_slot_valids_1.value = 0
+    dut.io_in_bits_resp_in_0_s3_full_pred_2_fallThroughAddr.value = 0
+    dut.io_in_bits_resp_in_0_s3_full_pred_2_is_call.value = 0
+    dut.io_in_bits_resp_in_0_s3_full_pred_2_is_ret.value = 0
+    dut.io_in_bits_resp_in_0_s3_full_pred_2_is_br_sharing.value = 0
+    dut.io_in_bits_resp_in_0_s3_full_pred_2_hit.value = 0
 
-# def cmd_xpush(address):
-#     return {
-#             "control": {"io_s3_redirect_2": 0, "io_ctrl_ras_enable": 1,  "io_s2_fire_2": 1, "io_s3_fire_2": 1},
-#             "in_full_pred_s2_2": {"is_call": 0, "is_ret": 0, "is_br_sharing": 0, "hit": 1, "slot_valids_1": 1, "br_taken_mask_1": 1, "fallThroughAddr": address,
-#                                   "slot_valids_0": 0, "br_taken_mask_0": 0},
-#             "in_full_pred_s3_2": {"is_call": 1, "is_ret": 0, "is_br_sharing": 0, "hit": 1, "slot_valids_1": 1, "br_taken_mask_1": 1, "fallThroughAddr": address,
-#                                   "slot_valids_0": 0, "br_taken_mask_0": 0},
-#            }
+def s2_pop(dut):
 
+    dut.io_s3_redirect_2.value = 0
+    # fire
+    dut.io_s2_fire_2.value = 1
+    dut.io_s3_fire_2.value = 1
 
-# def cmd_pop():
-#     return [{
-#             "control": {"io_s3_redirect_2": 0, "io_ctrl_ras_enable": 1,  "io_s2_fire_2": 1, "io_s3_fire_2": 1},
-#             "in_full_pred_s2_2": {"is_call": 0, "is_ret": 1, "is_br_sharing": 0, "hit": 1, "slot_valids_1": 1, "br_taken_mask_1": 1, "fallThroughAddr": 0x00,
-#                                   "slot_valids_0": 0, "br_taken_mask_0": 0},
-#             "in_full_pred_s3_2": {"is_call": 0, "is_ret": 0, "is_br_sharing": 0, "hit": 1, "slot_valids_1": 1, "br_taken_mask_1": 1, "fallThroughAddr": 0x00,
-#                                   "slot_valids_0": 0, "br_taken_mask_0": 0},
-#            },
-#             {
-#             "control": {"io_s3_redirect_2": 0, "io_ctrl_ras_enable": 1,  "io_s2_fire_2": 1, "io_s3_fire_2": 0},
-#             "in_full_pred_s2_2": {"is_call": 0, "is_ret": 0, "is_br_sharing": 0, "hit": 0, "slot_valids_1": 1, "br_taken_mask_1": 1, "fallThroughAddr": 0x00,
-#                                   "slot_valids_0": 0, "br_taken_mask_0": 0},
-#             "in_full_pred_s3_2": {"is_call": 0, "is_ret": 1, "is_br_sharing": 0, "hit": 0, "slot_valids_1": 1, "br_taken_mask_1": 1, "fallThroughAddr": 0x00,
-#                                   "slot_valids_0": 0, "br_taken_mask_0": 0},
-#            }]
-
-
-# def cmd_xpop():
-#     return {
-#             "control": {"io_s3_redirect_2": 0, "io_ctrl_ras_enable": 1,  "io_s2_fire_2": 1, "io_s3_fire_2": 1},
-#             "in_full_pred_s2_2": {"is_call": 0, "is_ret": 0, "is_br_sharing": 0, "hit": 1, "slot_valids_1": 1, "br_taken_mask_1": 1, "fallThroughAddr": 0x00,
-#                                   "slot_valids_0": 0, "br_taken_mask_0": 0},
-#             "in_full_pred_s3_2": {"is_call": 0, "is_ret": 1, "is_br_sharing": 0, "hit": 1, "slot_valids_1": 1, "br_taken_mask_1": 1, "fallThroughAddr": 0x00,
-#                                   "slot_valids_0": 0, "br_taken_mask_0": 0},
-#            }
-
-# def cmd_commit_push(tosw, ssp):
-#     return {
-#         "control": {"io_s3_redirect_2": 0, "io_ctrl_ras_enable": 1,  "io_s2_fire_2": 1, "io_s3_fire_2": 1},
-#         "update": {"valid": 1, "bits_ftb_entry_tailSlot_valid": 1, 
-#                                "bits_ftb_entry_isCall": 1, 
-#                                "bits_ftb_entry_isRet": 0,
-#                                "bits_jmp_taken" : 1, "bits_cfi_idx_valid" :1, "bits_cfi_idx_bits" : 1, "bits_ftb_entry_tailSlot_offset" : 1,
-#                 "bits_meta" : (tosw << 12) + (ssp << 21)},
-#         "*": 0,
-#     }
+    #s2 set zero
+    dut.io_in_bits_resp_in_0_s2_full_pred_2_br_taken_mask_0.value = 0
+    dut.io_in_bits_resp_in_0_s2_full_pred_2_br_taken_mask_1.value = 1
+    dut.io_in_bits_resp_in_0_s2_full_pred_2_slot_valids_0.value = 0
+    dut.io_in_bits_resp_in_0_s2_full_pred_2_slot_valids_1.value = 1
+    dut.io_in_bits_resp_in_0_s2_full_pred_2_fallThroughAddr.value = 0
+    dut.io_in_bits_resp_in_0_s2_full_pred_2_is_call.value = 0
+    dut.io_in_bits_resp_in_0_s2_full_pred_2_is_ret.value = 1
+    dut.io_in_bits_resp_in_0_s2_full_pred_2_is_br_sharing.value = 0
+    dut.io_in_bits_resp_in_0_s2_full_pred_2_hit.value = 1
+    # s3
+    dut.io_in_bits_resp_in_0_s3_full_pred_2_br_taken_mask_0.value = 0
+    dut.io_in_bits_resp_in_0_s3_full_pred_2_br_taken_mask_1.value = 1
+    dut.io_in_bits_resp_in_0_s3_full_pred_2_slot_valids_0.value = 0
+    dut.io_in_bits_resp_in_0_s3_full_pred_2_slot_valids_1.value = 1
+    dut.io_in_bits_resp_in_0_s3_full_pred_2_fallThroughAddr.value = 0
+    dut.io_in_bits_resp_in_0_s3_full_pred_2_is_call.value = 0
+    dut.io_in_bits_resp_in_0_s3_full_pred_2_is_ret.value = 0
+    dut.io_in_bits_resp_in_0_s3_full_pred_2_is_br_sharing.value = 0
+    dut.io_in_bits_resp_in_0_s3_full_pred_2_hit.value = 1
 
 
+def s3_pop(dut):
 
-# def cmd_commit_pop(ssp):
-#     """
-#         io_commit_pop_valid
-#       (io_update_valid & io_update_bits_ftb_entry_tailSlot_valid
-#        & io_update_bits_ftb_entry_isRet & io_update_bits_jmp_taken
-#        & io_update_bits_cfi_idx_valid & _GEN_1)
-#        """
-#     return {
-#         "control": {"io_s3_redirect_2": 0, "io_ctrl_ras_enable": 1,  "io_s2_fire_2": 1, "io_s3_fire_2": 1},
-#         "update": {"valid": 1, "bits_ftb_entry_tailSlot_valid": 1, 
-#                                "bits_ftb_entry_isCall": 0, 
-#                                "bits_ftb_entry_isRet": 1,
-#                                "bits_jmp_taken" : 1, "bits_cfi_idx_valid" :1, "bits_cfi_idx_bits" : 1, "bits_ftb_entry_tailSlot_offset" : 1,
-#                 "bits_meta" : (ssp << 21)},
-#         "*": 0,
-#     }
+    dut.io_s3_redirect_2.value = 0
+    # fire
+    dut.io_s2_fire_2.value = 1
+    dut.io_s3_fire_2.value = 1
+
+    #s2 set zero
+    dut.io_in_bits_resp_in_0_s2_full_pred_2_br_taken_mask_0.value = 0
+    dut.io_in_bits_resp_in_0_s2_full_pred_2_br_taken_mask_1.value = 1
+    dut.io_in_bits_resp_in_0_s2_full_pred_2_slot_valids_0.value = 0
+    dut.io_in_bits_resp_in_0_s2_full_pred_2_slot_valids_1.value = 1
+    dut.io_in_bits_resp_in_0_s2_full_pred_2_fallThroughAddr.value = 0
+    dut.io_in_bits_resp_in_0_s2_full_pred_2_is_call.value = 0
+    dut.io_in_bits_resp_in_0_s2_full_pred_2_is_ret.value = 1
+    dut.io_in_bits_resp_in_0_s2_full_pred_2_is_br_sharing.value = 0
+    dut.io_in_bits_resp_in_0_s2_full_pred_2_hit.value = 1
+    # s3
+    dut.io_in_bits_resp_in_0_s3_full_pred_2_br_taken_mask_0.value = 0
+    dut.io_in_bits_resp_in_0_s3_full_pred_2_br_taken_mask_1.value = 1
+    dut.io_in_bits_resp_in_0_s3_full_pred_2_slot_valids_0.value = 0
+    dut.io_in_bits_resp_in_0_s3_full_pred_2_slot_valids_1.value = 1
+    dut.io_in_bits_resp_in_0_s3_full_pred_2_fallThroughAddr.value = 0
+    dut.io_in_bits_resp_in_0_s3_full_pred_2_is_call.value = 0
+    dut.io_in_bits_resp_in_0_s3_full_pred_2_is_ret.value = 0
+    dut.io_in_bits_resp_in_0_s3_full_pred_2_is_br_sharing.value = 0
+    dut.io_in_bits_resp_in_0_s3_full_pred_2_hit.value = 1
+
+
+def commit_push(dut, tosw, ssp):
+    dut.io_s3_redirect_2.value = 0
+    # fire
+    dut.io_s2_fire_2.value = 1
+    dut.io_s3_fire_2.value = 1
+
+    dut.io_update_valid.value = 1
+    dut.io_update_bits_ftb_entry_tailSlot_offset.value = 1
+    dut.io_update_bits_ftb_entry_tailSlot_valid.value = 1
+    dut.io_update_bits_ftb_entry_isCall.value = 1
+    dut.io_update_bits_ftb_entry_isRet.value = 1
+    dut.io_update_bits_cfi_idx_valid.value = 1
+    dut.io_update_bits_cfi_idx_bits.value = 1
+    dut.io_update_bits_jmp_taken.value = 1
+    dut.io_update_bits_meta.value = (tosw << 12) + (ssp << 21)
+
+def commit_push_valid_zero(dut):
+    dut.io_s3_redirect_2.value = 0
+    # fire
+    dut.io_s2_fire_2.value = 1
+    dut.io_s3_fire_2.value = 1
+
+    dut.io_update_valid.value = 0
+    dut.io_update_bits_ftb_entry_tailSlot_offset.value = 0
+    dut.io_update_bits_ftb_entry_tailSlot_valid.value = 0
+    dut.io_update_bits_ftb_entry_isCall.value = 0
+    dut.io_update_bits_ftb_entry_isRet.value = 0
+    dut.io_update_bits_cfi_idx_valid.value = 0
+    dut.io_update_bits_cfi_idx_bits.value = 0
+    dut.io_update_bits_jmp_taken.value = 0
+    dut.io_update_bits_meta.value = 0
+
+def commit_pop(dut):
+    dut.io_s3_redirect_2.value = 0
+    # fire
+    dut.io_s2_fire_2.value = 1
+    dut.io_s3_fire_2.value = 1
+
+    dut.io_update_valid.value = 0
+    dut.io_update_bits_ftb_entry_tailSlot_offset.value = 1
+    dut.io_update_bits_ftb_entry_tailSlot_valid.value = 1
+    dut.io_update_bits_ftb_entry_isCall.value = 0
+    dut.io_update_bits_ftb_entry_isRet.value = 1
+    dut.io_update_bits_cfi_idx_valid.value = 1
+    dut.io_update_bits_cfi_idx_bits.value = 1
+    dut.io_update_bits_jmp_taken.value = 1
+    dut.io_update_bits_meta.value = 0
+
+# def ras_redirect(dut, isRVC, isCall, isRet, ssp, sctr, TOSW_flag, TOSW_value, TOSR_flag, TOSR_value, NOS_flag, NOS_value ):
 
 # def cmd_redirect(pc, isRVC, isCall, isRet, ssp, sctr, TOSW_flag, TOSW_value, TOSR_flag, TOSR_value, NOS_flag, NOS_value ):
 #     return {

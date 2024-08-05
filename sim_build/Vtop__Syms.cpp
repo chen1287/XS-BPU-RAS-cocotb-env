@@ -1,7 +1,7 @@
 // Verilated -*- C++ -*-
 // DESCRIPTION: Verilator output: Symbol table implementation internals
 
-#include "Vtop__Syms.h"
+#include "Vtop__pch.h"
 #include "Vtop.h"
 #include "Vtop___024root.h"
 
@@ -12,36 +12,38 @@ Vtop__Syms::~Vtop__Syms()
     // Tear down scope hierarchy
     __Vhier.remove(0, &__Vscope_RAS);
     __Vhier.remove(&__Vscope_RAS, &__Vscope_RAS__RASStack);
-    __Vhier.remove(&__Vscope_RAS, &__Vscope_RAS__reset_vector_pipMod);
+    __Vhier.remove(&__Vscope_RAS, &__Vscope_RAS__reset_vector_delay);
 
 }
 
-Vtop__Syms::Vtop__Syms(VerilatedContext* contextp, const char* namep,Vtop* modelp)
+Vtop__Syms::Vtop__Syms(VerilatedContext* contextp, const char* namep, Vtop* modelp)
     : VerilatedSyms{contextp}
     // Setup internal state of the Syms class
     , __Vm_modelp{modelp}
     // Setup module instances
-    , TOP(namep)
+    , TOP{this, namep}
 {
+        // Check resources
+        Verilated::stackCheck(121);
     // Configure time unit / time precision
     _vm_contextp__->timeunit(-9);
     _vm_contextp__->timeprecision(-12);
     // Setup each module's pointers to their submodules
     // Setup each module's pointer back to symbol table (for public functions)
-    TOP.__Vconfigure(this, true);
+    TOP.__Vconfigure(true);
     // Setup scopes
     __Vscope_RAS.configure(this, name(), "RAS", "RAS", -9, VerilatedScope::SCOPE_MODULE);
     __Vscope_RAS__RASStack.configure(this, name(), "RAS.RASStack", "RASStack", -9, VerilatedScope::SCOPE_MODULE);
-    __Vscope_RAS__reset_vector_pipMod.configure(this, name(), "RAS.reset_vector_pipMod", "reset_vector_pipMod", -9, VerilatedScope::SCOPE_MODULE);
+    __Vscope_RAS__reset_vector_delay.configure(this, name(), "RAS.reset_vector_delay", "reset_vector_delay", -9, VerilatedScope::SCOPE_MODULE);
     __Vscope_TOP.configure(this, name(), "TOP", "TOP", 0, VerilatedScope::SCOPE_OTHER);
 
     // Set up scope hierarchy
     __Vhier.add(0, &__Vscope_RAS);
     __Vhier.add(&__Vscope_RAS, &__Vscope_RAS__RASStack);
-    __Vhier.add(&__Vscope_RAS, &__Vscope_RAS__reset_vector_pipMod);
+    __Vhier.add(&__Vscope_RAS, &__Vscope_RAS__reset_vector_delay);
 
     // Setup export functions
-    for (int __Vfinal=0; __Vfinal<2; __Vfinal++) {
+    for (int __Vfinal = 0; __Vfinal < 2; ++__Vfinal) {
         __Vscope_RAS.varInsert(__Vfinal,"REG", &(TOP.RAS__DOT__REG), false, VLVT_UINT8,VLVD_NODIR|VLVF_PUB_RW,0);
         __Vscope_RAS.varInsert(__Vfinal,"REG_1", &(TOP.RAS__DOT__REG_1), false, VLVT_UINT8,VLVD_NODIR|VLVF_PUB_RW,0);
         __Vscope_RAS.varInsert(__Vfinal,"_GEN", &(TOP.RAS__DOT___GEN), false, VLVT_UINT8,VLVD_NODIR|VLVF_PUB_RW,0);
@@ -58,45 +60,13 @@ Vtop__Syms::Vtop__Syms(VerilatedContext* contextp, const char* namep,Vtop* model
         __Vscope_RAS.varInsert(__Vfinal,"_RASStack_io_sctr", &(TOP.RAS__DOT___RASStack_io_sctr), false, VLVT_UINT8,VLVD_NODIR|VLVF_PUB_RW,1 ,2,0);
         __Vscope_RAS.varInsert(__Vfinal,"_RASStack_io_spec_pop_addr", &(TOP.RAS__DOT___RASStack_io_spec_pop_addr), false, VLVT_UINT64,VLVD_NODIR|VLVF_PUB_RW,1 ,40,0);
         __Vscope_RAS.varInsert(__Vfinal,"_RASStack_io_ssp", &(TOP.RAS__DOT___RASStack_io_ssp), false, VLVT_UINT8,VLVD_NODIR|VLVF_PUB_RW,1 ,3,0);
-        __Vscope_RAS.varInsert(__Vfinal,"_reset_vector_pipMod_io_out_bits", &(TOP.RAS__DOT___reset_vector_pipMod_io_out_bits), false, VLVT_UINT64,VLVD_NODIR|VLVF_PUB_RW,1 ,35,0);
+        __Vscope_RAS.varInsert(__Vfinal,"_reset_vector_delay_io_out", &(TOP.RAS__DOT___reset_vector_delay_io_out), false, VLVT_UINT64,VLVD_NODIR|VLVF_PUB_RW,1 ,35,0);
         __Vscope_RAS.varInsert(__Vfinal,"_s2_spec_new_addr_T_1", &(TOP.RAS__DOT___s2_spec_new_addr_T_1), false, VLVT_UINT64,VLVD_NODIR|VLVF_PUB_RW,1 ,40,0);
         __Vscope_RAS.varInsert(__Vfinal,"_s2_spec_pop_T_8", &(TOP.RAS__DOT___s2_spec_pop_T_8), false, VLVT_UINT8,VLVD_NODIR|VLVF_PUB_RW,0);
         __Vscope_RAS.varInsert(__Vfinal,"_s2_spec_pop_T_9", &(TOP.RAS__DOT___s2_spec_pop_T_9), false, VLVT_UINT8,VLVD_NODIR|VLVF_PUB_RW,0);
         __Vscope_RAS.varInsert(__Vfinal,"_s3_pop_T_8", &(TOP.RAS__DOT___s3_pop_T_8), false, VLVT_UINT8,VLVD_NODIR|VLVF_PUB_RW,0);
         __Vscope_RAS.varInsert(__Vfinal,"_s3_pop_T_9", &(TOP.RAS__DOT___s3_pop_T_9), false, VLVT_UINT8,VLVD_NODIR|VLVF_PUB_RW,0);
         __Vscope_RAS.varInsert(__Vfinal,"clock", &(TOP.RAS__DOT__clock), false, VLVT_UINT8,VLVD_NODIR|VLVF_PUB_RW,0);
-        __Vscope_RAS.varInsert(__Vfinal,"debug_modified_debug_s2_pc_modified_0", &(TOP.RAS__DOT__debug_modified_debug_s2_pc_modified_0), false, VLVT_UINT8,VLVD_NODIR|VLVF_PUB_RW,0);
-        __Vscope_RAS.varInsert(__Vfinal,"debug_modified_debug_s2_pc_modified_1", &(TOP.RAS__DOT__debug_modified_debug_s2_pc_modified_1), false, VLVT_UINT8,VLVD_NODIR|VLVF_PUB_RW,0);
-        __Vscope_RAS.varInsert(__Vfinal,"debug_modified_debug_s2_pc_modified_1_0", &(TOP.RAS__DOT__debug_modified_debug_s2_pc_modified_1_0), false, VLVT_UINT8,VLVD_NODIR|VLVF_PUB_RW,0);
-        __Vscope_RAS.varInsert(__Vfinal,"debug_modified_debug_s2_pc_modified_1_1", &(TOP.RAS__DOT__debug_modified_debug_s2_pc_modified_1_1), false, VLVT_UINT8,VLVD_NODIR|VLVF_PUB_RW,0);
-        __Vscope_RAS.varInsert(__Vfinal,"debug_modified_debug_s2_pc_modified_1_2", &(TOP.RAS__DOT__debug_modified_debug_s2_pc_modified_1_2), false, VLVT_UINT8,VLVD_NODIR|VLVF_PUB_RW,0);
-        __Vscope_RAS.varInsert(__Vfinal,"debug_modified_debug_s2_pc_modified_2", &(TOP.RAS__DOT__debug_modified_debug_s2_pc_modified_2), false, VLVT_UINT8,VLVD_NODIR|VLVF_PUB_RW,0);
-        __Vscope_RAS.varInsert(__Vfinal,"debug_modified_debug_s2_pc_modified_2_0", &(TOP.RAS__DOT__debug_modified_debug_s2_pc_modified_2_0), false, VLVT_UINT8,VLVD_NODIR|VLVF_PUB_RW,0);
-        __Vscope_RAS.varInsert(__Vfinal,"debug_modified_debug_s2_pc_modified_2_1", &(TOP.RAS__DOT__debug_modified_debug_s2_pc_modified_2_1), false, VLVT_UINT8,VLVD_NODIR|VLVF_PUB_RW,0);
-        __Vscope_RAS.varInsert(__Vfinal,"debug_modified_debug_s2_pc_modified_2_2", &(TOP.RAS__DOT__debug_modified_debug_s2_pc_modified_2_2), false, VLVT_UINT8,VLVD_NODIR|VLVF_PUB_RW,0);
-        __Vscope_RAS.varInsert(__Vfinal,"debug_modified_debug_s2_pc_modified_3_0", &(TOP.RAS__DOT__debug_modified_debug_s2_pc_modified_3_0), false, VLVT_UINT8,VLVD_NODIR|VLVF_PUB_RW,0);
-        __Vscope_RAS.varInsert(__Vfinal,"debug_modified_debug_s2_pc_modified_3_1", &(TOP.RAS__DOT__debug_modified_debug_s2_pc_modified_3_1), false, VLVT_UINT8,VLVD_NODIR|VLVF_PUB_RW,0);
-        __Vscope_RAS.varInsert(__Vfinal,"debug_modified_debug_s2_pc_modified_3_2", &(TOP.RAS__DOT__debug_modified_debug_s2_pc_modified_3_2), false, VLVT_UINT8,VLVD_NODIR|VLVF_PUB_RW,0);
-        __Vscope_RAS.varInsert(__Vfinal,"debug_modified_debug_s3_pc_modified_0", &(TOP.RAS__DOT__debug_modified_debug_s3_pc_modified_0), false, VLVT_UINT8,VLVD_NODIR|VLVF_PUB_RW,0);
-        __Vscope_RAS.varInsert(__Vfinal,"debug_modified_debug_s3_pc_modified_1", &(TOP.RAS__DOT__debug_modified_debug_s3_pc_modified_1), false, VLVT_UINT8,VLVD_NODIR|VLVF_PUB_RW,0);
-        __Vscope_RAS.varInsert(__Vfinal,"debug_modified_debug_s3_pc_modified_1_0", &(TOP.RAS__DOT__debug_modified_debug_s3_pc_modified_1_0), false, VLVT_UINT8,VLVD_NODIR|VLVF_PUB_RW,0);
-        __Vscope_RAS.varInsert(__Vfinal,"debug_modified_debug_s3_pc_modified_1_1", &(TOP.RAS__DOT__debug_modified_debug_s3_pc_modified_1_1), false, VLVT_UINT8,VLVD_NODIR|VLVF_PUB_RW,0);
-        __Vscope_RAS.varInsert(__Vfinal,"debug_modified_debug_s3_pc_modified_1_2", &(TOP.RAS__DOT__debug_modified_debug_s3_pc_modified_1_2), false, VLVT_UINT8,VLVD_NODIR|VLVF_PUB_RW,0);
-        __Vscope_RAS.varInsert(__Vfinal,"debug_modified_debug_s3_pc_modified_2", &(TOP.RAS__DOT__debug_modified_debug_s3_pc_modified_2), false, VLVT_UINT8,VLVD_NODIR|VLVF_PUB_RW,0);
-        __Vscope_RAS.varInsert(__Vfinal,"debug_modified_debug_s3_pc_modified_2_0", &(TOP.RAS__DOT__debug_modified_debug_s3_pc_modified_2_0), false, VLVT_UINT8,VLVD_NODIR|VLVF_PUB_RW,0);
-        __Vscope_RAS.varInsert(__Vfinal,"debug_modified_debug_s3_pc_modified_2_1", &(TOP.RAS__DOT__debug_modified_debug_s3_pc_modified_2_1), false, VLVT_UINT8,VLVD_NODIR|VLVF_PUB_RW,0);
-        __Vscope_RAS.varInsert(__Vfinal,"debug_modified_debug_s3_pc_modified_2_2", &(TOP.RAS__DOT__debug_modified_debug_s3_pc_modified_2_2), false, VLVT_UINT8,VLVD_NODIR|VLVF_PUB_RW,0);
-        __Vscope_RAS.varInsert(__Vfinal,"debug_modified_debug_s3_pc_modified_3_0", &(TOP.RAS__DOT__debug_modified_debug_s3_pc_modified_3_0), false, VLVT_UINT8,VLVD_NODIR|VLVF_PUB_RW,0);
-        __Vscope_RAS.varInsert(__Vfinal,"debug_modified_debug_s3_pc_modified_3_1", &(TOP.RAS__DOT__debug_modified_debug_s3_pc_modified_3_1), false, VLVT_UINT8,VLVD_NODIR|VLVF_PUB_RW,0);
-        __Vscope_RAS.varInsert(__Vfinal,"debug_modified_debug_s3_pc_modified_3_2", &(TOP.RAS__DOT__debug_modified_debug_s3_pc_modified_3_2), false, VLVT_UINT8,VLVD_NODIR|VLVF_PUB_RW,0);
-        __Vscope_RAS.varInsert(__Vfinal,"debug_s2_pc_addr", &(TOP.RAS__DOT__debug_s2_pc_addr), false, VLVT_UINT64,VLVD_NODIR|VLVF_PUB_RW,1 ,40,0);
-        __Vscope_RAS.varInsert(__Vfinal,"debug_s2_pc_addr_1", &(TOP.RAS__DOT__debug_s2_pc_addr_1), false, VLVT_UINT64,VLVD_NODIR|VLVF_PUB_RW,1 ,40,0);
-        __Vscope_RAS.varInsert(__Vfinal,"debug_s2_pc_addr_2", &(TOP.RAS__DOT__debug_s2_pc_addr_2), false, VLVT_UINT64,VLVD_NODIR|VLVF_PUB_RW,1 ,40,0);
-        __Vscope_RAS.varInsert(__Vfinal,"debug_s2_pc_addr_3", &(TOP.RAS__DOT__debug_s2_pc_addr_3), false, VLVT_UINT64,VLVD_NODIR|VLVF_PUB_RW,1 ,40,0);
-        __Vscope_RAS.varInsert(__Vfinal,"debug_s3_pc_addr", &(TOP.RAS__DOT__debug_s3_pc_addr), false, VLVT_UINT64,VLVD_NODIR|VLVF_PUB_RW,1 ,40,0);
-        __Vscope_RAS.varInsert(__Vfinal,"debug_s3_pc_addr_1", &(TOP.RAS__DOT__debug_s3_pc_addr_1), false, VLVT_UINT64,VLVD_NODIR|VLVF_PUB_RW,1 ,40,0);
-        __Vscope_RAS.varInsert(__Vfinal,"debug_s3_pc_addr_2", &(TOP.RAS__DOT__debug_s3_pc_addr_2), false, VLVT_UINT64,VLVD_NODIR|VLVF_PUB_RW,1 ,40,0);
-        __Vscope_RAS.varInsert(__Vfinal,"debug_s3_pc_addr_3", &(TOP.RAS__DOT__debug_s3_pc_addr_3), false, VLVT_UINT64,VLVD_NODIR|VLVF_PUB_RW,1 ,40,0);
         __Vscope_RAS.varInsert(__Vfinal,"io_ctrl_ras_enable", &(TOP.RAS__DOT__io_ctrl_ras_enable), false, VLVT_UINT8,VLVD_NODIR|VLVF_PUB_RW,0);
         __Vscope_RAS.varInsert(__Vfinal,"io_in_bits_resp_in_0_last_stage_ftb_entry_always_taken_0", &(TOP.RAS__DOT__io_in_bits_resp_in_0_last_stage_ftb_entry_always_taken_0), false, VLVT_UINT8,VLVD_NODIR|VLVF_PUB_RW,0);
         __Vscope_RAS.varInsert(__Vfinal,"io_in_bits_resp_in_0_last_stage_ftb_entry_always_taken_1", &(TOP.RAS__DOT__io_in_bits_resp_in_0_last_stage_ftb_entry_always_taken_1), false, VLVT_UINT8,VLVD_NODIR|VLVF_PUB_RW,0);
@@ -177,7 +147,6 @@ Vtop__Syms::Vtop__Syms(VerilatedContext* contextp, const char* namep,Vtop* model
         __Vscope_RAS.varInsert(__Vfinal,"io_in_bits_resp_in_0_s3_full_pred_0_hit", &(TOP.RAS__DOT__io_in_bits_resp_in_0_s3_full_pred_0_hit), false, VLVT_UINT8,VLVD_NODIR|VLVF_PUB_RW,0);
         __Vscope_RAS.varInsert(__Vfinal,"io_in_bits_resp_in_0_s3_full_pred_0_is_br_sharing", &(TOP.RAS__DOT__io_in_bits_resp_in_0_s3_full_pred_0_is_br_sharing), false, VLVT_UINT8,VLVD_NODIR|VLVF_PUB_RW,0);
         __Vscope_RAS.varInsert(__Vfinal,"io_in_bits_resp_in_0_s3_full_pred_0_jalr_target", &(TOP.RAS__DOT__io_in_bits_resp_in_0_s3_full_pred_0_jalr_target), false, VLVT_UINT64,VLVD_NODIR|VLVF_PUB_RW,1 ,40,0);
-        __Vscope_RAS.varInsert(__Vfinal,"io_in_bits_resp_in_0_s3_full_pred_0_multiHit", &(TOP.RAS__DOT__io_in_bits_resp_in_0_s3_full_pred_0_multiHit), false, VLVT_UINT8,VLVD_NODIR|VLVF_PUB_RW,0);
         __Vscope_RAS.varInsert(__Vfinal,"io_in_bits_resp_in_0_s3_full_pred_0_slot_valids_0", &(TOP.RAS__DOT__io_in_bits_resp_in_0_s3_full_pred_0_slot_valids_0), false, VLVT_UINT8,VLVD_NODIR|VLVF_PUB_RW,0);
         __Vscope_RAS.varInsert(__Vfinal,"io_in_bits_resp_in_0_s3_full_pred_0_slot_valids_1", &(TOP.RAS__DOT__io_in_bits_resp_in_0_s3_full_pred_0_slot_valids_1), false, VLVT_UINT8,VLVD_NODIR|VLVF_PUB_RW,0);
         __Vscope_RAS.varInsert(__Vfinal,"io_in_bits_resp_in_0_s3_full_pred_0_targets_0", &(TOP.RAS__DOT__io_in_bits_resp_in_0_s3_full_pred_0_targets_0), false, VLVT_UINT64,VLVD_NODIR|VLVF_PUB_RW,1 ,40,0);
@@ -189,7 +158,6 @@ Vtop__Syms::Vtop__Syms(VerilatedContext* contextp, const char* namep,Vtop* model
         __Vscope_RAS.varInsert(__Vfinal,"io_in_bits_resp_in_0_s3_full_pred_1_hit", &(TOP.RAS__DOT__io_in_bits_resp_in_0_s3_full_pred_1_hit), false, VLVT_UINT8,VLVD_NODIR|VLVF_PUB_RW,0);
         __Vscope_RAS.varInsert(__Vfinal,"io_in_bits_resp_in_0_s3_full_pred_1_is_br_sharing", &(TOP.RAS__DOT__io_in_bits_resp_in_0_s3_full_pred_1_is_br_sharing), false, VLVT_UINT8,VLVD_NODIR|VLVF_PUB_RW,0);
         __Vscope_RAS.varInsert(__Vfinal,"io_in_bits_resp_in_0_s3_full_pred_1_jalr_target", &(TOP.RAS__DOT__io_in_bits_resp_in_0_s3_full_pred_1_jalr_target), false, VLVT_UINT64,VLVD_NODIR|VLVF_PUB_RW,1 ,40,0);
-        __Vscope_RAS.varInsert(__Vfinal,"io_in_bits_resp_in_0_s3_full_pred_1_multiHit", &(TOP.RAS__DOT__io_in_bits_resp_in_0_s3_full_pred_1_multiHit), false, VLVT_UINT8,VLVD_NODIR|VLVF_PUB_RW,0);
         __Vscope_RAS.varInsert(__Vfinal,"io_in_bits_resp_in_0_s3_full_pred_1_slot_valids_0", &(TOP.RAS__DOT__io_in_bits_resp_in_0_s3_full_pred_1_slot_valids_0), false, VLVT_UINT8,VLVD_NODIR|VLVF_PUB_RW,0);
         __Vscope_RAS.varInsert(__Vfinal,"io_in_bits_resp_in_0_s3_full_pred_1_slot_valids_1", &(TOP.RAS__DOT__io_in_bits_resp_in_0_s3_full_pred_1_slot_valids_1), false, VLVT_UINT8,VLVD_NODIR|VLVF_PUB_RW,0);
         __Vscope_RAS.varInsert(__Vfinal,"io_in_bits_resp_in_0_s3_full_pred_1_targets_0", &(TOP.RAS__DOT__io_in_bits_resp_in_0_s3_full_pred_1_targets_0), false, VLVT_UINT64,VLVD_NODIR|VLVF_PUB_RW,1 ,40,0);
@@ -204,7 +172,6 @@ Vtop__Syms::Vtop__Syms(VerilatedContext* contextp, const char* namep,Vtop* model
         __Vscope_RAS.varInsert(__Vfinal,"io_in_bits_resp_in_0_s3_full_pred_2_is_jalr", &(TOP.RAS__DOT__io_in_bits_resp_in_0_s3_full_pred_2_is_jalr), false, VLVT_UINT8,VLVD_NODIR|VLVF_PUB_RW,0);
         __Vscope_RAS.varInsert(__Vfinal,"io_in_bits_resp_in_0_s3_full_pred_2_is_ret", &(TOP.RAS__DOT__io_in_bits_resp_in_0_s3_full_pred_2_is_ret), false, VLVT_UINT8,VLVD_NODIR|VLVF_PUB_RW,0);
         __Vscope_RAS.varInsert(__Vfinal,"io_in_bits_resp_in_0_s3_full_pred_2_jalr_target", &(TOP.RAS__DOT__io_in_bits_resp_in_0_s3_full_pred_2_jalr_target), false, VLVT_UINT64,VLVD_NODIR|VLVF_PUB_RW,1 ,40,0);
-        __Vscope_RAS.varInsert(__Vfinal,"io_in_bits_resp_in_0_s3_full_pred_2_multiHit", &(TOP.RAS__DOT__io_in_bits_resp_in_0_s3_full_pred_2_multiHit), false, VLVT_UINT8,VLVD_NODIR|VLVF_PUB_RW,0);
         __Vscope_RAS.varInsert(__Vfinal,"io_in_bits_resp_in_0_s3_full_pred_2_slot_valids_0", &(TOP.RAS__DOT__io_in_bits_resp_in_0_s3_full_pred_2_slot_valids_0), false, VLVT_UINT8,VLVD_NODIR|VLVF_PUB_RW,0);
         __Vscope_RAS.varInsert(__Vfinal,"io_in_bits_resp_in_0_s3_full_pred_2_slot_valids_1", &(TOP.RAS__DOT__io_in_bits_resp_in_0_s3_full_pred_2_slot_valids_1), false, VLVT_UINT8,VLVD_NODIR|VLVF_PUB_RW,0);
         __Vscope_RAS.varInsert(__Vfinal,"io_in_bits_resp_in_0_s3_full_pred_2_targets_0", &(TOP.RAS__DOT__io_in_bits_resp_in_0_s3_full_pred_2_targets_0), false, VLVT_UINT64,VLVD_NODIR|VLVF_PUB_RW,1 ,40,0);
@@ -216,7 +183,6 @@ Vtop__Syms::Vtop__Syms(VerilatedContext* contextp, const char* namep,Vtop* model
         __Vscope_RAS.varInsert(__Vfinal,"io_in_bits_resp_in_0_s3_full_pred_3_hit", &(TOP.RAS__DOT__io_in_bits_resp_in_0_s3_full_pred_3_hit), false, VLVT_UINT8,VLVD_NODIR|VLVF_PUB_RW,0);
         __Vscope_RAS.varInsert(__Vfinal,"io_in_bits_resp_in_0_s3_full_pred_3_is_br_sharing", &(TOP.RAS__DOT__io_in_bits_resp_in_0_s3_full_pred_3_is_br_sharing), false, VLVT_UINT8,VLVD_NODIR|VLVF_PUB_RW,0);
         __Vscope_RAS.varInsert(__Vfinal,"io_in_bits_resp_in_0_s3_full_pred_3_jalr_target", &(TOP.RAS__DOT__io_in_bits_resp_in_0_s3_full_pred_3_jalr_target), false, VLVT_UINT64,VLVD_NODIR|VLVF_PUB_RW,1 ,40,0);
-        __Vscope_RAS.varInsert(__Vfinal,"io_in_bits_resp_in_0_s3_full_pred_3_multiHit", &(TOP.RAS__DOT__io_in_bits_resp_in_0_s3_full_pred_3_multiHit), false, VLVT_UINT8,VLVD_NODIR|VLVF_PUB_RW,0);
         __Vscope_RAS.varInsert(__Vfinal,"io_in_bits_resp_in_0_s3_full_pred_3_offsets_0", &(TOP.RAS__DOT__io_in_bits_resp_in_0_s3_full_pred_3_offsets_0), false, VLVT_UINT8,VLVD_NODIR|VLVF_PUB_RW,1 ,3,0);
         __Vscope_RAS.varInsert(__Vfinal,"io_in_bits_resp_in_0_s3_full_pred_3_offsets_1", &(TOP.RAS__DOT__io_in_bits_resp_in_0_s3_full_pred_3_offsets_1), false, VLVT_UINT8,VLVD_NODIR|VLVF_PUB_RW,1 ,3,0);
         __Vscope_RAS.varInsert(__Vfinal,"io_in_bits_resp_in_0_s3_full_pred_3_slot_valids_0", &(TOP.RAS__DOT__io_in_bits_resp_in_0_s3_full_pred_3_slot_valids_0), false, VLVT_UINT8,VLVD_NODIR|VLVF_PUB_RW,0);
@@ -246,14 +212,14 @@ Vtop__Syms::Vtop__Syms(VerilatedContext* contextp, const char* namep,Vtop* model
         __Vscope_RAS.varInsert(__Vfinal,"io_out_last_stage_ftb_entry_tailSlot_tarStat", &(TOP.RAS__DOT__io_out_last_stage_ftb_entry_tailSlot_tarStat), false, VLVT_UINT8,VLVD_NODIR|VLVF_PUB_RW,1 ,1,0);
         __Vscope_RAS.varInsert(__Vfinal,"io_out_last_stage_ftb_entry_tailSlot_valid", &(TOP.RAS__DOT__io_out_last_stage_ftb_entry_tailSlot_valid), false, VLVT_UINT8,VLVD_NODIR|VLVF_PUB_RW,0);
         __Vscope_RAS.varInsert(__Vfinal,"io_out_last_stage_ftb_entry_valid", &(TOP.RAS__DOT__io_out_last_stage_ftb_entry_valid), false, VLVT_UINT8,VLVD_NODIR|VLVF_PUB_RW,0);
-        __Vscope_RAS.varInsert(__Vfinal,"io_out_last_stage_meta", &(TOP.RAS__DOT__io_out_last_stage_meta), false, VLVT_WDATA,VLVD_NODIR|VLVF_PUB_RW,1 ,259,0);
+        __Vscope_RAS.varInsert(__Vfinal,"io_out_last_stage_meta", &(TOP.RAS__DOT__io_out_last_stage_meta), false, VLVT_WDATA,VLVD_NODIR|VLVF_PUB_RW,1 ,222,0);
         __Vscope_RAS.varInsert(__Vfinal,"io_out_last_stage_spec_info_NOS_flag", &(TOP.RAS__DOT__io_out_last_stage_spec_info_NOS_flag), false, VLVT_UINT8,VLVD_NODIR|VLVF_PUB_RW,0);
         __Vscope_RAS.varInsert(__Vfinal,"io_out_last_stage_spec_info_NOS_value", &(TOP.RAS__DOT__io_out_last_stage_spec_info_NOS_value), false, VLVT_UINT8,VLVD_NODIR|VLVF_PUB_RW,1 ,4,0);
         __Vscope_RAS.varInsert(__Vfinal,"io_out_last_stage_spec_info_TOSR_flag", &(TOP.RAS__DOT__io_out_last_stage_spec_info_TOSR_flag), false, VLVT_UINT8,VLVD_NODIR|VLVF_PUB_RW,0);
         __Vscope_RAS.varInsert(__Vfinal,"io_out_last_stage_spec_info_TOSR_value", &(TOP.RAS__DOT__io_out_last_stage_spec_info_TOSR_value), false, VLVT_UINT8,VLVD_NODIR|VLVF_PUB_RW,1 ,4,0);
         __Vscope_RAS.varInsert(__Vfinal,"io_out_last_stage_spec_info_TOSW_flag", &(TOP.RAS__DOT__io_out_last_stage_spec_info_TOSW_flag), false, VLVT_UINT8,VLVD_NODIR|VLVF_PUB_RW,0);
         __Vscope_RAS.varInsert(__Vfinal,"io_out_last_stage_spec_info_TOSW_value", &(TOP.RAS__DOT__io_out_last_stage_spec_info_TOSW_value), false, VLVT_UINT8,VLVD_NODIR|VLVF_PUB_RW,1 ,4,0);
-        __Vscope_RAS.varInsert(__Vfinal,"io_out_last_stage_spec_info_sctr", &(TOP.RAS__DOT__io_out_last_stage_spec_info_sctr), false, VLVT_UINT8,VLVD_NODIR|VLVF_PUB_RW,1 ,2,0);
+        __Vscope_RAS.varInsert(__Vfinal,"io_out_last_stage_spec_info_sctr", &(TOP.RAS__DOT__io_out_last_stage_spec_info_sctr), false, VLVT_UINT8,VLVD_NODIR|VLVF_PUB_RW,1 ,1,0);
         __Vscope_RAS.varInsert(__Vfinal,"io_out_last_stage_spec_info_ssp", &(TOP.RAS__DOT__io_out_last_stage_spec_info_ssp), false, VLVT_UINT8,VLVD_NODIR|VLVF_PUB_RW,1 ,3,0);
         __Vscope_RAS.varInsert(__Vfinal,"io_out_last_stage_spec_info_topAddr", &(TOP.RAS__DOT__io_out_last_stage_spec_info_topAddr), false, VLVT_UINT64,VLVD_NODIR|VLVF_PUB_RW,1 ,40,0);
         __Vscope_RAS.varInsert(__Vfinal,"io_out_s2_full_pred_0_br_taken_mask_0", &(TOP.RAS__DOT__io_out_s2_full_pred_0_br_taken_mask_0), false, VLVT_UINT8,VLVD_NODIR|VLVF_PUB_RW,0);
@@ -311,7 +277,6 @@ Vtop__Syms::Vtop__Syms(VerilatedContext* contextp, const char* namep,Vtop* model
         __Vscope_RAS.varInsert(__Vfinal,"io_out_s3_full_pred_0_fallThroughErr", &(TOP.RAS__DOT__io_out_s3_full_pred_0_fallThroughErr), false, VLVT_UINT8,VLVD_NODIR|VLVF_PUB_RW,0);
         __Vscope_RAS.varInsert(__Vfinal,"io_out_s3_full_pred_0_hit", &(TOP.RAS__DOT__io_out_s3_full_pred_0_hit), false, VLVT_UINT8,VLVD_NODIR|VLVF_PUB_RW,0);
         __Vscope_RAS.varInsert(__Vfinal,"io_out_s3_full_pred_0_is_br_sharing", &(TOP.RAS__DOT__io_out_s3_full_pred_0_is_br_sharing), false, VLVT_UINT8,VLVD_NODIR|VLVF_PUB_RW,0);
-        __Vscope_RAS.varInsert(__Vfinal,"io_out_s3_full_pred_0_multiHit", &(TOP.RAS__DOT__io_out_s3_full_pred_0_multiHit), false, VLVT_UINT8,VLVD_NODIR|VLVF_PUB_RW,0);
         __Vscope_RAS.varInsert(__Vfinal,"io_out_s3_full_pred_0_slot_valids_0", &(TOP.RAS__DOT__io_out_s3_full_pred_0_slot_valids_0), false, VLVT_UINT8,VLVD_NODIR|VLVF_PUB_RW,0);
         __Vscope_RAS.varInsert(__Vfinal,"io_out_s3_full_pred_0_slot_valids_1", &(TOP.RAS__DOT__io_out_s3_full_pred_0_slot_valids_1), false, VLVT_UINT8,VLVD_NODIR|VLVF_PUB_RW,0);
         __Vscope_RAS.varInsert(__Vfinal,"io_out_s3_full_pred_0_targets_0", &(TOP.RAS__DOT__io_out_s3_full_pred_0_targets_0), false, VLVT_UINT64,VLVD_NODIR|VLVF_PUB_RW,1 ,40,0);
@@ -322,7 +287,6 @@ Vtop__Syms::Vtop__Syms(VerilatedContext* contextp, const char* namep,Vtop* model
         __Vscope_RAS.varInsert(__Vfinal,"io_out_s3_full_pred_1_fallThroughErr", &(TOP.RAS__DOT__io_out_s3_full_pred_1_fallThroughErr), false, VLVT_UINT8,VLVD_NODIR|VLVF_PUB_RW,0);
         __Vscope_RAS.varInsert(__Vfinal,"io_out_s3_full_pred_1_hit", &(TOP.RAS__DOT__io_out_s3_full_pred_1_hit), false, VLVT_UINT8,VLVD_NODIR|VLVF_PUB_RW,0);
         __Vscope_RAS.varInsert(__Vfinal,"io_out_s3_full_pred_1_is_br_sharing", &(TOP.RAS__DOT__io_out_s3_full_pred_1_is_br_sharing), false, VLVT_UINT8,VLVD_NODIR|VLVF_PUB_RW,0);
-        __Vscope_RAS.varInsert(__Vfinal,"io_out_s3_full_pred_1_multiHit", &(TOP.RAS__DOT__io_out_s3_full_pred_1_multiHit), false, VLVT_UINT8,VLVD_NODIR|VLVF_PUB_RW,0);
         __Vscope_RAS.varInsert(__Vfinal,"io_out_s3_full_pred_1_slot_valids_0", &(TOP.RAS__DOT__io_out_s3_full_pred_1_slot_valids_0), false, VLVT_UINT8,VLVD_NODIR|VLVF_PUB_RW,0);
         __Vscope_RAS.varInsert(__Vfinal,"io_out_s3_full_pred_1_slot_valids_1", &(TOP.RAS__DOT__io_out_s3_full_pred_1_slot_valids_1), false, VLVT_UINT8,VLVD_NODIR|VLVF_PUB_RW,0);
         __Vscope_RAS.varInsert(__Vfinal,"io_out_s3_full_pred_1_targets_0", &(TOP.RAS__DOT__io_out_s3_full_pred_1_targets_0), false, VLVT_UINT64,VLVD_NODIR|VLVF_PUB_RW,1 ,40,0);
@@ -333,7 +297,6 @@ Vtop__Syms::Vtop__Syms(VerilatedContext* contextp, const char* namep,Vtop* model
         __Vscope_RAS.varInsert(__Vfinal,"io_out_s3_full_pred_2_fallThroughErr", &(TOP.RAS__DOT__io_out_s3_full_pred_2_fallThroughErr), false, VLVT_UINT8,VLVD_NODIR|VLVF_PUB_RW,0);
         __Vscope_RAS.varInsert(__Vfinal,"io_out_s3_full_pred_2_hit", &(TOP.RAS__DOT__io_out_s3_full_pred_2_hit), false, VLVT_UINT8,VLVD_NODIR|VLVF_PUB_RW,0);
         __Vscope_RAS.varInsert(__Vfinal,"io_out_s3_full_pred_2_is_br_sharing", &(TOP.RAS__DOT__io_out_s3_full_pred_2_is_br_sharing), false, VLVT_UINT8,VLVD_NODIR|VLVF_PUB_RW,0);
-        __Vscope_RAS.varInsert(__Vfinal,"io_out_s3_full_pred_2_multiHit", &(TOP.RAS__DOT__io_out_s3_full_pred_2_multiHit), false, VLVT_UINT8,VLVD_NODIR|VLVF_PUB_RW,0);
         __Vscope_RAS.varInsert(__Vfinal,"io_out_s3_full_pred_2_slot_valids_0", &(TOP.RAS__DOT__io_out_s3_full_pred_2_slot_valids_0), false, VLVT_UINT8,VLVD_NODIR|VLVF_PUB_RW,0);
         __Vscope_RAS.varInsert(__Vfinal,"io_out_s3_full_pred_2_slot_valids_1", &(TOP.RAS__DOT__io_out_s3_full_pred_2_slot_valids_1), false, VLVT_UINT8,VLVD_NODIR|VLVF_PUB_RW,0);
         __Vscope_RAS.varInsert(__Vfinal,"io_out_s3_full_pred_2_targets_0", &(TOP.RAS__DOT__io_out_s3_full_pred_2_targets_0), false, VLVT_UINT64,VLVD_NODIR|VLVF_PUB_RW,1 ,40,0);
@@ -344,7 +307,6 @@ Vtop__Syms::Vtop__Syms(VerilatedContext* contextp, const char* namep,Vtop* model
         __Vscope_RAS.varInsert(__Vfinal,"io_out_s3_full_pred_3_fallThroughErr", &(TOP.RAS__DOT__io_out_s3_full_pred_3_fallThroughErr), false, VLVT_UINT8,VLVD_NODIR|VLVF_PUB_RW,0);
         __Vscope_RAS.varInsert(__Vfinal,"io_out_s3_full_pred_3_hit", &(TOP.RAS__DOT__io_out_s3_full_pred_3_hit), false, VLVT_UINT8,VLVD_NODIR|VLVF_PUB_RW,0);
         __Vscope_RAS.varInsert(__Vfinal,"io_out_s3_full_pred_3_is_br_sharing", &(TOP.RAS__DOT__io_out_s3_full_pred_3_is_br_sharing), false, VLVT_UINT8,VLVD_NODIR|VLVF_PUB_RW,0);
-        __Vscope_RAS.varInsert(__Vfinal,"io_out_s3_full_pred_3_multiHit", &(TOP.RAS__DOT__io_out_s3_full_pred_3_multiHit), false, VLVT_UINT8,VLVD_NODIR|VLVF_PUB_RW,0);
         __Vscope_RAS.varInsert(__Vfinal,"io_out_s3_full_pred_3_offsets_0", &(TOP.RAS__DOT__io_out_s3_full_pred_3_offsets_0), false, VLVT_UINT8,VLVD_NODIR|VLVF_PUB_RW,1 ,3,0);
         __Vscope_RAS.varInsert(__Vfinal,"io_out_s3_full_pred_3_offsets_1", &(TOP.RAS__DOT__io_out_s3_full_pred_3_offsets_1), false, VLVT_UINT8,VLVD_NODIR|VLVF_PUB_RW,1 ,3,0);
         __Vscope_RAS.varInsert(__Vfinal,"io_out_s3_full_pred_3_slot_valids_0", &(TOP.RAS__DOT__io_out_s3_full_pred_3_slot_valids_0), false, VLVT_UINT8,VLVD_NODIR|VLVF_PUB_RW,0);
@@ -365,7 +327,7 @@ Vtop__Syms::Vtop__Syms(VerilatedContext* contextp, const char* namep,Vtop* model
         __Vscope_RAS.varInsert(__Vfinal,"io_redirect_bits_cfiUpdate_pd_isCall", &(TOP.RAS__DOT__io_redirect_bits_cfiUpdate_pd_isCall), false, VLVT_UINT8,VLVD_NODIR|VLVF_PUB_RW,0);
         __Vscope_RAS.varInsert(__Vfinal,"io_redirect_bits_cfiUpdate_pd_isRVC", &(TOP.RAS__DOT__io_redirect_bits_cfiUpdate_pd_isRVC), false, VLVT_UINT8,VLVD_NODIR|VLVF_PUB_RW,0);
         __Vscope_RAS.varInsert(__Vfinal,"io_redirect_bits_cfiUpdate_pd_isRet", &(TOP.RAS__DOT__io_redirect_bits_cfiUpdate_pd_isRet), false, VLVT_UINT8,VLVD_NODIR|VLVF_PUB_RW,0);
-        __Vscope_RAS.varInsert(__Vfinal,"io_redirect_bits_cfiUpdate_sctr", &(TOP.RAS__DOT__io_redirect_bits_cfiUpdate_sctr), false, VLVT_UINT8,VLVD_NODIR|VLVF_PUB_RW,1 ,2,0);
+        __Vscope_RAS.varInsert(__Vfinal,"io_redirect_bits_cfiUpdate_sctr", &(TOP.RAS__DOT__io_redirect_bits_cfiUpdate_sctr), false, VLVT_UINT8,VLVD_NODIR|VLVF_PUB_RW,1 ,1,0);
         __Vscope_RAS.varInsert(__Vfinal,"io_redirect_bits_cfiUpdate_ssp", &(TOP.RAS__DOT__io_redirect_bits_cfiUpdate_ssp), false, VLVT_UINT8,VLVD_NODIR|VLVF_PUB_RW,1 ,3,0);
         __Vscope_RAS.varInsert(__Vfinal,"io_redirect_bits_level", &(TOP.RAS__DOT__io_redirect_bits_level), false, VLVT_UINT8,VLVD_NODIR|VLVF_PUB_RW,0);
         __Vscope_RAS.varInsert(__Vfinal,"io_redirect_valid", &(TOP.RAS__DOT__io_redirect_valid), false, VLVT_UINT8,VLVD_NODIR|VLVF_PUB_RW,0);
@@ -391,7 +353,7 @@ Vtop__Syms::Vtop__Syms(VerilatedContext* contextp, const char* namep,Vtop* model
         __Vscope_RAS.varInsert(__Vfinal,"io_update_bits_ftb_entry_tailSlot_offset", &(TOP.RAS__DOT__io_update_bits_ftb_entry_tailSlot_offset), false, VLVT_UINT8,VLVD_NODIR|VLVF_PUB_RW,1 ,3,0);
         __Vscope_RAS.varInsert(__Vfinal,"io_update_bits_ftb_entry_tailSlot_valid", &(TOP.RAS__DOT__io_update_bits_ftb_entry_tailSlot_valid), false, VLVT_UINT8,VLVD_NODIR|VLVF_PUB_RW,0);
         __Vscope_RAS.varInsert(__Vfinal,"io_update_bits_jmp_taken", &(TOP.RAS__DOT__io_update_bits_jmp_taken), false, VLVT_UINT8,VLVD_NODIR|VLVF_PUB_RW,0);
-        __Vscope_RAS.varInsert(__Vfinal,"io_update_bits_meta", &(TOP.RAS__DOT__io_update_bits_meta), false, VLVT_WDATA,VLVD_NODIR|VLVF_PUB_RW,1 ,259,0);
+        __Vscope_RAS.varInsert(__Vfinal,"io_update_bits_meta", &(TOP.RAS__DOT__io_update_bits_meta), false, VLVT_WDATA,VLVD_NODIR|VLVF_PUB_RW,1 ,222,0);
         __Vscope_RAS.varInsert(__Vfinal,"io_update_valid", &(TOP.RAS__DOT__io_update_valid), false, VLVT_UINT8,VLVD_NODIR|VLVF_PUB_RW,0);
         __Vscope_RAS.varInsert(__Vfinal,"redirect_next_bits_r_cfiUpdate_NOS_flag", &(TOP.RAS__DOT__redirect_next_bits_r_cfiUpdate_NOS_flag), false, VLVT_UINT8,VLVD_NODIR|VLVF_PUB_RW,0);
         __Vscope_RAS.varInsert(__Vfinal,"redirect_next_bits_r_cfiUpdate_NOS_value", &(TOP.RAS__DOT__redirect_next_bits_r_cfiUpdate_NOS_value), false, VLVT_UINT8,VLVD_NODIR|VLVF_PUB_RW,1 ,4,0);
@@ -403,27 +365,19 @@ Vtop__Syms::Vtop__Syms(VerilatedContext* contextp, const char* namep,Vtop* model
         __Vscope_RAS.varInsert(__Vfinal,"redirect_next_bits_r_cfiUpdate_pd_isCall", &(TOP.RAS__DOT__redirect_next_bits_r_cfiUpdate_pd_isCall), false, VLVT_UINT8,VLVD_NODIR|VLVF_PUB_RW,0);
         __Vscope_RAS.varInsert(__Vfinal,"redirect_next_bits_r_cfiUpdate_pd_isRVC", &(TOP.RAS__DOT__redirect_next_bits_r_cfiUpdate_pd_isRVC), false, VLVT_UINT8,VLVD_NODIR|VLVF_PUB_RW,0);
         __Vscope_RAS.varInsert(__Vfinal,"redirect_next_bits_r_cfiUpdate_pd_isRet", &(TOP.RAS__DOT__redirect_next_bits_r_cfiUpdate_pd_isRet), false, VLVT_UINT8,VLVD_NODIR|VLVF_PUB_RW,0);
-        __Vscope_RAS.varInsert(__Vfinal,"redirect_next_bits_r_cfiUpdate_sctr", &(TOP.RAS__DOT__redirect_next_bits_r_cfiUpdate_sctr), false, VLVT_UINT8,VLVD_NODIR|VLVF_PUB_RW,1 ,2,0);
+        __Vscope_RAS.varInsert(__Vfinal,"redirect_next_bits_r_cfiUpdate_sctr", &(TOP.RAS__DOT__redirect_next_bits_r_cfiUpdate_sctr), false, VLVT_UINT8,VLVD_NODIR|VLVF_PUB_RW,1 ,1,0);
         __Vscope_RAS.varInsert(__Vfinal,"redirect_next_bits_r_cfiUpdate_ssp", &(TOP.RAS__DOT__redirect_next_bits_r_cfiUpdate_ssp), false, VLVT_UINT8,VLVD_NODIR|VLVF_PUB_RW,1 ,3,0);
         __Vscope_RAS.varInsert(__Vfinal,"redirect_next_bits_r_level", &(TOP.RAS__DOT__redirect_next_bits_r_level), false, VLVT_UINT8,VLVD_NODIR|VLVF_PUB_RW,0);
-        __Vscope_RAS.varInsert(__Vfinal,"redirect_next_valid_last_REG", &(TOP.RAS__DOT__redirect_next_valid_last_REG), false, VLVT_UINT8,VLVD_NODIR|VLVF_PUB_RW,0);
+        __Vscope_RAS.varInsert(__Vfinal,"redirect_next_valid_last_r", &(TOP.RAS__DOT__redirect_next_valid_last_r), false, VLVT_UINT8,VLVD_NODIR|VLVF_PUB_RW,0);
         __Vscope_RAS.varInsert(__Vfinal,"reset", &(TOP.RAS__DOT__reset), false, VLVT_UINT8,VLVD_NODIR|VLVF_PUB_RW,0);
         __Vscope_RAS.varInsert(__Vfinal,"s1_pc_dup_0", &(TOP.RAS__DOT__s1_pc_dup_0), false, VLVT_UINT64,VLVD_NODIR|VLVF_PUB_RW,1 ,40,0);
         __Vscope_RAS.varInsert(__Vfinal,"s1_pc_dup_1", &(TOP.RAS__DOT__s1_pc_dup_1), false, VLVT_UINT64,VLVD_NODIR|VLVF_PUB_RW,1 ,40,0);
         __Vscope_RAS.varInsert(__Vfinal,"s1_pc_dup_2", &(TOP.RAS__DOT__s1_pc_dup_2), false, VLVT_UINT64,VLVD_NODIR|VLVF_PUB_RW,1 ,40,0);
         __Vscope_RAS.varInsert(__Vfinal,"s1_pc_dup_3", &(TOP.RAS__DOT__s1_pc_dup_3), false, VLVT_UINT64,VLVD_NODIR|VLVF_PUB_RW,1 ,40,0);
-        __Vscope_RAS.varInsert(__Vfinal,"s2_pc_seg_0_value", &(TOP.RAS__DOT__s2_pc_seg_0_value), false, VLVT_UINT32,VLVD_NODIR|VLVF_PUB_RW,1 ,16,0);
-        __Vscope_RAS.varInsert(__Vfinal,"s2_pc_seg_0_value_1", &(TOP.RAS__DOT__s2_pc_seg_0_value_1), false, VLVT_UINT32,VLVD_NODIR|VLVF_PUB_RW,1 ,16,0);
-        __Vscope_RAS.varInsert(__Vfinal,"s2_pc_seg_0_value_2", &(TOP.RAS__DOT__s2_pc_seg_0_value_2), false, VLVT_UINT32,VLVD_NODIR|VLVF_PUB_RW,1 ,16,0);
-        __Vscope_RAS.varInsert(__Vfinal,"s2_pc_seg_0_value_3", &(TOP.RAS__DOT__s2_pc_seg_0_value_3), false, VLVT_UINT32,VLVD_NODIR|VLVF_PUB_RW,1 ,16,0);
-        __Vscope_RAS.varInsert(__Vfinal,"s2_pc_seg_1_value", &(TOP.RAS__DOT__s2_pc_seg_1_value), false, VLVT_UINT16,VLVD_NODIR|VLVF_PUB_RW,1 ,11,0);
-        __Vscope_RAS.varInsert(__Vfinal,"s2_pc_seg_1_value_1", &(TOP.RAS__DOT__s2_pc_seg_1_value_1), false, VLVT_UINT16,VLVD_NODIR|VLVF_PUB_RW,1 ,11,0);
-        __Vscope_RAS.varInsert(__Vfinal,"s2_pc_seg_1_value_2", &(TOP.RAS__DOT__s2_pc_seg_1_value_2), false, VLVT_UINT16,VLVD_NODIR|VLVF_PUB_RW,1 ,11,0);
-        __Vscope_RAS.varInsert(__Vfinal,"s2_pc_seg_1_value_3", &(TOP.RAS__DOT__s2_pc_seg_1_value_3), false, VLVT_UINT16,VLVD_NODIR|VLVF_PUB_RW,1 ,11,0);
-        __Vscope_RAS.varInsert(__Vfinal,"s2_pc_seg_2_value", &(TOP.RAS__DOT__s2_pc_seg_2_value), false, VLVT_UINT16,VLVD_NODIR|VLVF_PUB_RW,1 ,11,0);
-        __Vscope_RAS.varInsert(__Vfinal,"s2_pc_seg_2_value_1", &(TOP.RAS__DOT__s2_pc_seg_2_value_1), false, VLVT_UINT16,VLVD_NODIR|VLVF_PUB_RW,1 ,11,0);
-        __Vscope_RAS.varInsert(__Vfinal,"s2_pc_seg_2_value_2", &(TOP.RAS__DOT__s2_pc_seg_2_value_2), false, VLVT_UINT16,VLVD_NODIR|VLVF_PUB_RW,1 ,11,0);
-        __Vscope_RAS.varInsert(__Vfinal,"s2_pc_seg_2_value_3", &(TOP.RAS__DOT__s2_pc_seg_2_value_3), false, VLVT_UINT16,VLVD_NODIR|VLVF_PUB_RW,1 ,11,0);
+        __Vscope_RAS.varInsert(__Vfinal,"s2_pc_dup_0", &(TOP.RAS__DOT__s2_pc_dup_0), false, VLVT_UINT64,VLVD_NODIR|VLVF_PUB_RW,1 ,40,0);
+        __Vscope_RAS.varInsert(__Vfinal,"s2_pc_dup_1", &(TOP.RAS__DOT__s2_pc_dup_1), false, VLVT_UINT64,VLVD_NODIR|VLVF_PUB_RW,1 ,40,0);
+        __Vscope_RAS.varInsert(__Vfinal,"s2_pc_dup_2", &(TOP.RAS__DOT__s2_pc_dup_2), false, VLVT_UINT64,VLVD_NODIR|VLVF_PUB_RW,1 ,40,0);
+        __Vscope_RAS.varInsert(__Vfinal,"s2_pc_dup_3", &(TOP.RAS__DOT__s2_pc_dup_3), false, VLVT_UINT64,VLVD_NODIR|VLVF_PUB_RW,1 ,40,0);
         __Vscope_RAS.varInsert(__Vfinal,"s2_spec_pop", &(TOP.RAS__DOT__s2_spec_pop), false, VLVT_UINT8,VLVD_NODIR|VLVF_PUB_RW,0);
         __Vscope_RAS.varInsert(__Vfinal,"s2_spec_push", &(TOP.RAS__DOT__s2_spec_push), false, VLVT_UINT8,VLVD_NODIR|VLVF_PUB_RW,0);
         __Vscope_RAS.varInsert(__Vfinal,"s3_meta_NOS_flag", &(TOP.RAS__DOT__s3_meta_NOS_flag), false, VLVT_UINT8,VLVD_NODIR|VLVF_PUB_RW,0);
@@ -434,18 +388,10 @@ Vtop__Syms::Vtop__Syms(VerilatedContext* contextp, const char* namep,Vtop* model
         __Vscope_RAS.varInsert(__Vfinal,"s3_meta_TOSW_value", &(TOP.RAS__DOT__s3_meta_TOSW_value), false, VLVT_UINT8,VLVD_NODIR|VLVF_PUB_RW,1 ,4,0);
         __Vscope_RAS.varInsert(__Vfinal,"s3_meta_sctr", &(TOP.RAS__DOT__s3_meta_sctr), false, VLVT_UINT8,VLVD_NODIR|VLVF_PUB_RW,1 ,2,0);
         __Vscope_RAS.varInsert(__Vfinal,"s3_meta_ssp", &(TOP.RAS__DOT__s3_meta_ssp), false, VLVT_UINT8,VLVD_NODIR|VLVF_PUB_RW,1 ,3,0);
-        __Vscope_RAS.varInsert(__Vfinal,"s3_pc_seg_0_value", &(TOP.RAS__DOT__s3_pc_seg_0_value), false, VLVT_UINT32,VLVD_NODIR|VLVF_PUB_RW,1 ,16,0);
-        __Vscope_RAS.varInsert(__Vfinal,"s3_pc_seg_0_value_1", &(TOP.RAS__DOT__s3_pc_seg_0_value_1), false, VLVT_UINT32,VLVD_NODIR|VLVF_PUB_RW,1 ,16,0);
-        __Vscope_RAS.varInsert(__Vfinal,"s3_pc_seg_0_value_2", &(TOP.RAS__DOT__s3_pc_seg_0_value_2), false, VLVT_UINT32,VLVD_NODIR|VLVF_PUB_RW,1 ,16,0);
-        __Vscope_RAS.varInsert(__Vfinal,"s3_pc_seg_0_value_3", &(TOP.RAS__DOT__s3_pc_seg_0_value_3), false, VLVT_UINT32,VLVD_NODIR|VLVF_PUB_RW,1 ,16,0);
-        __Vscope_RAS.varInsert(__Vfinal,"s3_pc_seg_1_value", &(TOP.RAS__DOT__s3_pc_seg_1_value), false, VLVT_UINT16,VLVD_NODIR|VLVF_PUB_RW,1 ,11,0);
-        __Vscope_RAS.varInsert(__Vfinal,"s3_pc_seg_1_value_1", &(TOP.RAS__DOT__s3_pc_seg_1_value_1), false, VLVT_UINT16,VLVD_NODIR|VLVF_PUB_RW,1 ,11,0);
-        __Vscope_RAS.varInsert(__Vfinal,"s3_pc_seg_1_value_2", &(TOP.RAS__DOT__s3_pc_seg_1_value_2), false, VLVT_UINT16,VLVD_NODIR|VLVF_PUB_RW,1 ,11,0);
-        __Vscope_RAS.varInsert(__Vfinal,"s3_pc_seg_1_value_3", &(TOP.RAS__DOT__s3_pc_seg_1_value_3), false, VLVT_UINT16,VLVD_NODIR|VLVF_PUB_RW,1 ,11,0);
-        __Vscope_RAS.varInsert(__Vfinal,"s3_pc_seg_2_value", &(TOP.RAS__DOT__s3_pc_seg_2_value), false, VLVT_UINT16,VLVD_NODIR|VLVF_PUB_RW,1 ,11,0);
-        __Vscope_RAS.varInsert(__Vfinal,"s3_pc_seg_2_value_1", &(TOP.RAS__DOT__s3_pc_seg_2_value_1), false, VLVT_UINT16,VLVD_NODIR|VLVF_PUB_RW,1 ,11,0);
-        __Vscope_RAS.varInsert(__Vfinal,"s3_pc_seg_2_value_2", &(TOP.RAS__DOT__s3_pc_seg_2_value_2), false, VLVT_UINT16,VLVD_NODIR|VLVF_PUB_RW,1 ,11,0);
-        __Vscope_RAS.varInsert(__Vfinal,"s3_pc_seg_2_value_3", &(TOP.RAS__DOT__s3_pc_seg_2_value_3), false, VLVT_UINT16,VLVD_NODIR|VLVF_PUB_RW,1 ,11,0);
+        __Vscope_RAS.varInsert(__Vfinal,"s3_pc_dup_0", &(TOP.RAS__DOT__s3_pc_dup_0), false, VLVT_UINT64,VLVD_NODIR|VLVF_PUB_RW,1 ,40,0);
+        __Vscope_RAS.varInsert(__Vfinal,"s3_pc_dup_1", &(TOP.RAS__DOT__s3_pc_dup_1), false, VLVT_UINT64,VLVD_NODIR|VLVF_PUB_RW,1 ,40,0);
+        __Vscope_RAS.varInsert(__Vfinal,"s3_pc_dup_2", &(TOP.RAS__DOT__s3_pc_dup_2), false, VLVT_UINT64,VLVD_NODIR|VLVF_PUB_RW,1 ,40,0);
+        __Vscope_RAS.varInsert(__Vfinal,"s3_pc_dup_3", &(TOP.RAS__DOT__s3_pc_dup_3), false, VLVT_UINT64,VLVD_NODIR|VLVF_PUB_RW,1 ,40,0);
         __Vscope_RAS.varInsert(__Vfinal,"s3_pop", &(TOP.RAS__DOT__s3_pop), false, VLVT_UINT8,VLVD_NODIR|VLVF_PUB_RW,0);
         __Vscope_RAS.varInsert(__Vfinal,"s3_popped_in_s2", &(TOP.RAS__DOT__s3_popped_in_s2), false, VLVT_UINT8,VLVD_NODIR|VLVF_PUB_RW,0);
         __Vscope_RAS.varInsert(__Vfinal,"s3_push", &(TOP.RAS__DOT__s3_push), false, VLVT_UINT8,VLVD_NODIR|VLVF_PUB_RW,0);
@@ -460,27 +406,28 @@ Vtop__Syms::Vtop__Syms(VerilatedContext* contextp, const char* namep,Vtop* model
         __Vscope_RAS__RASStack.varInsert(__Vfinal,"TOSW_value", &(TOP.RAS__DOT__RASStack__DOT__TOSW_value), false, VLVT_UINT8,VLVD_NODIR|VLVF_PUB_RW,1 ,4,0);
         __Vscope_RAS__RASStack.varInsert(__Vfinal,"_BOS_new_ptr_T_1", &(TOP.RAS__DOT__RASStack__DOT___BOS_new_ptr_T_1), false, VLVT_UINT8,VLVD_NODIR|VLVF_PUB_RW,1 ,5,0);
         __Vscope_RAS__RASStack.varInsert(__Vfinal,"_BOS_new_ptr_T_11", &(TOP.RAS__DOT__RASStack__DOT___BOS_new_ptr_T_11), false, VLVT_UINT8,VLVD_NODIR|VLVF_PUB_RW,1 ,5,0);
+        __Vscope_RAS__RASStack.varInsert(__Vfinal,"_BOS_new_ptr_T_16", &(TOP.RAS__DOT__RASStack__DOT___BOS_new_ptr_T_16), false, VLVT_UINT8,VLVD_NODIR|VLVF_PUB_RW,1 ,5,0);
         __Vscope_RAS__RASStack.varInsert(__Vfinal,"_BOS_new_ptr_T_6", &(TOP.RAS__DOT__RASStack__DOT___BOS_new_ptr_T_6), false, VLVT_UINT8,VLVD_NODIR|VLVF_PUB_RW,1 ,5,0);
         __Vscope_RAS__RASStack.varInsert(__Vfinal,"_GEN", &(TOP.RAS__DOT__RASStack__DOT___GEN), false, VLVT_UINT8,VLVD_NODIR|VLVF_PUB_RW,0);
         __Vscope_RAS__RASStack.varInsert(__Vfinal,"_GEN_0", &(TOP.RAS__DOT__RASStack__DOT___GEN_0), false, VLVT_WDATA,VLVD_NODIR|VLVF_PUB_RW,1, 1311,0);
         __Vscope_RAS__RASStack.varInsert(__Vfinal,"_GEN_1", &(TOP.RAS__DOT__RASStack__DOT___GEN_1), false, VLVT_UINT64,VLVD_NODIR|VLVF_PUB_RW,1 ,40,0);
-        __Vscope_RAS__RASStack.varInsert(__Vfinal,"_GEN_10", &(TOP.RAS__DOT__RASStack__DOT___GEN_10), false, VLVT_UINT8,VLVD_NODIR|VLVF_PUB_RW,1 ,5,0);
+        __Vscope_RAS__RASStack.varInsert(__Vfinal,"_GEN_10", &(TOP.RAS__DOT__RASStack__DOT___GEN_10), false, VLVT_UINT8,VLVD_NODIR|VLVF_PUB_RW,0);
         __Vscope_RAS__RASStack.varInsert(__Vfinal,"_GEN_11", &(TOP.RAS__DOT__RASStack__DOT___GEN_11), false, VLVT_UINT8,VLVD_NODIR|VLVF_PUB_RW,0);
         __Vscope_RAS__RASStack.varInsert(__Vfinal,"_GEN_12", &(TOP.RAS__DOT__RASStack__DOT___GEN_12), false, VLVT_UINT8,VLVD_NODIR|VLVF_PUB_RW,0);
-        __Vscope_RAS__RASStack.varInsert(__Vfinal,"_GEN_13", &(TOP.RAS__DOT__RASStack__DOT___GEN_13), false, VLVT_UINT8,VLVD_NODIR|VLVF_PUB_RW,1 ,5,0);
-        __Vscope_RAS__RASStack.varInsert(__Vfinal,"_GEN_14", &(TOP.RAS__DOT__RASStack__DOT___GEN_14), false, VLVT_UINT8,VLVD_NODIR|VLVF_PUB_RW,1 ,5,0);
+        __Vscope_RAS__RASStack.varInsert(__Vfinal,"_GEN_13", &(TOP.RAS__DOT__RASStack__DOT___GEN_13), false, VLVT_UINT8,VLVD_NODIR|VLVF_PUB_RW,0);
+        __Vscope_RAS__RASStack.varInsert(__Vfinal,"_GEN_14", &(TOP.RAS__DOT__RASStack__DOT___GEN_14), false, VLVT_UINT8,VLVD_NODIR|VLVF_PUB_RW,0);
         __Vscope_RAS__RASStack.varInsert(__Vfinal,"_GEN_15", &(TOP.RAS__DOT__RASStack__DOT___GEN_15), false, VLVT_UINT8,VLVD_NODIR|VLVF_PUB_RW,0);
         __Vscope_RAS__RASStack.varInsert(__Vfinal,"_GEN_16", &(TOP.RAS__DOT__RASStack__DOT___GEN_16), false, VLVT_UINT8,VLVD_NODIR|VLVF_PUB_RW,0);
         __Vscope_RAS__RASStack.varInsert(__Vfinal,"_GEN_17", &(TOP.RAS__DOT__RASStack__DOT___GEN_17), false, VLVT_UINT8,VLVD_NODIR|VLVF_PUB_RW,0);
         __Vscope_RAS__RASStack.varInsert(__Vfinal,"_GEN_18", &(TOP.RAS__DOT__RASStack__DOT___GEN_18), false, VLVT_UINT8,VLVD_NODIR|VLVF_PUB_RW,0);
-        __Vscope_RAS__RASStack.varInsert(__Vfinal,"_GEN_19", &(TOP.RAS__DOT__RASStack__DOT___GEN_19), false, VLVT_UINT8,VLVD_NODIR|VLVF_PUB_RW,0);
-        __Vscope_RAS__RASStack.varInsert(__Vfinal,"_GEN_2", &(TOP.RAS__DOT__RASStack__DOT___GEN_2), false, VLVT_WDATA,VLVD_NODIR|VLVF_PUB_RW,1, 95,0);
-        __Vscope_RAS__RASStack.varInsert(__Vfinal,"_GEN_20", &(TOP.RAS__DOT__RASStack__DOT___GEN_20), false, VLVT_UINT8,VLVD_NODIR|VLVF_PUB_RW,0);
+        __Vscope_RAS__RASStack.varInsert(__Vfinal,"_GEN_19", &(TOP.RAS__DOT__RASStack__DOT___GEN_19), false, VLVT_UINT8,VLVD_NODIR|VLVF_PUB_RW,1 ,5,0);
+        __Vscope_RAS__RASStack.varInsert(__Vfinal,"_GEN_2", &(TOP.RAS__DOT__RASStack__DOT___GEN_2), false, VLVT_WDATA,VLVD_NODIR|VLVF_PUB_RW,1, 255,0);
+        __Vscope_RAS__RASStack.varInsert(__Vfinal,"_GEN_20", &(TOP.RAS__DOT__RASStack__DOT___GEN_20), false, VLVT_UINT8,VLVD_NODIR|VLVF_PUB_RW,1 ,5,0);
         __Vscope_RAS__RASStack.varInsert(__Vfinal,"_GEN_21", &(TOP.RAS__DOT__RASStack__DOT___GEN_21), false, VLVT_UINT8,VLVD_NODIR|VLVF_PUB_RW,0);
         __Vscope_RAS__RASStack.varInsert(__Vfinal,"_GEN_22", &(TOP.RAS__DOT__RASStack__DOT___GEN_22), false, VLVT_UINT8,VLVD_NODIR|VLVF_PUB_RW,1 ,5,0);
         __Vscope_RAS__RASStack.varInsert(__Vfinal,"_GEN_23", &(TOP.RAS__DOT__RASStack__DOT___GEN_23), false, VLVT_UINT8,VLVD_NODIR|VLVF_PUB_RW,0);
-        __Vscope_RAS__RASStack.varInsert(__Vfinal,"_GEN_24", &(TOP.RAS__DOT__RASStack__DOT___GEN_24), false, VLVT_UINT8,VLVD_NODIR|VLVF_PUB_RW,0);
-        __Vscope_RAS__RASStack.varInsert(__Vfinal,"_GEN_25", &(TOP.RAS__DOT__RASStack__DOT___GEN_25), false, VLVT_UINT8,VLVD_NODIR|VLVF_PUB_RW,1 ,2,0);
+        __Vscope_RAS__RASStack.varInsert(__Vfinal,"_GEN_24", &(TOP.RAS__DOT__RASStack__DOT___GEN_24), false, VLVT_UINT8,VLVD_NODIR|VLVF_PUB_RW,1 ,7,0);
+        __Vscope_RAS__RASStack.varInsert(__Vfinal,"_GEN_25", &(TOP.RAS__DOT__RASStack__DOT___GEN_25), false, VLVT_UINT8,VLVD_NODIR|VLVF_PUB_RW,0);
         __Vscope_RAS__RASStack.varInsert(__Vfinal,"_GEN_26", &(TOP.RAS__DOT__RASStack__DOT___GEN_26), false, VLVT_UINT8,VLVD_NODIR|VLVF_PUB_RW,0);
         __Vscope_RAS__RASStack.varInsert(__Vfinal,"_GEN_27", &(TOP.RAS__DOT__RASStack__DOT___GEN_27), false, VLVT_UINT8,VLVD_NODIR|VLVF_PUB_RW,0);
         __Vscope_RAS__RASStack.varInsert(__Vfinal,"_GEN_28", &(TOP.RAS__DOT__RASStack__DOT___GEN_28), false, VLVT_UINT8,VLVD_NODIR|VLVF_PUB_RW,0);
@@ -507,7 +454,7 @@ Vtop__Syms::Vtop__Syms(VerilatedContext* contextp, const char* namep,Vtop* model
         __Vscope_RAS__RASStack.varInsert(__Vfinal,"_GEN_47", &(TOP.RAS__DOT__RASStack__DOT___GEN_47), false, VLVT_UINT8,VLVD_NODIR|VLVF_PUB_RW,0);
         __Vscope_RAS__RASStack.varInsert(__Vfinal,"_GEN_48", &(TOP.RAS__DOT__RASStack__DOT___GEN_48), false, VLVT_UINT8,VLVD_NODIR|VLVF_PUB_RW,0);
         __Vscope_RAS__RASStack.varInsert(__Vfinal,"_GEN_49", &(TOP.RAS__DOT__RASStack__DOT___GEN_49), false, VLVT_UINT8,VLVD_NODIR|VLVF_PUB_RW,0);
-        __Vscope_RAS__RASStack.varInsert(__Vfinal,"_GEN_5", &(TOP.RAS__DOT__RASStack__DOT___GEN_5), false, VLVT_UINT64,VLVD_NODIR|VLVF_PUB_RW,1, 47,0);
+        __Vscope_RAS__RASStack.varInsert(__Vfinal,"_GEN_5", &(TOP.RAS__DOT__RASStack__DOT___GEN_5), false, VLVT_WDATA,VLVD_NODIR|VLVF_PUB_RW,1, 127,0);
         __Vscope_RAS__RASStack.varInsert(__Vfinal,"_GEN_50", &(TOP.RAS__DOT__RASStack__DOT___GEN_50), false, VLVT_UINT8,VLVD_NODIR|VLVF_PUB_RW,0);
         __Vscope_RAS__RASStack.varInsert(__Vfinal,"_GEN_51", &(TOP.RAS__DOT__RASStack__DOT___GEN_51), false, VLVT_UINT8,VLVD_NODIR|VLVF_PUB_RW,0);
         __Vscope_RAS__RASStack.varInsert(__Vfinal,"_GEN_52", &(TOP.RAS__DOT__RASStack__DOT___GEN_52), false, VLVT_UINT8,VLVD_NODIR|VLVF_PUB_RW,0);
@@ -532,20 +479,24 @@ Vtop__Syms::Vtop__Syms(VerilatedContext* contextp, const char* namep,Vtop* model
         __Vscope_RAS__RASStack.varInsert(__Vfinal,"_GEN_7", &(TOP.RAS__DOT__RASStack__DOT___GEN_7), false, VLVT_WDATA,VLVD_NODIR|VLVF_PUB_RW,1, 159,0);
         __Vscope_RAS__RASStack.varInsert(__Vfinal,"_GEN_70", &(TOP.RAS__DOT__RASStack__DOT___GEN_70), false, VLVT_UINT8,VLVD_NODIR|VLVF_PUB_RW,0);
         __Vscope_RAS__RASStack.varInsert(__Vfinal,"_GEN_71", &(TOP.RAS__DOT__RASStack__DOT___GEN_71), false, VLVT_UINT8,VLVD_NODIR|VLVF_PUB_RW,0);
-        __Vscope_RAS__RASStack.varInsert(__Vfinal,"_GEN_72", &(TOP.RAS__DOT__RASStack__DOT___GEN_72), false, VLVT_UINT8,VLVD_NODIR|VLVF_PUB_RW,0);
+        __Vscope_RAS__RASStack.varInsert(__Vfinal,"_GEN_72", &(TOP.RAS__DOT__RASStack__DOT___GEN_72), false, VLVT_UINT8,VLVD_NODIR|VLVF_PUB_RW,1 ,5,0);
         __Vscope_RAS__RASStack.varInsert(__Vfinal,"_GEN_73", &(TOP.RAS__DOT__RASStack__DOT___GEN_73), false, VLVT_UINT8,VLVD_NODIR|VLVF_PUB_RW,0);
-        __Vscope_RAS__RASStack.varInsert(__Vfinal,"_GEN_74", &(TOP.RAS__DOT__RASStack__DOT___GEN_74), false, VLVT_UINT8,VLVD_NODIR|VLVF_PUB_RW,0);
+        __Vscope_RAS__RASStack.varInsert(__Vfinal,"_GEN_74", &(TOP.RAS__DOT__RASStack__DOT___GEN_74), false, VLVT_UINT8,VLVD_NODIR|VLVF_PUB_RW,1 ,5,0);
         __Vscope_RAS__RASStack.varInsert(__Vfinal,"_GEN_75", &(TOP.RAS__DOT__RASStack__DOT___GEN_75), false, VLVT_UINT8,VLVD_NODIR|VLVF_PUB_RW,0);
-        __Vscope_RAS__RASStack.varInsert(__Vfinal,"_GEN_76", &(TOP.RAS__DOT__RASStack__DOT___GEN_76), false, VLVT_UINT8,VLVD_NODIR|VLVF_PUB_RW,0);
+        __Vscope_RAS__RASStack.varInsert(__Vfinal,"_GEN_76", &(TOP.RAS__DOT__RASStack__DOT___GEN_76), false, VLVT_UINT8,VLVD_NODIR|VLVF_PUB_RW,1 ,5,0);
+        __Vscope_RAS__RASStack.varInsert(__Vfinal,"_GEN_77", &(TOP.RAS__DOT__RASStack__DOT___GEN_77), false, VLVT_UINT8,VLVD_NODIR|VLVF_PUB_RW,0);
+        __Vscope_RAS__RASStack.varInsert(__Vfinal,"_GEN_78", &(TOP.RAS__DOT__RASStack__DOT___GEN_78), false, VLVT_UINT8,VLVD_NODIR|VLVF_PUB_RW,1 ,5,0);
+        __Vscope_RAS__RASStack.varInsert(__Vfinal,"_GEN_79", &(TOP.RAS__DOT__RASStack__DOT___GEN_79), false, VLVT_UINT8,VLVD_NODIR|VLVF_PUB_RW,0);
         __Vscope_RAS__RASStack.varInsert(__Vfinal,"_GEN_8", &(TOP.RAS__DOT__RASStack__DOT___GEN_8), false, VLVT_UINT8,VLVD_NODIR|VLVF_PUB_RW,1 ,4,0);
+        __Vscope_RAS__RASStack.varInsert(__Vfinal,"_GEN_80", &(TOP.RAS__DOT__RASStack__DOT___GEN_80), false, VLVT_UINT8,VLVD_NODIR|VLVF_PUB_RW,1 ,5,0);
         __Vscope_RAS__RASStack.varInsert(__Vfinal,"_GEN_9", &(TOP.RAS__DOT__RASStack__DOT___GEN_9), false, VLVT_UINT8,VLVD_NODIR|VLVF_PUB_RW,0);
-        __Vscope_RAS__RASStack.varInsert(__Vfinal,"_RANDOM", &(TOP.RAS__DOT__RASStack__DOT___RANDOM), false, VLVT_UINT32,VLVD_NODIR|VLVF_PUB_RW,2 ,31,0 ,0,77);
-        __Vscope_RAS__RASStack.varInsert(__Vfinal,"_commit_stack_ctr_T", &(TOP.RAS__DOT__RASStack__DOT___commit_stack_ctr_T), false, VLVT_UINT8,VLVD_NODIR|VLVF_PUB_RW,1 ,2,0);
-        __Vscope_RAS__RASStack.varInsert(__Vfinal,"_commit_stack_ctr_T_2", &(TOP.RAS__DOT__RASStack__DOT___commit_stack_ctr_T_2), false, VLVT_UINT8,VLVD_NODIR|VLVF_PUB_RW,1 ,2,0);
+        __Vscope_RAS__RASStack.varInsert(__Vfinal,"_RANDOM", &(TOP.RAS__DOT__RASStack__DOT___RANDOM), false, VLVT_UINT32,VLVD_NODIR|VLVF_PUB_RW,2 ,31,0 ,0,85);
+        __Vscope_RAS__RASStack.varInsert(__Vfinal,"_commit_stack_ctr_T", &(TOP.RAS__DOT__RASStack__DOT___commit_stack_ctr_T), false, VLVT_UINT8,VLVD_NODIR|VLVF_PUB_RW,1 ,7,0);
+        __Vscope_RAS__RASStack.varInsert(__Vfinal,"_commit_stack_ctr_T_2", &(TOP.RAS__DOT__RASStack__DOT___commit_stack_ctr_T_2), false, VLVT_UINT8,VLVD_NODIR|VLVF_PUB_RW,1 ,7,0);
+        __Vscope_RAS__RASStack.varInsert(__Vfinal,"_new_ptr_T_11", &(TOP.RAS__DOT__RASStack__DOT___new_ptr_T_11), false, VLVT_UINT8,VLVD_NODIR|VLVF_PUB_RW,1 ,5,0);
         __Vscope_RAS__RASStack.varInsert(__Vfinal,"_nsp_T_2", &(TOP.RAS__DOT__RASStack__DOT___nsp_T_2), false, VLVT_UINT8,VLVD_NODIR|VLVF_PUB_RW,1 ,3,0);
         __Vscope_RAS__RASStack.varInsert(__Vfinal,"_realPush_T_4", &(TOP.RAS__DOT__RASStack__DOT___realPush_T_4), false, VLVT_UINT8,VLVD_NODIR|VLVF_PUB_RW,0);
         __Vscope_RAS__RASStack.varInsert(__Vfinal,"_s3_missPushEntry_ctr_T", &(TOP.RAS__DOT__RASStack__DOT___s3_missPushEntry_ctr_T), false, VLVT_UINT8,VLVD_NODIR|VLVF_PUB_RW,0);
-        __Vscope_RAS__RASStack.varInsert(__Vfinal,"_s3_missPushEntry_ctr_T_2", &(TOP.RAS__DOT__RASStack__DOT___s3_missPushEntry_ctr_T_2), false, VLVT_UINT8,VLVD_NODIR|VLVF_PUB_RW,0);
         __Vscope_RAS__RASStack.varInsert(__Vfinal,"_sctr_T", &(TOP.RAS__DOT__RASStack__DOT___sctr_T), false, VLVT_UINT8,VLVD_NODIR|VLVF_PUB_RW,1 ,2,0);
         __Vscope_RAS__RASStack.varInsert(__Vfinal,"_sctr_T_10", &(TOP.RAS__DOT__RASStack__DOT___sctr_T_10), false, VLVT_UINT8,VLVD_NODIR|VLVF_PUB_RW,1 ,2,0);
         __Vscope_RAS__RASStack.varInsert(__Vfinal,"_sctr_T_12", &(TOP.RAS__DOT__RASStack__DOT___sctr_T_12), false, VLVT_UINT8,VLVD_NODIR|VLVF_PUB_RW,1 ,2,0);
@@ -553,41 +504,39 @@ Vtop__Syms::Vtop__Syms(VerilatedContext* contextp, const char* namep,Vtop* model
         __Vscope_RAS__RASStack.varInsert(__Vfinal,"_sctr_T_4", &(TOP.RAS__DOT__RASStack__DOT___sctr_T_4), false, VLVT_UINT8,VLVD_NODIR|VLVF_PUB_RW,1 ,3,0);
         __Vscope_RAS__RASStack.varInsert(__Vfinal,"_sctr_T_8", &(TOP.RAS__DOT__RASStack__DOT___sctr_T_8), false, VLVT_UINT8,VLVD_NODIR|VLVF_PUB_RW,1 ,3,0);
         __Vscope_RAS__RASStack.varInsert(__Vfinal,"_writeEntry_ctr_T_1", &(TOP.RAS__DOT__RASStack__DOT___writeEntry_ctr_T_1), false, VLVT_UINT8,VLVD_NODIR|VLVF_PUB_RW,0);
-        __Vscope_RAS__RASStack.varInsert(__Vfinal,"_writeEntry_ctr_T_6", &(TOP.RAS__DOT__RASStack__DOT___writeEntry_ctr_T_6), false, VLVT_UINT8,VLVD_NODIR|VLVF_PUB_RW,1 ,2,0);
         __Vscope_RAS__RASStack.varInsert(__Vfinal,"_writeEntry_ctr_T_7", &(TOP.RAS__DOT__RASStack__DOT___writeEntry_ctr_T_7), false, VLVT_UINT8,VLVD_NODIR|VLVF_PUB_RW,0);
-        __Vscope_RAS__RASStack.varInsert(__Vfinal,"_writeEntry_ctr_T_9", &(TOP.RAS__DOT__RASStack__DOT___writeEntry_ctr_T_9), false, VLVT_UINT8,VLVD_NODIR|VLVF_PUB_RW,0);
         __Vscope_RAS__RASStack.varInsert(__Vfinal,"clock", &(TOP.RAS__DOT__RASStack__DOT__clock), false, VLVT_UINT8,VLVD_NODIR|VLVF_PUB_RW,0);
-        __Vscope_RAS__RASStack.varInsert(__Vfinal,"commit_stack_0_ctr", &(TOP.RAS__DOT__RASStack__DOT__commit_stack_0_ctr), false, VLVT_UINT8,VLVD_NODIR|VLVF_PUB_RW,1 ,2,0);
+        __Vscope_RAS__RASStack.varInsert(__Vfinal,"commit_stack_0_ctr", &(TOP.RAS__DOT__RASStack__DOT__commit_stack_0_ctr), false, VLVT_UINT8,VLVD_NODIR|VLVF_PUB_RW,1 ,7,0);
         __Vscope_RAS__RASStack.varInsert(__Vfinal,"commit_stack_0_retAddr", &(TOP.RAS__DOT__RASStack__DOT__commit_stack_0_retAddr), false, VLVT_UINT64,VLVD_NODIR|VLVF_PUB_RW,1 ,40,0);
-        __Vscope_RAS__RASStack.varInsert(__Vfinal,"commit_stack_10_ctr", &(TOP.RAS__DOT__RASStack__DOT__commit_stack_10_ctr), false, VLVT_UINT8,VLVD_NODIR|VLVF_PUB_RW,1 ,2,0);
+        __Vscope_RAS__RASStack.varInsert(__Vfinal,"commit_stack_10_ctr", &(TOP.RAS__DOT__RASStack__DOT__commit_stack_10_ctr), false, VLVT_UINT8,VLVD_NODIR|VLVF_PUB_RW,1 ,7,0);
         __Vscope_RAS__RASStack.varInsert(__Vfinal,"commit_stack_10_retAddr", &(TOP.RAS__DOT__RASStack__DOT__commit_stack_10_retAddr), false, VLVT_UINT64,VLVD_NODIR|VLVF_PUB_RW,1 ,40,0);
-        __Vscope_RAS__RASStack.varInsert(__Vfinal,"commit_stack_11_ctr", &(TOP.RAS__DOT__RASStack__DOT__commit_stack_11_ctr), false, VLVT_UINT8,VLVD_NODIR|VLVF_PUB_RW,1 ,2,0);
+        __Vscope_RAS__RASStack.varInsert(__Vfinal,"commit_stack_11_ctr", &(TOP.RAS__DOT__RASStack__DOT__commit_stack_11_ctr), false, VLVT_UINT8,VLVD_NODIR|VLVF_PUB_RW,1 ,7,0);
         __Vscope_RAS__RASStack.varInsert(__Vfinal,"commit_stack_11_retAddr", &(TOP.RAS__DOT__RASStack__DOT__commit_stack_11_retAddr), false, VLVT_UINT64,VLVD_NODIR|VLVF_PUB_RW,1 ,40,0);
-        __Vscope_RAS__RASStack.varInsert(__Vfinal,"commit_stack_12_ctr", &(TOP.RAS__DOT__RASStack__DOT__commit_stack_12_ctr), false, VLVT_UINT8,VLVD_NODIR|VLVF_PUB_RW,1 ,2,0);
+        __Vscope_RAS__RASStack.varInsert(__Vfinal,"commit_stack_12_ctr", &(TOP.RAS__DOT__RASStack__DOT__commit_stack_12_ctr), false, VLVT_UINT8,VLVD_NODIR|VLVF_PUB_RW,1 ,7,0);
         __Vscope_RAS__RASStack.varInsert(__Vfinal,"commit_stack_12_retAddr", &(TOP.RAS__DOT__RASStack__DOT__commit_stack_12_retAddr), false, VLVT_UINT64,VLVD_NODIR|VLVF_PUB_RW,1 ,40,0);
-        __Vscope_RAS__RASStack.varInsert(__Vfinal,"commit_stack_13_ctr", &(TOP.RAS__DOT__RASStack__DOT__commit_stack_13_ctr), false, VLVT_UINT8,VLVD_NODIR|VLVF_PUB_RW,1 ,2,0);
+        __Vscope_RAS__RASStack.varInsert(__Vfinal,"commit_stack_13_ctr", &(TOP.RAS__DOT__RASStack__DOT__commit_stack_13_ctr), false, VLVT_UINT8,VLVD_NODIR|VLVF_PUB_RW,1 ,7,0);
         __Vscope_RAS__RASStack.varInsert(__Vfinal,"commit_stack_13_retAddr", &(TOP.RAS__DOT__RASStack__DOT__commit_stack_13_retAddr), false, VLVT_UINT64,VLVD_NODIR|VLVF_PUB_RW,1 ,40,0);
-        __Vscope_RAS__RASStack.varInsert(__Vfinal,"commit_stack_14_ctr", &(TOP.RAS__DOT__RASStack__DOT__commit_stack_14_ctr), false, VLVT_UINT8,VLVD_NODIR|VLVF_PUB_RW,1 ,2,0);
+        __Vscope_RAS__RASStack.varInsert(__Vfinal,"commit_stack_14_ctr", &(TOP.RAS__DOT__RASStack__DOT__commit_stack_14_ctr), false, VLVT_UINT8,VLVD_NODIR|VLVF_PUB_RW,1 ,7,0);
         __Vscope_RAS__RASStack.varInsert(__Vfinal,"commit_stack_14_retAddr", &(TOP.RAS__DOT__RASStack__DOT__commit_stack_14_retAddr), false, VLVT_UINT64,VLVD_NODIR|VLVF_PUB_RW,1 ,40,0);
-        __Vscope_RAS__RASStack.varInsert(__Vfinal,"commit_stack_15_ctr", &(TOP.RAS__DOT__RASStack__DOT__commit_stack_15_ctr), false, VLVT_UINT8,VLVD_NODIR|VLVF_PUB_RW,1 ,2,0);
+        __Vscope_RAS__RASStack.varInsert(__Vfinal,"commit_stack_15_ctr", &(TOP.RAS__DOT__RASStack__DOT__commit_stack_15_ctr), false, VLVT_UINT8,VLVD_NODIR|VLVF_PUB_RW,1 ,7,0);
         __Vscope_RAS__RASStack.varInsert(__Vfinal,"commit_stack_15_retAddr", &(TOP.RAS__DOT__RASStack__DOT__commit_stack_15_retAddr), false, VLVT_UINT64,VLVD_NODIR|VLVF_PUB_RW,1 ,40,0);
-        __Vscope_RAS__RASStack.varInsert(__Vfinal,"commit_stack_1_ctr", &(TOP.RAS__DOT__RASStack__DOT__commit_stack_1_ctr), false, VLVT_UINT8,VLVD_NODIR|VLVF_PUB_RW,1 ,2,0);
+        __Vscope_RAS__RASStack.varInsert(__Vfinal,"commit_stack_1_ctr", &(TOP.RAS__DOT__RASStack__DOT__commit_stack_1_ctr), false, VLVT_UINT8,VLVD_NODIR|VLVF_PUB_RW,1 ,7,0);
         __Vscope_RAS__RASStack.varInsert(__Vfinal,"commit_stack_1_retAddr", &(TOP.RAS__DOT__RASStack__DOT__commit_stack_1_retAddr), false, VLVT_UINT64,VLVD_NODIR|VLVF_PUB_RW,1 ,40,0);
-        __Vscope_RAS__RASStack.varInsert(__Vfinal,"commit_stack_2_ctr", &(TOP.RAS__DOT__RASStack__DOT__commit_stack_2_ctr), false, VLVT_UINT8,VLVD_NODIR|VLVF_PUB_RW,1 ,2,0);
+        __Vscope_RAS__RASStack.varInsert(__Vfinal,"commit_stack_2_ctr", &(TOP.RAS__DOT__RASStack__DOT__commit_stack_2_ctr), false, VLVT_UINT8,VLVD_NODIR|VLVF_PUB_RW,1 ,7,0);
         __Vscope_RAS__RASStack.varInsert(__Vfinal,"commit_stack_2_retAddr", &(TOP.RAS__DOT__RASStack__DOT__commit_stack_2_retAddr), false, VLVT_UINT64,VLVD_NODIR|VLVF_PUB_RW,1 ,40,0);
-        __Vscope_RAS__RASStack.varInsert(__Vfinal,"commit_stack_3_ctr", &(TOP.RAS__DOT__RASStack__DOT__commit_stack_3_ctr), false, VLVT_UINT8,VLVD_NODIR|VLVF_PUB_RW,1 ,2,0);
+        __Vscope_RAS__RASStack.varInsert(__Vfinal,"commit_stack_3_ctr", &(TOP.RAS__DOT__RASStack__DOT__commit_stack_3_ctr), false, VLVT_UINT8,VLVD_NODIR|VLVF_PUB_RW,1 ,7,0);
         __Vscope_RAS__RASStack.varInsert(__Vfinal,"commit_stack_3_retAddr", &(TOP.RAS__DOT__RASStack__DOT__commit_stack_3_retAddr), false, VLVT_UINT64,VLVD_NODIR|VLVF_PUB_RW,1 ,40,0);
-        __Vscope_RAS__RASStack.varInsert(__Vfinal,"commit_stack_4_ctr", &(TOP.RAS__DOT__RASStack__DOT__commit_stack_4_ctr), false, VLVT_UINT8,VLVD_NODIR|VLVF_PUB_RW,1 ,2,0);
+        __Vscope_RAS__RASStack.varInsert(__Vfinal,"commit_stack_4_ctr", &(TOP.RAS__DOT__RASStack__DOT__commit_stack_4_ctr), false, VLVT_UINT8,VLVD_NODIR|VLVF_PUB_RW,1 ,7,0);
         __Vscope_RAS__RASStack.varInsert(__Vfinal,"commit_stack_4_retAddr", &(TOP.RAS__DOT__RASStack__DOT__commit_stack_4_retAddr), false, VLVT_UINT64,VLVD_NODIR|VLVF_PUB_RW,1 ,40,0);
-        __Vscope_RAS__RASStack.varInsert(__Vfinal,"commit_stack_5_ctr", &(TOP.RAS__DOT__RASStack__DOT__commit_stack_5_ctr), false, VLVT_UINT8,VLVD_NODIR|VLVF_PUB_RW,1 ,2,0);
+        __Vscope_RAS__RASStack.varInsert(__Vfinal,"commit_stack_5_ctr", &(TOP.RAS__DOT__RASStack__DOT__commit_stack_5_ctr), false, VLVT_UINT8,VLVD_NODIR|VLVF_PUB_RW,1 ,7,0);
         __Vscope_RAS__RASStack.varInsert(__Vfinal,"commit_stack_5_retAddr", &(TOP.RAS__DOT__RASStack__DOT__commit_stack_5_retAddr), false, VLVT_UINT64,VLVD_NODIR|VLVF_PUB_RW,1 ,40,0);
-        __Vscope_RAS__RASStack.varInsert(__Vfinal,"commit_stack_6_ctr", &(TOP.RAS__DOT__RASStack__DOT__commit_stack_6_ctr), false, VLVT_UINT8,VLVD_NODIR|VLVF_PUB_RW,1 ,2,0);
+        __Vscope_RAS__RASStack.varInsert(__Vfinal,"commit_stack_6_ctr", &(TOP.RAS__DOT__RASStack__DOT__commit_stack_6_ctr), false, VLVT_UINT8,VLVD_NODIR|VLVF_PUB_RW,1 ,7,0);
         __Vscope_RAS__RASStack.varInsert(__Vfinal,"commit_stack_6_retAddr", &(TOP.RAS__DOT__RASStack__DOT__commit_stack_6_retAddr), false, VLVT_UINT64,VLVD_NODIR|VLVF_PUB_RW,1 ,40,0);
-        __Vscope_RAS__RASStack.varInsert(__Vfinal,"commit_stack_7_ctr", &(TOP.RAS__DOT__RASStack__DOT__commit_stack_7_ctr), false, VLVT_UINT8,VLVD_NODIR|VLVF_PUB_RW,1 ,2,0);
+        __Vscope_RAS__RASStack.varInsert(__Vfinal,"commit_stack_7_ctr", &(TOP.RAS__DOT__RASStack__DOT__commit_stack_7_ctr), false, VLVT_UINT8,VLVD_NODIR|VLVF_PUB_RW,1 ,7,0);
         __Vscope_RAS__RASStack.varInsert(__Vfinal,"commit_stack_7_retAddr", &(TOP.RAS__DOT__RASStack__DOT__commit_stack_7_retAddr), false, VLVT_UINT64,VLVD_NODIR|VLVF_PUB_RW,1 ,40,0);
-        __Vscope_RAS__RASStack.varInsert(__Vfinal,"commit_stack_8_ctr", &(TOP.RAS__DOT__RASStack__DOT__commit_stack_8_ctr), false, VLVT_UINT8,VLVD_NODIR|VLVF_PUB_RW,1 ,2,0);
+        __Vscope_RAS__RASStack.varInsert(__Vfinal,"commit_stack_8_ctr", &(TOP.RAS__DOT__RASStack__DOT__commit_stack_8_ctr), false, VLVT_UINT8,VLVD_NODIR|VLVF_PUB_RW,1 ,7,0);
         __Vscope_RAS__RASStack.varInsert(__Vfinal,"commit_stack_8_retAddr", &(TOP.RAS__DOT__RASStack__DOT__commit_stack_8_retAddr), false, VLVT_UINT64,VLVD_NODIR|VLVF_PUB_RW,1 ,40,0);
-        __Vscope_RAS__RASStack.varInsert(__Vfinal,"commit_stack_9_ctr", &(TOP.RAS__DOT__RASStack__DOT__commit_stack_9_ctr), false, VLVT_UINT8,VLVD_NODIR|VLVF_PUB_RW,1 ,2,0);
+        __Vscope_RAS__RASStack.varInsert(__Vfinal,"commit_stack_9_ctr", &(TOP.RAS__DOT__RASStack__DOT__commit_stack_9_ctr), false, VLVT_UINT8,VLVD_NODIR|VLVF_PUB_RW,1 ,7,0);
         __Vscope_RAS__RASStack.varInsert(__Vfinal,"commit_stack_9_retAddr", &(TOP.RAS__DOT__RASStack__DOT__commit_stack_9_retAddr), false, VLVT_UINT64,VLVD_NODIR|VLVF_PUB_RW,1 ,40,0);
         __Vscope_RAS__RASStack.varInsert(__Vfinal,"compare_10", &(TOP.RAS__DOT__RASStack__DOT__compare_10), false, VLVT_UINT8,VLVD_NODIR|VLVF_PUB_RW,0);
         __Vscope_RAS__RASStack.varInsert(__Vfinal,"compare_11", &(TOP.RAS__DOT__RASStack__DOT__compare_11), false, VLVT_UINT8,VLVD_NODIR|VLVF_PUB_RW,0);
@@ -653,12 +602,13 @@ Vtop__Syms::Vtop__Syms(VerilatedContext* contextp, const char* namep,Vtop* model
         __Vscope_RAS__RASStack.varInsert(__Vfinal,"realPush_r", &(TOP.RAS__DOT__RASStack__DOT__realPush_r), false, VLVT_UINT8,VLVD_NODIR|VLVF_PUB_RW,0);
         __Vscope_RAS__RASStack.varInsert(__Vfinal,"realWriteAddr_next_value", &(TOP.RAS__DOT__RASStack__DOT__realWriteAddr_next_value), false, VLVT_UINT8,VLVD_NODIR|VLVF_PUB_RW,1 ,4,0);
         __Vscope_RAS__RASStack.varInsert(__Vfinal,"realWriteAddr_value", &(TOP.RAS__DOT__RASStack__DOT__realWriteAddr_value), false, VLVT_UINT8,VLVD_NODIR|VLVF_PUB_RW,1 ,4,0);
-        __Vscope_RAS__RASStack.varInsert(__Vfinal,"realWriteEntry_next_ctr", &(TOP.RAS__DOT__RASStack__DOT__realWriteEntry_next_ctr), false, VLVT_UINT8,VLVD_NODIR|VLVF_PUB_RW,1 ,2,0);
+        __Vscope_RAS__RASStack.varInsert(__Vfinal,"realWriteEntry_next_ctr", &(TOP.RAS__DOT__RASStack__DOT__realWriteEntry_next_ctr), false, VLVT_UINT8,VLVD_NODIR|VLVF_PUB_RW,1 ,7,0);
         __Vscope_RAS__RASStack.varInsert(__Vfinal,"realWriteEntry_next_retAddr", &(TOP.RAS__DOT__RASStack__DOT__realWriteEntry_next_retAddr), false, VLVT_UINT64,VLVD_NODIR|VLVF_PUB_RW,1 ,40,0);
         __Vscope_RAS__RASStack.varInsert(__Vfinal,"realWriteEntry_retAddr", &(TOP.RAS__DOT__RASStack__DOT__realWriteEntry_retAddr), false, VLVT_UINT64,VLVD_NODIR|VLVF_PUB_RW,1 ,40,0);
         __Vscope_RAS__RASStack.varInsert(__Vfinal,"redirectTopEntry_inflightValid", &(TOP.RAS__DOT__RASStack__DOT__redirectTopEntry_inflightValid), false, VLVT_UINT8,VLVD_NODIR|VLVF_PUB_RW,0);
         __Vscope_RAS__RASStack.varInsert(__Vfinal,"reset", &(TOP.RAS__DOT__RASStack__DOT__reset), false, VLVT_UINT8,VLVD_NODIR|VLVF_PUB_RW,0);
         __Vscope_RAS__RASStack.varInsert(__Vfinal,"s3TopEntry_inflightValid", &(TOP.RAS__DOT__RASStack__DOT__s3TopEntry_inflightValid), false, VLVT_UINT8,VLVD_NODIR|VLVF_PUB_RW,0);
+        __Vscope_RAS__RASStack.varInsert(__Vfinal,"s3_missPushEntry_ctr", &(TOP.RAS__DOT__RASStack__DOT__s3_missPushEntry_ctr), false, VLVT_UINT8,VLVD_NODIR|VLVF_PUB_RW,1 ,7,0);
         __Vscope_RAS__RASStack.varInsert(__Vfinal,"sctr", &(TOP.RAS__DOT__RASStack__DOT__sctr), false, VLVT_UINT8,VLVD_NODIR|VLVF_PUB_RW,1 ,2,0);
         __Vscope_RAS__RASStack.varInsert(__Vfinal,"spec_nos_0_flag", &(TOP.RAS__DOT__RASStack__DOT__spec_nos_0_flag), false, VLVT_UINT8,VLVD_NODIR|VLVF_PUB_RW,0);
         __Vscope_RAS__RASStack.varInsert(__Vfinal,"spec_nos_0_value", &(TOP.RAS__DOT__RASStack__DOT__spec_nos_0_value), false, VLVT_UINT8,VLVD_NODIR|VLVF_PUB_RW,1 ,4,0);
@@ -725,96 +675,92 @@ Vtop__Syms::Vtop__Syms(VerilatedContext* contextp, const char* namep,Vtop* model
         __Vscope_RAS__RASStack.varInsert(__Vfinal,"spec_nos_9_flag", &(TOP.RAS__DOT__RASStack__DOT__spec_nos_9_flag), false, VLVT_UINT8,VLVD_NODIR|VLVF_PUB_RW,0);
         __Vscope_RAS__RASStack.varInsert(__Vfinal,"spec_nos_9_value", &(TOP.RAS__DOT__RASStack__DOT__spec_nos_9_value), false, VLVT_UINT8,VLVD_NODIR|VLVF_PUB_RW,1 ,4,0);
         __Vscope_RAS__RASStack.varInsert(__Vfinal,"spec_overflowed", &(TOP.RAS__DOT__RASStack__DOT__spec_overflowed), false, VLVT_UINT8,VLVD_NODIR|VLVF_PUB_RW,0);
-        __Vscope_RAS__RASStack.varInsert(__Vfinal,"spec_queue_0_ctr", &(TOP.RAS__DOT__RASStack__DOT__spec_queue_0_ctr), false, VLVT_UINT8,VLVD_NODIR|VLVF_PUB_RW,1 ,2,0);
+        __Vscope_RAS__RASStack.varInsert(__Vfinal,"spec_queue_0_ctr", &(TOP.RAS__DOT__RASStack__DOT__spec_queue_0_ctr), false, VLVT_UINT8,VLVD_NODIR|VLVF_PUB_RW,1 ,7,0);
         __Vscope_RAS__RASStack.varInsert(__Vfinal,"spec_queue_0_retAddr", &(TOP.RAS__DOT__RASStack__DOT__spec_queue_0_retAddr), false, VLVT_UINT64,VLVD_NODIR|VLVF_PUB_RW,1 ,40,0);
-        __Vscope_RAS__RASStack.varInsert(__Vfinal,"spec_queue_10_ctr", &(TOP.RAS__DOT__RASStack__DOT__spec_queue_10_ctr), false, VLVT_UINT8,VLVD_NODIR|VLVF_PUB_RW,1 ,2,0);
+        __Vscope_RAS__RASStack.varInsert(__Vfinal,"spec_queue_10_ctr", &(TOP.RAS__DOT__RASStack__DOT__spec_queue_10_ctr), false, VLVT_UINT8,VLVD_NODIR|VLVF_PUB_RW,1 ,7,0);
         __Vscope_RAS__RASStack.varInsert(__Vfinal,"spec_queue_10_retAddr", &(TOP.RAS__DOT__RASStack__DOT__spec_queue_10_retAddr), false, VLVT_UINT64,VLVD_NODIR|VLVF_PUB_RW,1 ,40,0);
-        __Vscope_RAS__RASStack.varInsert(__Vfinal,"spec_queue_11_ctr", &(TOP.RAS__DOT__RASStack__DOT__spec_queue_11_ctr), false, VLVT_UINT8,VLVD_NODIR|VLVF_PUB_RW,1 ,2,0);
+        __Vscope_RAS__RASStack.varInsert(__Vfinal,"spec_queue_11_ctr", &(TOP.RAS__DOT__RASStack__DOT__spec_queue_11_ctr), false, VLVT_UINT8,VLVD_NODIR|VLVF_PUB_RW,1 ,7,0);
         __Vscope_RAS__RASStack.varInsert(__Vfinal,"spec_queue_11_retAddr", &(TOP.RAS__DOT__RASStack__DOT__spec_queue_11_retAddr), false, VLVT_UINT64,VLVD_NODIR|VLVF_PUB_RW,1 ,40,0);
-        __Vscope_RAS__RASStack.varInsert(__Vfinal,"spec_queue_12_ctr", &(TOP.RAS__DOT__RASStack__DOT__spec_queue_12_ctr), false, VLVT_UINT8,VLVD_NODIR|VLVF_PUB_RW,1 ,2,0);
+        __Vscope_RAS__RASStack.varInsert(__Vfinal,"spec_queue_12_ctr", &(TOP.RAS__DOT__RASStack__DOT__spec_queue_12_ctr), false, VLVT_UINT8,VLVD_NODIR|VLVF_PUB_RW,1 ,7,0);
         __Vscope_RAS__RASStack.varInsert(__Vfinal,"spec_queue_12_retAddr", &(TOP.RAS__DOT__RASStack__DOT__spec_queue_12_retAddr), false, VLVT_UINT64,VLVD_NODIR|VLVF_PUB_RW,1 ,40,0);
-        __Vscope_RAS__RASStack.varInsert(__Vfinal,"spec_queue_13_ctr", &(TOP.RAS__DOT__RASStack__DOT__spec_queue_13_ctr), false, VLVT_UINT8,VLVD_NODIR|VLVF_PUB_RW,1 ,2,0);
+        __Vscope_RAS__RASStack.varInsert(__Vfinal,"spec_queue_13_ctr", &(TOP.RAS__DOT__RASStack__DOT__spec_queue_13_ctr), false, VLVT_UINT8,VLVD_NODIR|VLVF_PUB_RW,1 ,7,0);
         __Vscope_RAS__RASStack.varInsert(__Vfinal,"spec_queue_13_retAddr", &(TOP.RAS__DOT__RASStack__DOT__spec_queue_13_retAddr), false, VLVT_UINT64,VLVD_NODIR|VLVF_PUB_RW,1 ,40,0);
-        __Vscope_RAS__RASStack.varInsert(__Vfinal,"spec_queue_14_ctr", &(TOP.RAS__DOT__RASStack__DOT__spec_queue_14_ctr), false, VLVT_UINT8,VLVD_NODIR|VLVF_PUB_RW,1 ,2,0);
+        __Vscope_RAS__RASStack.varInsert(__Vfinal,"spec_queue_14_ctr", &(TOP.RAS__DOT__RASStack__DOT__spec_queue_14_ctr), false, VLVT_UINT8,VLVD_NODIR|VLVF_PUB_RW,1 ,7,0);
         __Vscope_RAS__RASStack.varInsert(__Vfinal,"spec_queue_14_retAddr", &(TOP.RAS__DOT__RASStack__DOT__spec_queue_14_retAddr), false, VLVT_UINT64,VLVD_NODIR|VLVF_PUB_RW,1 ,40,0);
-        __Vscope_RAS__RASStack.varInsert(__Vfinal,"spec_queue_15_ctr", &(TOP.RAS__DOT__RASStack__DOT__spec_queue_15_ctr), false, VLVT_UINT8,VLVD_NODIR|VLVF_PUB_RW,1 ,2,0);
+        __Vscope_RAS__RASStack.varInsert(__Vfinal,"spec_queue_15_ctr", &(TOP.RAS__DOT__RASStack__DOT__spec_queue_15_ctr), false, VLVT_UINT8,VLVD_NODIR|VLVF_PUB_RW,1 ,7,0);
         __Vscope_RAS__RASStack.varInsert(__Vfinal,"spec_queue_15_retAddr", &(TOP.RAS__DOT__RASStack__DOT__spec_queue_15_retAddr), false, VLVT_UINT64,VLVD_NODIR|VLVF_PUB_RW,1 ,40,0);
-        __Vscope_RAS__RASStack.varInsert(__Vfinal,"spec_queue_16_ctr", &(TOP.RAS__DOT__RASStack__DOT__spec_queue_16_ctr), false, VLVT_UINT8,VLVD_NODIR|VLVF_PUB_RW,1 ,2,0);
+        __Vscope_RAS__RASStack.varInsert(__Vfinal,"spec_queue_16_ctr", &(TOP.RAS__DOT__RASStack__DOT__spec_queue_16_ctr), false, VLVT_UINT8,VLVD_NODIR|VLVF_PUB_RW,1 ,7,0);
         __Vscope_RAS__RASStack.varInsert(__Vfinal,"spec_queue_16_retAddr", &(TOP.RAS__DOT__RASStack__DOT__spec_queue_16_retAddr), false, VLVT_UINT64,VLVD_NODIR|VLVF_PUB_RW,1 ,40,0);
-        __Vscope_RAS__RASStack.varInsert(__Vfinal,"spec_queue_17_ctr", &(TOP.RAS__DOT__RASStack__DOT__spec_queue_17_ctr), false, VLVT_UINT8,VLVD_NODIR|VLVF_PUB_RW,1 ,2,0);
+        __Vscope_RAS__RASStack.varInsert(__Vfinal,"spec_queue_17_ctr", &(TOP.RAS__DOT__RASStack__DOT__spec_queue_17_ctr), false, VLVT_UINT8,VLVD_NODIR|VLVF_PUB_RW,1 ,7,0);
         __Vscope_RAS__RASStack.varInsert(__Vfinal,"spec_queue_17_retAddr", &(TOP.RAS__DOT__RASStack__DOT__spec_queue_17_retAddr), false, VLVT_UINT64,VLVD_NODIR|VLVF_PUB_RW,1 ,40,0);
-        __Vscope_RAS__RASStack.varInsert(__Vfinal,"spec_queue_18_ctr", &(TOP.RAS__DOT__RASStack__DOT__spec_queue_18_ctr), false, VLVT_UINT8,VLVD_NODIR|VLVF_PUB_RW,1 ,2,0);
+        __Vscope_RAS__RASStack.varInsert(__Vfinal,"spec_queue_18_ctr", &(TOP.RAS__DOT__RASStack__DOT__spec_queue_18_ctr), false, VLVT_UINT8,VLVD_NODIR|VLVF_PUB_RW,1 ,7,0);
         __Vscope_RAS__RASStack.varInsert(__Vfinal,"spec_queue_18_retAddr", &(TOP.RAS__DOT__RASStack__DOT__spec_queue_18_retAddr), false, VLVT_UINT64,VLVD_NODIR|VLVF_PUB_RW,1 ,40,0);
-        __Vscope_RAS__RASStack.varInsert(__Vfinal,"spec_queue_19_ctr", &(TOP.RAS__DOT__RASStack__DOT__spec_queue_19_ctr), false, VLVT_UINT8,VLVD_NODIR|VLVF_PUB_RW,1 ,2,0);
+        __Vscope_RAS__RASStack.varInsert(__Vfinal,"spec_queue_19_ctr", &(TOP.RAS__DOT__RASStack__DOT__spec_queue_19_ctr), false, VLVT_UINT8,VLVD_NODIR|VLVF_PUB_RW,1 ,7,0);
         __Vscope_RAS__RASStack.varInsert(__Vfinal,"spec_queue_19_retAddr", &(TOP.RAS__DOT__RASStack__DOT__spec_queue_19_retAddr), false, VLVT_UINT64,VLVD_NODIR|VLVF_PUB_RW,1 ,40,0);
-        __Vscope_RAS__RASStack.varInsert(__Vfinal,"spec_queue_1_ctr", &(TOP.RAS__DOT__RASStack__DOT__spec_queue_1_ctr), false, VLVT_UINT8,VLVD_NODIR|VLVF_PUB_RW,1 ,2,0);
+        __Vscope_RAS__RASStack.varInsert(__Vfinal,"spec_queue_1_ctr", &(TOP.RAS__DOT__RASStack__DOT__spec_queue_1_ctr), false, VLVT_UINT8,VLVD_NODIR|VLVF_PUB_RW,1 ,7,0);
         __Vscope_RAS__RASStack.varInsert(__Vfinal,"spec_queue_1_retAddr", &(TOP.RAS__DOT__RASStack__DOT__spec_queue_1_retAddr), false, VLVT_UINT64,VLVD_NODIR|VLVF_PUB_RW,1 ,40,0);
-        __Vscope_RAS__RASStack.varInsert(__Vfinal,"spec_queue_20_ctr", &(TOP.RAS__DOT__RASStack__DOT__spec_queue_20_ctr), false, VLVT_UINT8,VLVD_NODIR|VLVF_PUB_RW,1 ,2,0);
+        __Vscope_RAS__RASStack.varInsert(__Vfinal,"spec_queue_20_ctr", &(TOP.RAS__DOT__RASStack__DOT__spec_queue_20_ctr), false, VLVT_UINT8,VLVD_NODIR|VLVF_PUB_RW,1 ,7,0);
         __Vscope_RAS__RASStack.varInsert(__Vfinal,"spec_queue_20_retAddr", &(TOP.RAS__DOT__RASStack__DOT__spec_queue_20_retAddr), false, VLVT_UINT64,VLVD_NODIR|VLVF_PUB_RW,1 ,40,0);
-        __Vscope_RAS__RASStack.varInsert(__Vfinal,"spec_queue_21_ctr", &(TOP.RAS__DOT__RASStack__DOT__spec_queue_21_ctr), false, VLVT_UINT8,VLVD_NODIR|VLVF_PUB_RW,1 ,2,0);
+        __Vscope_RAS__RASStack.varInsert(__Vfinal,"spec_queue_21_ctr", &(TOP.RAS__DOT__RASStack__DOT__spec_queue_21_ctr), false, VLVT_UINT8,VLVD_NODIR|VLVF_PUB_RW,1 ,7,0);
         __Vscope_RAS__RASStack.varInsert(__Vfinal,"spec_queue_21_retAddr", &(TOP.RAS__DOT__RASStack__DOT__spec_queue_21_retAddr), false, VLVT_UINT64,VLVD_NODIR|VLVF_PUB_RW,1 ,40,0);
-        __Vscope_RAS__RASStack.varInsert(__Vfinal,"spec_queue_22_ctr", &(TOP.RAS__DOT__RASStack__DOT__spec_queue_22_ctr), false, VLVT_UINT8,VLVD_NODIR|VLVF_PUB_RW,1 ,2,0);
+        __Vscope_RAS__RASStack.varInsert(__Vfinal,"spec_queue_22_ctr", &(TOP.RAS__DOT__RASStack__DOT__spec_queue_22_ctr), false, VLVT_UINT8,VLVD_NODIR|VLVF_PUB_RW,1 ,7,0);
         __Vscope_RAS__RASStack.varInsert(__Vfinal,"spec_queue_22_retAddr", &(TOP.RAS__DOT__RASStack__DOT__spec_queue_22_retAddr), false, VLVT_UINT64,VLVD_NODIR|VLVF_PUB_RW,1 ,40,0);
-        __Vscope_RAS__RASStack.varInsert(__Vfinal,"spec_queue_23_ctr", &(TOP.RAS__DOT__RASStack__DOT__spec_queue_23_ctr), false, VLVT_UINT8,VLVD_NODIR|VLVF_PUB_RW,1 ,2,0);
+        __Vscope_RAS__RASStack.varInsert(__Vfinal,"spec_queue_23_ctr", &(TOP.RAS__DOT__RASStack__DOT__spec_queue_23_ctr), false, VLVT_UINT8,VLVD_NODIR|VLVF_PUB_RW,1 ,7,0);
         __Vscope_RAS__RASStack.varInsert(__Vfinal,"spec_queue_23_retAddr", &(TOP.RAS__DOT__RASStack__DOT__spec_queue_23_retAddr), false, VLVT_UINT64,VLVD_NODIR|VLVF_PUB_RW,1 ,40,0);
-        __Vscope_RAS__RASStack.varInsert(__Vfinal,"spec_queue_24_ctr", &(TOP.RAS__DOT__RASStack__DOT__spec_queue_24_ctr), false, VLVT_UINT8,VLVD_NODIR|VLVF_PUB_RW,1 ,2,0);
+        __Vscope_RAS__RASStack.varInsert(__Vfinal,"spec_queue_24_ctr", &(TOP.RAS__DOT__RASStack__DOT__spec_queue_24_ctr), false, VLVT_UINT8,VLVD_NODIR|VLVF_PUB_RW,1 ,7,0);
         __Vscope_RAS__RASStack.varInsert(__Vfinal,"spec_queue_24_retAddr", &(TOP.RAS__DOT__RASStack__DOT__spec_queue_24_retAddr), false, VLVT_UINT64,VLVD_NODIR|VLVF_PUB_RW,1 ,40,0);
-        __Vscope_RAS__RASStack.varInsert(__Vfinal,"spec_queue_25_ctr", &(TOP.RAS__DOT__RASStack__DOT__spec_queue_25_ctr), false, VLVT_UINT8,VLVD_NODIR|VLVF_PUB_RW,1 ,2,0);
+        __Vscope_RAS__RASStack.varInsert(__Vfinal,"spec_queue_25_ctr", &(TOP.RAS__DOT__RASStack__DOT__spec_queue_25_ctr), false, VLVT_UINT8,VLVD_NODIR|VLVF_PUB_RW,1 ,7,0);
         __Vscope_RAS__RASStack.varInsert(__Vfinal,"spec_queue_25_retAddr", &(TOP.RAS__DOT__RASStack__DOT__spec_queue_25_retAddr), false, VLVT_UINT64,VLVD_NODIR|VLVF_PUB_RW,1 ,40,0);
-        __Vscope_RAS__RASStack.varInsert(__Vfinal,"spec_queue_26_ctr", &(TOP.RAS__DOT__RASStack__DOT__spec_queue_26_ctr), false, VLVT_UINT8,VLVD_NODIR|VLVF_PUB_RW,1 ,2,0);
+        __Vscope_RAS__RASStack.varInsert(__Vfinal,"spec_queue_26_ctr", &(TOP.RAS__DOT__RASStack__DOT__spec_queue_26_ctr), false, VLVT_UINT8,VLVD_NODIR|VLVF_PUB_RW,1 ,7,0);
         __Vscope_RAS__RASStack.varInsert(__Vfinal,"spec_queue_26_retAddr", &(TOP.RAS__DOT__RASStack__DOT__spec_queue_26_retAddr), false, VLVT_UINT64,VLVD_NODIR|VLVF_PUB_RW,1 ,40,0);
-        __Vscope_RAS__RASStack.varInsert(__Vfinal,"spec_queue_27_ctr", &(TOP.RAS__DOT__RASStack__DOT__spec_queue_27_ctr), false, VLVT_UINT8,VLVD_NODIR|VLVF_PUB_RW,1 ,2,0);
+        __Vscope_RAS__RASStack.varInsert(__Vfinal,"spec_queue_27_ctr", &(TOP.RAS__DOT__RASStack__DOT__spec_queue_27_ctr), false, VLVT_UINT8,VLVD_NODIR|VLVF_PUB_RW,1 ,7,0);
         __Vscope_RAS__RASStack.varInsert(__Vfinal,"spec_queue_27_retAddr", &(TOP.RAS__DOT__RASStack__DOT__spec_queue_27_retAddr), false, VLVT_UINT64,VLVD_NODIR|VLVF_PUB_RW,1 ,40,0);
-        __Vscope_RAS__RASStack.varInsert(__Vfinal,"spec_queue_28_ctr", &(TOP.RAS__DOT__RASStack__DOT__spec_queue_28_ctr), false, VLVT_UINT8,VLVD_NODIR|VLVF_PUB_RW,1 ,2,0);
+        __Vscope_RAS__RASStack.varInsert(__Vfinal,"spec_queue_28_ctr", &(TOP.RAS__DOT__RASStack__DOT__spec_queue_28_ctr), false, VLVT_UINT8,VLVD_NODIR|VLVF_PUB_RW,1 ,7,0);
         __Vscope_RAS__RASStack.varInsert(__Vfinal,"spec_queue_28_retAddr", &(TOP.RAS__DOT__RASStack__DOT__spec_queue_28_retAddr), false, VLVT_UINT64,VLVD_NODIR|VLVF_PUB_RW,1 ,40,0);
-        __Vscope_RAS__RASStack.varInsert(__Vfinal,"spec_queue_29_ctr", &(TOP.RAS__DOT__RASStack__DOT__spec_queue_29_ctr), false, VLVT_UINT8,VLVD_NODIR|VLVF_PUB_RW,1 ,2,0);
+        __Vscope_RAS__RASStack.varInsert(__Vfinal,"spec_queue_29_ctr", &(TOP.RAS__DOT__RASStack__DOT__spec_queue_29_ctr), false, VLVT_UINT8,VLVD_NODIR|VLVF_PUB_RW,1 ,7,0);
         __Vscope_RAS__RASStack.varInsert(__Vfinal,"spec_queue_29_retAddr", &(TOP.RAS__DOT__RASStack__DOT__spec_queue_29_retAddr), false, VLVT_UINT64,VLVD_NODIR|VLVF_PUB_RW,1 ,40,0);
-        __Vscope_RAS__RASStack.varInsert(__Vfinal,"spec_queue_2_ctr", &(TOP.RAS__DOT__RASStack__DOT__spec_queue_2_ctr), false, VLVT_UINT8,VLVD_NODIR|VLVF_PUB_RW,1 ,2,0);
+        __Vscope_RAS__RASStack.varInsert(__Vfinal,"spec_queue_2_ctr", &(TOP.RAS__DOT__RASStack__DOT__spec_queue_2_ctr), false, VLVT_UINT8,VLVD_NODIR|VLVF_PUB_RW,1 ,7,0);
         __Vscope_RAS__RASStack.varInsert(__Vfinal,"spec_queue_2_retAddr", &(TOP.RAS__DOT__RASStack__DOT__spec_queue_2_retAddr), false, VLVT_UINT64,VLVD_NODIR|VLVF_PUB_RW,1 ,40,0);
-        __Vscope_RAS__RASStack.varInsert(__Vfinal,"spec_queue_30_ctr", &(TOP.RAS__DOT__RASStack__DOT__spec_queue_30_ctr), false, VLVT_UINT8,VLVD_NODIR|VLVF_PUB_RW,1 ,2,0);
+        __Vscope_RAS__RASStack.varInsert(__Vfinal,"spec_queue_30_ctr", &(TOP.RAS__DOT__RASStack__DOT__spec_queue_30_ctr), false, VLVT_UINT8,VLVD_NODIR|VLVF_PUB_RW,1 ,7,0);
         __Vscope_RAS__RASStack.varInsert(__Vfinal,"spec_queue_30_retAddr", &(TOP.RAS__DOT__RASStack__DOT__spec_queue_30_retAddr), false, VLVT_UINT64,VLVD_NODIR|VLVF_PUB_RW,1 ,40,0);
-        __Vscope_RAS__RASStack.varInsert(__Vfinal,"spec_queue_31_ctr", &(TOP.RAS__DOT__RASStack__DOT__spec_queue_31_ctr), false, VLVT_UINT8,VLVD_NODIR|VLVF_PUB_RW,1 ,2,0);
+        __Vscope_RAS__RASStack.varInsert(__Vfinal,"spec_queue_31_ctr", &(TOP.RAS__DOT__RASStack__DOT__spec_queue_31_ctr), false, VLVT_UINT8,VLVD_NODIR|VLVF_PUB_RW,1 ,7,0);
         __Vscope_RAS__RASStack.varInsert(__Vfinal,"spec_queue_31_retAddr", &(TOP.RAS__DOT__RASStack__DOT__spec_queue_31_retAddr), false, VLVT_UINT64,VLVD_NODIR|VLVF_PUB_RW,1 ,40,0);
-        __Vscope_RAS__RASStack.varInsert(__Vfinal,"spec_queue_3_ctr", &(TOP.RAS__DOT__RASStack__DOT__spec_queue_3_ctr), false, VLVT_UINT8,VLVD_NODIR|VLVF_PUB_RW,1 ,2,0);
+        __Vscope_RAS__RASStack.varInsert(__Vfinal,"spec_queue_3_ctr", &(TOP.RAS__DOT__RASStack__DOT__spec_queue_3_ctr), false, VLVT_UINT8,VLVD_NODIR|VLVF_PUB_RW,1 ,7,0);
         __Vscope_RAS__RASStack.varInsert(__Vfinal,"spec_queue_3_retAddr", &(TOP.RAS__DOT__RASStack__DOT__spec_queue_3_retAddr), false, VLVT_UINT64,VLVD_NODIR|VLVF_PUB_RW,1 ,40,0);
-        __Vscope_RAS__RASStack.varInsert(__Vfinal,"spec_queue_4_ctr", &(TOP.RAS__DOT__RASStack__DOT__spec_queue_4_ctr), false, VLVT_UINT8,VLVD_NODIR|VLVF_PUB_RW,1 ,2,0);
+        __Vscope_RAS__RASStack.varInsert(__Vfinal,"spec_queue_4_ctr", &(TOP.RAS__DOT__RASStack__DOT__spec_queue_4_ctr), false, VLVT_UINT8,VLVD_NODIR|VLVF_PUB_RW,1 ,7,0);
         __Vscope_RAS__RASStack.varInsert(__Vfinal,"spec_queue_4_retAddr", &(TOP.RAS__DOT__RASStack__DOT__spec_queue_4_retAddr), false, VLVT_UINT64,VLVD_NODIR|VLVF_PUB_RW,1 ,40,0);
-        __Vscope_RAS__RASStack.varInsert(__Vfinal,"spec_queue_5_ctr", &(TOP.RAS__DOT__RASStack__DOT__spec_queue_5_ctr), false, VLVT_UINT8,VLVD_NODIR|VLVF_PUB_RW,1 ,2,0);
+        __Vscope_RAS__RASStack.varInsert(__Vfinal,"spec_queue_5_ctr", &(TOP.RAS__DOT__RASStack__DOT__spec_queue_5_ctr), false, VLVT_UINT8,VLVD_NODIR|VLVF_PUB_RW,1 ,7,0);
         __Vscope_RAS__RASStack.varInsert(__Vfinal,"spec_queue_5_retAddr", &(TOP.RAS__DOT__RASStack__DOT__spec_queue_5_retAddr), false, VLVT_UINT64,VLVD_NODIR|VLVF_PUB_RW,1 ,40,0);
-        __Vscope_RAS__RASStack.varInsert(__Vfinal,"spec_queue_6_ctr", &(TOP.RAS__DOT__RASStack__DOT__spec_queue_6_ctr), false, VLVT_UINT8,VLVD_NODIR|VLVF_PUB_RW,1 ,2,0);
+        __Vscope_RAS__RASStack.varInsert(__Vfinal,"spec_queue_6_ctr", &(TOP.RAS__DOT__RASStack__DOT__spec_queue_6_ctr), false, VLVT_UINT8,VLVD_NODIR|VLVF_PUB_RW,1 ,7,0);
         __Vscope_RAS__RASStack.varInsert(__Vfinal,"spec_queue_6_retAddr", &(TOP.RAS__DOT__RASStack__DOT__spec_queue_6_retAddr), false, VLVT_UINT64,VLVD_NODIR|VLVF_PUB_RW,1 ,40,0);
-        __Vscope_RAS__RASStack.varInsert(__Vfinal,"spec_queue_7_ctr", &(TOP.RAS__DOT__RASStack__DOT__spec_queue_7_ctr), false, VLVT_UINT8,VLVD_NODIR|VLVF_PUB_RW,1 ,2,0);
+        __Vscope_RAS__RASStack.varInsert(__Vfinal,"spec_queue_7_ctr", &(TOP.RAS__DOT__RASStack__DOT__spec_queue_7_ctr), false, VLVT_UINT8,VLVD_NODIR|VLVF_PUB_RW,1 ,7,0);
         __Vscope_RAS__RASStack.varInsert(__Vfinal,"spec_queue_7_retAddr", &(TOP.RAS__DOT__RASStack__DOT__spec_queue_7_retAddr), false, VLVT_UINT64,VLVD_NODIR|VLVF_PUB_RW,1 ,40,0);
-        __Vscope_RAS__RASStack.varInsert(__Vfinal,"spec_queue_8_ctr", &(TOP.RAS__DOT__RASStack__DOT__spec_queue_8_ctr), false, VLVT_UINT8,VLVD_NODIR|VLVF_PUB_RW,1 ,2,0);
+        __Vscope_RAS__RASStack.varInsert(__Vfinal,"spec_queue_8_ctr", &(TOP.RAS__DOT__RASStack__DOT__spec_queue_8_ctr), false, VLVT_UINT8,VLVD_NODIR|VLVF_PUB_RW,1 ,7,0);
         __Vscope_RAS__RASStack.varInsert(__Vfinal,"spec_queue_8_retAddr", &(TOP.RAS__DOT__RASStack__DOT__spec_queue_8_retAddr), false, VLVT_UINT64,VLVD_NODIR|VLVF_PUB_RW,1 ,40,0);
-        __Vscope_RAS__RASStack.varInsert(__Vfinal,"spec_queue_9_ctr", &(TOP.RAS__DOT__RASStack__DOT__spec_queue_9_ctr), false, VLVT_UINT8,VLVD_NODIR|VLVF_PUB_RW,1 ,2,0);
+        __Vscope_RAS__RASStack.varInsert(__Vfinal,"spec_queue_9_ctr", &(TOP.RAS__DOT__RASStack__DOT__spec_queue_9_ctr), false, VLVT_UINT8,VLVD_NODIR|VLVF_PUB_RW,1 ,7,0);
         __Vscope_RAS__RASStack.varInsert(__Vfinal,"spec_queue_9_retAddr", &(TOP.RAS__DOT__RASStack__DOT__spec_queue_9_retAddr), false, VLVT_UINT64,VLVD_NODIR|VLVF_PUB_RW,1 ,40,0);
         __Vscope_RAS__RASStack.varInsert(__Vfinal,"ssp", &(TOP.RAS__DOT__RASStack__DOT__ssp), false, VLVT_UINT8,VLVD_NODIR|VLVF_PUB_RW,1 ,3,0);
         __Vscope_RAS__RASStack.varInsert(__Vfinal,"timingTop_retAddr", &(TOP.RAS__DOT__RASStack__DOT__timingTop_retAddr), false, VLVT_UINT64,VLVD_NODIR|VLVF_PUB_RW,1 ,40,0);
         __Vscope_RAS__RASStack.varInsert(__Vfinal,"topEntry_inflightValid", &(TOP.RAS__DOT__RASStack__DOT__topEntry_inflightValid), false, VLVT_UINT8,VLVD_NODIR|VLVF_PUB_RW,0);
         __Vscope_RAS__RASStack.varInsert(__Vfinal,"topNos_flag", &(TOP.RAS__DOT__RASStack__DOT__topNos_flag), false, VLVT_UINT8,VLVD_NODIR|VLVF_PUB_RW,0);
         __Vscope_RAS__RASStack.varInsert(__Vfinal,"topNos_value", &(TOP.RAS__DOT__RASStack__DOT__topNos_value), false, VLVT_UINT8,VLVD_NODIR|VLVF_PUB_RW,1 ,4,0);
-        __Vscope_RAS__RASStack.varInsert(__Vfinal,"writeBypassEntry_ctr", &(TOP.RAS__DOT__RASStack__DOT__writeBypassEntry_ctr), false, VLVT_UINT8,VLVD_NODIR|VLVF_PUB_RW,1 ,2,0);
+        __Vscope_RAS__RASStack.varInsert(__Vfinal,"writeBypassEntry_ctr", &(TOP.RAS__DOT__RASStack__DOT__writeBypassEntry_ctr), false, VLVT_UINT8,VLVD_NODIR|VLVF_PUB_RW,1 ,7,0);
         __Vscope_RAS__RASStack.varInsert(__Vfinal,"writeBypassEntry_retAddr", &(TOP.RAS__DOT__RASStack__DOT__writeBypassEntry_retAddr), false, VLVT_UINT64,VLVD_NODIR|VLVF_PUB_RW,1 ,40,0);
         __Vscope_RAS__RASStack.varInsert(__Vfinal,"writeBypassNos_flag", &(TOP.RAS__DOT__RASStack__DOT__writeBypassNos_flag), false, VLVT_UINT8,VLVD_NODIR|VLVF_PUB_RW,0);
         __Vscope_RAS__RASStack.varInsert(__Vfinal,"writeBypassNos_value", &(TOP.RAS__DOT__RASStack__DOT__writeBypassNos_value), false, VLVT_UINT8,VLVD_NODIR|VLVF_PUB_RW,1 ,4,0);
         __Vscope_RAS__RASStack.varInsert(__Vfinal,"writeBypassValid", &(TOP.RAS__DOT__RASStack__DOT__writeBypassValid), false, VLVT_UINT8,VLVD_NODIR|VLVF_PUB_RW,0);
         __Vscope_RAS__RASStack.varInsert(__Vfinal,"writeBypassValidWire", &(TOP.RAS__DOT__RASStack__DOT__writeBypassValidWire), false, VLVT_UINT8,VLVD_NODIR|VLVF_PUB_RW,0);
+        __Vscope_RAS__RASStack.varInsert(__Vfinal,"writeEntry_ctr", &(TOP.RAS__DOT__RASStack__DOT__writeEntry_ctr), false, VLVT_UINT8,VLVD_NODIR|VLVF_PUB_RW,1 ,7,0);
         __Vscope_RAS__RASStack.varInsert(__Vfinal,"writeEntry_retAddr", &(TOP.RAS__DOT__RASStack__DOT__writeEntry_retAddr), false, VLVT_UINT64,VLVD_NODIR|VLVF_PUB_RW,1 ,40,0);
-        __Vscope_RAS__reset_vector_pipMod.varInsert(__Vfinal,"_RANDOM", &(TOP.RAS__DOT__reset_vector_pipMod__DOT___RANDOM), false, VLVT_UINT32,VLVD_NODIR|VLVF_PUB_RW,2 ,31,0 ,0,5);
-        __Vscope_RAS__reset_vector_pipMod.varInsert(__Vfinal,"clock", &(TOP.RAS__DOT__reset_vector_pipMod__DOT__clock), false, VLVT_UINT8,VLVD_NODIR|VLVF_PUB_RW,0);
-        __Vscope_RAS__reset_vector_pipMod.varInsert(__Vfinal,"data", &(TOP.RAS__DOT__reset_vector_pipMod__DOT__data), false, VLVT_UINT64,VLVD_NODIR|VLVF_PUB_RW,1 ,35,0);
-        __Vscope_RAS__reset_vector_pipMod.varInsert(__Vfinal,"data_1", &(TOP.RAS__DOT__reset_vector_pipMod__DOT__data_1), false, VLVT_UINT64,VLVD_NODIR|VLVF_PUB_RW,1 ,35,0);
-        __Vscope_RAS__reset_vector_pipMod.varInsert(__Vfinal,"data_2", &(TOP.RAS__DOT__reset_vector_pipMod__DOT__data_2), false, VLVT_UINT64,VLVD_NODIR|VLVF_PUB_RW,1 ,35,0);
-        __Vscope_RAS__reset_vector_pipMod.varInsert(__Vfinal,"data_3", &(TOP.RAS__DOT__reset_vector_pipMod__DOT__data_3), false, VLVT_UINT64,VLVD_NODIR|VLVF_PUB_RW,1 ,35,0);
-        __Vscope_RAS__reset_vector_pipMod.varInsert(__Vfinal,"io_in_bits", &(TOP.RAS__DOT__reset_vector_pipMod__DOT__io_in_bits), false, VLVT_UINT64,VLVD_NODIR|VLVF_PUB_RW,1 ,35,0);
-        __Vscope_RAS__reset_vector_pipMod.varInsert(__Vfinal,"io_in_valid", &(TOP.RAS__DOT__reset_vector_pipMod__DOT__io_in_valid), false, VLVT_UINT8,VLVD_NODIR|VLVF_PUB_RW,0);
-        __Vscope_RAS__reset_vector_pipMod.varInsert(__Vfinal,"io_out_bits", &(TOP.RAS__DOT__reset_vector_pipMod__DOT__io_out_bits), false, VLVT_UINT64,VLVD_NODIR|VLVF_PUB_RW,1 ,35,0);
-        __Vscope_RAS__reset_vector_pipMod.varInsert(__Vfinal,"res_bits", &(TOP.RAS__DOT__reset_vector_pipMod__DOT__res_bits), false, VLVT_UINT64,VLVD_NODIR|VLVF_PUB_RW,1 ,35,0);
-        __Vscope_RAS__reset_vector_pipMod.varInsert(__Vfinal,"valid_REG", &(TOP.RAS__DOT__reset_vector_pipMod__DOT__valid_REG), false, VLVT_UINT8,VLVD_NODIR|VLVF_PUB_RW,0);
-        __Vscope_RAS__reset_vector_pipMod.varInsert(__Vfinal,"valid_REG_1", &(TOP.RAS__DOT__reset_vector_pipMod__DOT__valid_REG_1), false, VLVT_UINT8,VLVD_NODIR|VLVF_PUB_RW,0);
-        __Vscope_RAS__reset_vector_pipMod.varInsert(__Vfinal,"valid_REG_2", &(TOP.RAS__DOT__reset_vector_pipMod__DOT__valid_REG_2), false, VLVT_UINT8,VLVD_NODIR|VLVF_PUB_RW,0);
-        __Vscope_RAS__reset_vector_pipMod.varInsert(__Vfinal,"valid_REG_3", &(TOP.RAS__DOT__reset_vector_pipMod__DOT__valid_REG_3), false, VLVT_UINT8,VLVD_NODIR|VLVF_PUB_RW,0);
+        __Vscope_RAS__reset_vector_delay.varInsert(__Vfinal,"REG", &(TOP.RAS__DOT__reset_vector_delay__DOT__REG), false, VLVT_UINT64,VLVD_NODIR|VLVF_PUB_RW,1 ,35,0);
+        __Vscope_RAS__reset_vector_delay.varInsert(__Vfinal,"REG_1", &(TOP.RAS__DOT__reset_vector_delay__DOT__REG_1), false, VLVT_UINT64,VLVD_NODIR|VLVF_PUB_RW,1 ,35,0);
+        __Vscope_RAS__reset_vector_delay.varInsert(__Vfinal,"REG_2", &(TOP.RAS__DOT__reset_vector_delay__DOT__REG_2), false, VLVT_UINT64,VLVD_NODIR|VLVF_PUB_RW,1 ,35,0);
+        __Vscope_RAS__reset_vector_delay.varInsert(__Vfinal,"REG_3", &(TOP.RAS__DOT__reset_vector_delay__DOT__REG_3), false, VLVT_UINT64,VLVD_NODIR|VLVF_PUB_RW,1 ,35,0);
+        __Vscope_RAS__reset_vector_delay.varInsert(__Vfinal,"REG_4", &(TOP.RAS__DOT__reset_vector_delay__DOT__REG_4), false, VLVT_UINT64,VLVD_NODIR|VLVF_PUB_RW,1 ,35,0);
+        __Vscope_RAS__reset_vector_delay.varInsert(__Vfinal,"_RANDOM", &(TOP.RAS__DOT__reset_vector_delay__DOT___RANDOM), false, VLVT_UINT32,VLVD_NODIR|VLVF_PUB_RW,2 ,31,0 ,0,5);
+        __Vscope_RAS__reset_vector_delay.varInsert(__Vfinal,"clock", &(TOP.RAS__DOT__reset_vector_delay__DOT__clock), false, VLVT_UINT8,VLVD_NODIR|VLVF_PUB_RW,0);
+        __Vscope_RAS__reset_vector_delay.varInsert(__Vfinal,"io_in", &(TOP.RAS__DOT__reset_vector_delay__DOT__io_in), false, VLVT_UINT64,VLVD_NODIR|VLVF_PUB_RW,1 ,35,0);
+        __Vscope_RAS__reset_vector_delay.varInsert(__Vfinal,"io_out", &(TOP.RAS__DOT__reset_vector_delay__DOT__io_out), false, VLVT_UINT64,VLVD_NODIR|VLVF_PUB_RW,1 ,35,0);
         __Vscope_TOP.varInsert(__Vfinal,"clock", &(TOP.clock), false, VLVT_UINT8,VLVD_IN|VLVF_PUB_RW,0);
         __Vscope_TOP.varInsert(__Vfinal,"io_ctrl_ras_enable", &(TOP.io_ctrl_ras_enable), false, VLVT_UINT8,VLVD_IN|VLVF_PUB_RW,0);
         __Vscope_TOP.varInsert(__Vfinal,"io_in_bits_resp_in_0_last_stage_ftb_entry_always_taken_0", &(TOP.io_in_bits_resp_in_0_last_stage_ftb_entry_always_taken_0), false, VLVT_UINT8,VLVD_IN|VLVF_PUB_RW,0);
@@ -896,7 +842,6 @@ Vtop__Syms::Vtop__Syms(VerilatedContext* contextp, const char* namep,Vtop* model
         __Vscope_TOP.varInsert(__Vfinal,"io_in_bits_resp_in_0_s3_full_pred_0_hit", &(TOP.io_in_bits_resp_in_0_s3_full_pred_0_hit), false, VLVT_UINT8,VLVD_IN|VLVF_PUB_RW,0);
         __Vscope_TOP.varInsert(__Vfinal,"io_in_bits_resp_in_0_s3_full_pred_0_is_br_sharing", &(TOP.io_in_bits_resp_in_0_s3_full_pred_0_is_br_sharing), false, VLVT_UINT8,VLVD_IN|VLVF_PUB_RW,0);
         __Vscope_TOP.varInsert(__Vfinal,"io_in_bits_resp_in_0_s3_full_pred_0_jalr_target", &(TOP.io_in_bits_resp_in_0_s3_full_pred_0_jalr_target), false, VLVT_UINT64,VLVD_IN|VLVF_PUB_RW,1 ,40,0);
-        __Vscope_TOP.varInsert(__Vfinal,"io_in_bits_resp_in_0_s3_full_pred_0_multiHit", &(TOP.io_in_bits_resp_in_0_s3_full_pred_0_multiHit), false, VLVT_UINT8,VLVD_IN|VLVF_PUB_RW,0);
         __Vscope_TOP.varInsert(__Vfinal,"io_in_bits_resp_in_0_s3_full_pred_0_slot_valids_0", &(TOP.io_in_bits_resp_in_0_s3_full_pred_0_slot_valids_0), false, VLVT_UINT8,VLVD_IN|VLVF_PUB_RW,0);
         __Vscope_TOP.varInsert(__Vfinal,"io_in_bits_resp_in_0_s3_full_pred_0_slot_valids_1", &(TOP.io_in_bits_resp_in_0_s3_full_pred_0_slot_valids_1), false, VLVT_UINT8,VLVD_IN|VLVF_PUB_RW,0);
         __Vscope_TOP.varInsert(__Vfinal,"io_in_bits_resp_in_0_s3_full_pred_0_targets_0", &(TOP.io_in_bits_resp_in_0_s3_full_pred_0_targets_0), false, VLVT_UINT64,VLVD_IN|VLVF_PUB_RW,1 ,40,0);
@@ -908,7 +853,6 @@ Vtop__Syms::Vtop__Syms(VerilatedContext* contextp, const char* namep,Vtop* model
         __Vscope_TOP.varInsert(__Vfinal,"io_in_bits_resp_in_0_s3_full_pred_1_hit", &(TOP.io_in_bits_resp_in_0_s3_full_pred_1_hit), false, VLVT_UINT8,VLVD_IN|VLVF_PUB_RW,0);
         __Vscope_TOP.varInsert(__Vfinal,"io_in_bits_resp_in_0_s3_full_pred_1_is_br_sharing", &(TOP.io_in_bits_resp_in_0_s3_full_pred_1_is_br_sharing), false, VLVT_UINT8,VLVD_IN|VLVF_PUB_RW,0);
         __Vscope_TOP.varInsert(__Vfinal,"io_in_bits_resp_in_0_s3_full_pred_1_jalr_target", &(TOP.io_in_bits_resp_in_0_s3_full_pred_1_jalr_target), false, VLVT_UINT64,VLVD_IN|VLVF_PUB_RW,1 ,40,0);
-        __Vscope_TOP.varInsert(__Vfinal,"io_in_bits_resp_in_0_s3_full_pred_1_multiHit", &(TOP.io_in_bits_resp_in_0_s3_full_pred_1_multiHit), false, VLVT_UINT8,VLVD_IN|VLVF_PUB_RW,0);
         __Vscope_TOP.varInsert(__Vfinal,"io_in_bits_resp_in_0_s3_full_pred_1_slot_valids_0", &(TOP.io_in_bits_resp_in_0_s3_full_pred_1_slot_valids_0), false, VLVT_UINT8,VLVD_IN|VLVF_PUB_RW,0);
         __Vscope_TOP.varInsert(__Vfinal,"io_in_bits_resp_in_0_s3_full_pred_1_slot_valids_1", &(TOP.io_in_bits_resp_in_0_s3_full_pred_1_slot_valids_1), false, VLVT_UINT8,VLVD_IN|VLVF_PUB_RW,0);
         __Vscope_TOP.varInsert(__Vfinal,"io_in_bits_resp_in_0_s3_full_pred_1_targets_0", &(TOP.io_in_bits_resp_in_0_s3_full_pred_1_targets_0), false, VLVT_UINT64,VLVD_IN|VLVF_PUB_RW,1 ,40,0);
@@ -923,7 +867,6 @@ Vtop__Syms::Vtop__Syms(VerilatedContext* contextp, const char* namep,Vtop* model
         __Vscope_TOP.varInsert(__Vfinal,"io_in_bits_resp_in_0_s3_full_pred_2_is_jalr", &(TOP.io_in_bits_resp_in_0_s3_full_pred_2_is_jalr), false, VLVT_UINT8,VLVD_IN|VLVF_PUB_RW,0);
         __Vscope_TOP.varInsert(__Vfinal,"io_in_bits_resp_in_0_s3_full_pred_2_is_ret", &(TOP.io_in_bits_resp_in_0_s3_full_pred_2_is_ret), false, VLVT_UINT8,VLVD_IN|VLVF_PUB_RW,0);
         __Vscope_TOP.varInsert(__Vfinal,"io_in_bits_resp_in_0_s3_full_pred_2_jalr_target", &(TOP.io_in_bits_resp_in_0_s3_full_pred_2_jalr_target), false, VLVT_UINT64,VLVD_IN|VLVF_PUB_RW,1 ,40,0);
-        __Vscope_TOP.varInsert(__Vfinal,"io_in_bits_resp_in_0_s3_full_pred_2_multiHit", &(TOP.io_in_bits_resp_in_0_s3_full_pred_2_multiHit), false, VLVT_UINT8,VLVD_IN|VLVF_PUB_RW,0);
         __Vscope_TOP.varInsert(__Vfinal,"io_in_bits_resp_in_0_s3_full_pred_2_slot_valids_0", &(TOP.io_in_bits_resp_in_0_s3_full_pred_2_slot_valids_0), false, VLVT_UINT8,VLVD_IN|VLVF_PUB_RW,0);
         __Vscope_TOP.varInsert(__Vfinal,"io_in_bits_resp_in_0_s3_full_pred_2_slot_valids_1", &(TOP.io_in_bits_resp_in_0_s3_full_pred_2_slot_valids_1), false, VLVT_UINT8,VLVD_IN|VLVF_PUB_RW,0);
         __Vscope_TOP.varInsert(__Vfinal,"io_in_bits_resp_in_0_s3_full_pred_2_targets_0", &(TOP.io_in_bits_resp_in_0_s3_full_pred_2_targets_0), false, VLVT_UINT64,VLVD_IN|VLVF_PUB_RW,1 ,40,0);
@@ -935,7 +878,6 @@ Vtop__Syms::Vtop__Syms(VerilatedContext* contextp, const char* namep,Vtop* model
         __Vscope_TOP.varInsert(__Vfinal,"io_in_bits_resp_in_0_s3_full_pred_3_hit", &(TOP.io_in_bits_resp_in_0_s3_full_pred_3_hit), false, VLVT_UINT8,VLVD_IN|VLVF_PUB_RW,0);
         __Vscope_TOP.varInsert(__Vfinal,"io_in_bits_resp_in_0_s3_full_pred_3_is_br_sharing", &(TOP.io_in_bits_resp_in_0_s3_full_pred_3_is_br_sharing), false, VLVT_UINT8,VLVD_IN|VLVF_PUB_RW,0);
         __Vscope_TOP.varInsert(__Vfinal,"io_in_bits_resp_in_0_s3_full_pred_3_jalr_target", &(TOP.io_in_bits_resp_in_0_s3_full_pred_3_jalr_target), false, VLVT_UINT64,VLVD_IN|VLVF_PUB_RW,1 ,40,0);
-        __Vscope_TOP.varInsert(__Vfinal,"io_in_bits_resp_in_0_s3_full_pred_3_multiHit", &(TOP.io_in_bits_resp_in_0_s3_full_pred_3_multiHit), false, VLVT_UINT8,VLVD_IN|VLVF_PUB_RW,0);
         __Vscope_TOP.varInsert(__Vfinal,"io_in_bits_resp_in_0_s3_full_pred_3_offsets_0", &(TOP.io_in_bits_resp_in_0_s3_full_pred_3_offsets_0), false, VLVT_UINT8,VLVD_IN|VLVF_PUB_RW,1 ,3,0);
         __Vscope_TOP.varInsert(__Vfinal,"io_in_bits_resp_in_0_s3_full_pred_3_offsets_1", &(TOP.io_in_bits_resp_in_0_s3_full_pred_3_offsets_1), false, VLVT_UINT8,VLVD_IN|VLVF_PUB_RW,1 ,3,0);
         __Vscope_TOP.varInsert(__Vfinal,"io_in_bits_resp_in_0_s3_full_pred_3_slot_valids_0", &(TOP.io_in_bits_resp_in_0_s3_full_pred_3_slot_valids_0), false, VLVT_UINT8,VLVD_IN|VLVF_PUB_RW,0);
@@ -965,14 +907,14 @@ Vtop__Syms::Vtop__Syms(VerilatedContext* contextp, const char* namep,Vtop* model
         __Vscope_TOP.varInsert(__Vfinal,"io_out_last_stage_ftb_entry_tailSlot_tarStat", &(TOP.io_out_last_stage_ftb_entry_tailSlot_tarStat), false, VLVT_UINT8,VLVD_OUT|VLVF_PUB_RW,1 ,1,0);
         __Vscope_TOP.varInsert(__Vfinal,"io_out_last_stage_ftb_entry_tailSlot_valid", &(TOP.io_out_last_stage_ftb_entry_tailSlot_valid), false, VLVT_UINT8,VLVD_OUT|VLVF_PUB_RW,0);
         __Vscope_TOP.varInsert(__Vfinal,"io_out_last_stage_ftb_entry_valid", &(TOP.io_out_last_stage_ftb_entry_valid), false, VLVT_UINT8,VLVD_OUT|VLVF_PUB_RW,0);
-        __Vscope_TOP.varInsert(__Vfinal,"io_out_last_stage_meta", &(TOP.io_out_last_stage_meta), false, VLVT_WDATA,VLVD_OUT|VLVF_PUB_RW,1 ,259,0);
+        __Vscope_TOP.varInsert(__Vfinal,"io_out_last_stage_meta", &(TOP.io_out_last_stage_meta), false, VLVT_WDATA,VLVD_OUT|VLVF_PUB_RW,1 ,222,0);
         __Vscope_TOP.varInsert(__Vfinal,"io_out_last_stage_spec_info_NOS_flag", &(TOP.io_out_last_stage_spec_info_NOS_flag), false, VLVT_UINT8,VLVD_OUT|VLVF_PUB_RW,0);
         __Vscope_TOP.varInsert(__Vfinal,"io_out_last_stage_spec_info_NOS_value", &(TOP.io_out_last_stage_spec_info_NOS_value), false, VLVT_UINT8,VLVD_OUT|VLVF_PUB_RW,1 ,4,0);
         __Vscope_TOP.varInsert(__Vfinal,"io_out_last_stage_spec_info_TOSR_flag", &(TOP.io_out_last_stage_spec_info_TOSR_flag), false, VLVT_UINT8,VLVD_OUT|VLVF_PUB_RW,0);
         __Vscope_TOP.varInsert(__Vfinal,"io_out_last_stage_spec_info_TOSR_value", &(TOP.io_out_last_stage_spec_info_TOSR_value), false, VLVT_UINT8,VLVD_OUT|VLVF_PUB_RW,1 ,4,0);
         __Vscope_TOP.varInsert(__Vfinal,"io_out_last_stage_spec_info_TOSW_flag", &(TOP.io_out_last_stage_spec_info_TOSW_flag), false, VLVT_UINT8,VLVD_OUT|VLVF_PUB_RW,0);
         __Vscope_TOP.varInsert(__Vfinal,"io_out_last_stage_spec_info_TOSW_value", &(TOP.io_out_last_stage_spec_info_TOSW_value), false, VLVT_UINT8,VLVD_OUT|VLVF_PUB_RW,1 ,4,0);
-        __Vscope_TOP.varInsert(__Vfinal,"io_out_last_stage_spec_info_sctr", &(TOP.io_out_last_stage_spec_info_sctr), false, VLVT_UINT8,VLVD_OUT|VLVF_PUB_RW,1 ,2,0);
+        __Vscope_TOP.varInsert(__Vfinal,"io_out_last_stage_spec_info_sctr", &(TOP.io_out_last_stage_spec_info_sctr), false, VLVT_UINT8,VLVD_OUT|VLVF_PUB_RW,1 ,1,0);
         __Vscope_TOP.varInsert(__Vfinal,"io_out_last_stage_spec_info_ssp", &(TOP.io_out_last_stage_spec_info_ssp), false, VLVT_UINT8,VLVD_OUT|VLVF_PUB_RW,1 ,3,0);
         __Vscope_TOP.varInsert(__Vfinal,"io_out_last_stage_spec_info_topAddr", &(TOP.io_out_last_stage_spec_info_topAddr), false, VLVT_UINT64,VLVD_OUT|VLVF_PUB_RW,1 ,40,0);
         __Vscope_TOP.varInsert(__Vfinal,"io_out_s2_full_pred_0_br_taken_mask_0", &(TOP.io_out_s2_full_pred_0_br_taken_mask_0), false, VLVT_UINT8,VLVD_OUT|VLVF_PUB_RW,0);
@@ -1030,7 +972,6 @@ Vtop__Syms::Vtop__Syms(VerilatedContext* contextp, const char* namep,Vtop* model
         __Vscope_TOP.varInsert(__Vfinal,"io_out_s3_full_pred_0_fallThroughErr", &(TOP.io_out_s3_full_pred_0_fallThroughErr), false, VLVT_UINT8,VLVD_OUT|VLVF_PUB_RW,0);
         __Vscope_TOP.varInsert(__Vfinal,"io_out_s3_full_pred_0_hit", &(TOP.io_out_s3_full_pred_0_hit), false, VLVT_UINT8,VLVD_OUT|VLVF_PUB_RW,0);
         __Vscope_TOP.varInsert(__Vfinal,"io_out_s3_full_pred_0_is_br_sharing", &(TOP.io_out_s3_full_pred_0_is_br_sharing), false, VLVT_UINT8,VLVD_OUT|VLVF_PUB_RW,0);
-        __Vscope_TOP.varInsert(__Vfinal,"io_out_s3_full_pred_0_multiHit", &(TOP.io_out_s3_full_pred_0_multiHit), false, VLVT_UINT8,VLVD_OUT|VLVF_PUB_RW,0);
         __Vscope_TOP.varInsert(__Vfinal,"io_out_s3_full_pred_0_slot_valids_0", &(TOP.io_out_s3_full_pred_0_slot_valids_0), false, VLVT_UINT8,VLVD_OUT|VLVF_PUB_RW,0);
         __Vscope_TOP.varInsert(__Vfinal,"io_out_s3_full_pred_0_slot_valids_1", &(TOP.io_out_s3_full_pred_0_slot_valids_1), false, VLVT_UINT8,VLVD_OUT|VLVF_PUB_RW,0);
         __Vscope_TOP.varInsert(__Vfinal,"io_out_s3_full_pred_0_targets_0", &(TOP.io_out_s3_full_pred_0_targets_0), false, VLVT_UINT64,VLVD_OUT|VLVF_PUB_RW,1 ,40,0);
@@ -1041,7 +982,6 @@ Vtop__Syms::Vtop__Syms(VerilatedContext* contextp, const char* namep,Vtop* model
         __Vscope_TOP.varInsert(__Vfinal,"io_out_s3_full_pred_1_fallThroughErr", &(TOP.io_out_s3_full_pred_1_fallThroughErr), false, VLVT_UINT8,VLVD_OUT|VLVF_PUB_RW,0);
         __Vscope_TOP.varInsert(__Vfinal,"io_out_s3_full_pred_1_hit", &(TOP.io_out_s3_full_pred_1_hit), false, VLVT_UINT8,VLVD_OUT|VLVF_PUB_RW,0);
         __Vscope_TOP.varInsert(__Vfinal,"io_out_s3_full_pred_1_is_br_sharing", &(TOP.io_out_s3_full_pred_1_is_br_sharing), false, VLVT_UINT8,VLVD_OUT|VLVF_PUB_RW,0);
-        __Vscope_TOP.varInsert(__Vfinal,"io_out_s3_full_pred_1_multiHit", &(TOP.io_out_s3_full_pred_1_multiHit), false, VLVT_UINT8,VLVD_OUT|VLVF_PUB_RW,0);
         __Vscope_TOP.varInsert(__Vfinal,"io_out_s3_full_pred_1_slot_valids_0", &(TOP.io_out_s3_full_pred_1_slot_valids_0), false, VLVT_UINT8,VLVD_OUT|VLVF_PUB_RW,0);
         __Vscope_TOP.varInsert(__Vfinal,"io_out_s3_full_pred_1_slot_valids_1", &(TOP.io_out_s3_full_pred_1_slot_valids_1), false, VLVT_UINT8,VLVD_OUT|VLVF_PUB_RW,0);
         __Vscope_TOP.varInsert(__Vfinal,"io_out_s3_full_pred_1_targets_0", &(TOP.io_out_s3_full_pred_1_targets_0), false, VLVT_UINT64,VLVD_OUT|VLVF_PUB_RW,1 ,40,0);
@@ -1052,7 +992,6 @@ Vtop__Syms::Vtop__Syms(VerilatedContext* contextp, const char* namep,Vtop* model
         __Vscope_TOP.varInsert(__Vfinal,"io_out_s3_full_pred_2_fallThroughErr", &(TOP.io_out_s3_full_pred_2_fallThroughErr), false, VLVT_UINT8,VLVD_OUT|VLVF_PUB_RW,0);
         __Vscope_TOP.varInsert(__Vfinal,"io_out_s3_full_pred_2_hit", &(TOP.io_out_s3_full_pred_2_hit), false, VLVT_UINT8,VLVD_OUT|VLVF_PUB_RW,0);
         __Vscope_TOP.varInsert(__Vfinal,"io_out_s3_full_pred_2_is_br_sharing", &(TOP.io_out_s3_full_pred_2_is_br_sharing), false, VLVT_UINT8,VLVD_OUT|VLVF_PUB_RW,0);
-        __Vscope_TOP.varInsert(__Vfinal,"io_out_s3_full_pred_2_multiHit", &(TOP.io_out_s3_full_pred_2_multiHit), false, VLVT_UINT8,VLVD_OUT|VLVF_PUB_RW,0);
         __Vscope_TOP.varInsert(__Vfinal,"io_out_s3_full_pred_2_slot_valids_0", &(TOP.io_out_s3_full_pred_2_slot_valids_0), false, VLVT_UINT8,VLVD_OUT|VLVF_PUB_RW,0);
         __Vscope_TOP.varInsert(__Vfinal,"io_out_s3_full_pred_2_slot_valids_1", &(TOP.io_out_s3_full_pred_2_slot_valids_1), false, VLVT_UINT8,VLVD_OUT|VLVF_PUB_RW,0);
         __Vscope_TOP.varInsert(__Vfinal,"io_out_s3_full_pred_2_targets_0", &(TOP.io_out_s3_full_pred_2_targets_0), false, VLVT_UINT64,VLVD_OUT|VLVF_PUB_RW,1 ,40,0);
@@ -1063,7 +1002,6 @@ Vtop__Syms::Vtop__Syms(VerilatedContext* contextp, const char* namep,Vtop* model
         __Vscope_TOP.varInsert(__Vfinal,"io_out_s3_full_pred_3_fallThroughErr", &(TOP.io_out_s3_full_pred_3_fallThroughErr), false, VLVT_UINT8,VLVD_OUT|VLVF_PUB_RW,0);
         __Vscope_TOP.varInsert(__Vfinal,"io_out_s3_full_pred_3_hit", &(TOP.io_out_s3_full_pred_3_hit), false, VLVT_UINT8,VLVD_OUT|VLVF_PUB_RW,0);
         __Vscope_TOP.varInsert(__Vfinal,"io_out_s3_full_pred_3_is_br_sharing", &(TOP.io_out_s3_full_pred_3_is_br_sharing), false, VLVT_UINT8,VLVD_OUT|VLVF_PUB_RW,0);
-        __Vscope_TOP.varInsert(__Vfinal,"io_out_s3_full_pred_3_multiHit", &(TOP.io_out_s3_full_pred_3_multiHit), false, VLVT_UINT8,VLVD_OUT|VLVF_PUB_RW,0);
         __Vscope_TOP.varInsert(__Vfinal,"io_out_s3_full_pred_3_offsets_0", &(TOP.io_out_s3_full_pred_3_offsets_0), false, VLVT_UINT8,VLVD_OUT|VLVF_PUB_RW,1 ,3,0);
         __Vscope_TOP.varInsert(__Vfinal,"io_out_s3_full_pred_3_offsets_1", &(TOP.io_out_s3_full_pred_3_offsets_1), false, VLVT_UINT8,VLVD_OUT|VLVF_PUB_RW,1 ,3,0);
         __Vscope_TOP.varInsert(__Vfinal,"io_out_s3_full_pred_3_slot_valids_0", &(TOP.io_out_s3_full_pred_3_slot_valids_0), false, VLVT_UINT8,VLVD_OUT|VLVF_PUB_RW,0);
@@ -1084,7 +1022,7 @@ Vtop__Syms::Vtop__Syms(VerilatedContext* contextp, const char* namep,Vtop* model
         __Vscope_TOP.varInsert(__Vfinal,"io_redirect_bits_cfiUpdate_pd_isCall", &(TOP.io_redirect_bits_cfiUpdate_pd_isCall), false, VLVT_UINT8,VLVD_IN|VLVF_PUB_RW,0);
         __Vscope_TOP.varInsert(__Vfinal,"io_redirect_bits_cfiUpdate_pd_isRVC", &(TOP.io_redirect_bits_cfiUpdate_pd_isRVC), false, VLVT_UINT8,VLVD_IN|VLVF_PUB_RW,0);
         __Vscope_TOP.varInsert(__Vfinal,"io_redirect_bits_cfiUpdate_pd_isRet", &(TOP.io_redirect_bits_cfiUpdate_pd_isRet), false, VLVT_UINT8,VLVD_IN|VLVF_PUB_RW,0);
-        __Vscope_TOP.varInsert(__Vfinal,"io_redirect_bits_cfiUpdate_sctr", &(TOP.io_redirect_bits_cfiUpdate_sctr), false, VLVT_UINT8,VLVD_IN|VLVF_PUB_RW,1 ,2,0);
+        __Vscope_TOP.varInsert(__Vfinal,"io_redirect_bits_cfiUpdate_sctr", &(TOP.io_redirect_bits_cfiUpdate_sctr), false, VLVT_UINT8,VLVD_IN|VLVF_PUB_RW,1 ,1,0);
         __Vscope_TOP.varInsert(__Vfinal,"io_redirect_bits_cfiUpdate_ssp", &(TOP.io_redirect_bits_cfiUpdate_ssp), false, VLVT_UINT8,VLVD_IN|VLVF_PUB_RW,1 ,3,0);
         __Vscope_TOP.varInsert(__Vfinal,"io_redirect_bits_level", &(TOP.io_redirect_bits_level), false, VLVT_UINT8,VLVD_IN|VLVF_PUB_RW,0);
         __Vscope_TOP.varInsert(__Vfinal,"io_redirect_valid", &(TOP.io_redirect_valid), false, VLVT_UINT8,VLVD_IN|VLVF_PUB_RW,0);
@@ -1110,7 +1048,7 @@ Vtop__Syms::Vtop__Syms(VerilatedContext* contextp, const char* namep,Vtop* model
         __Vscope_TOP.varInsert(__Vfinal,"io_update_bits_ftb_entry_tailSlot_offset", &(TOP.io_update_bits_ftb_entry_tailSlot_offset), false, VLVT_UINT8,VLVD_IN|VLVF_PUB_RW,1 ,3,0);
         __Vscope_TOP.varInsert(__Vfinal,"io_update_bits_ftb_entry_tailSlot_valid", &(TOP.io_update_bits_ftb_entry_tailSlot_valid), false, VLVT_UINT8,VLVD_IN|VLVF_PUB_RW,0);
         __Vscope_TOP.varInsert(__Vfinal,"io_update_bits_jmp_taken", &(TOP.io_update_bits_jmp_taken), false, VLVT_UINT8,VLVD_IN|VLVF_PUB_RW,0);
-        __Vscope_TOP.varInsert(__Vfinal,"io_update_bits_meta", &(TOP.io_update_bits_meta), false, VLVT_WDATA,VLVD_IN|VLVF_PUB_RW,1 ,259,0);
+        __Vscope_TOP.varInsert(__Vfinal,"io_update_bits_meta", &(TOP.io_update_bits_meta), false, VLVT_WDATA,VLVD_IN|VLVF_PUB_RW,1 ,222,0);
         __Vscope_TOP.varInsert(__Vfinal,"io_update_valid", &(TOP.io_update_valid), false, VLVT_UINT8,VLVD_IN|VLVF_PUB_RW,0);
         __Vscope_TOP.varInsert(__Vfinal,"reset", &(TOP.reset), false, VLVT_UINT8,VLVD_IN|VLVF_PUB_RW,0);
     }

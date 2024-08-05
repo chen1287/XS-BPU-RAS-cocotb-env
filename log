@@ -1,0 +1,1095 @@
+execve("/usr/bin/make", ["make", "-j20"], 0x7ffe070cec48 /* 74 vars */) = 0
+brk(NULL)                               = 0x613518b9e000
+arch_prctl(0x3001 /* ARCH_??? */, 0x7fff2a527c60) = -1 EINVAL (Invalid argument)
+mmap(NULL, 8192, PROT_READ|PROT_WRITE, MAP_PRIVATE|MAP_ANONYMOUS, -1, 0) = 0x70f524409000
+access("/etc/ld.so.preload", R_OK)      = -1 ENOENT (No such file or directory)
+openat(AT_FDCWD, "/etc/ld.so.cache", O_RDONLY|O_CLOEXEC) = 3
+newfstatat(3, "", {st_mode=S_IFREG|0644, st_size=68755, ...}, AT_EMPTY_PATH) = 0
+mmap(NULL, 68755, PROT_READ, MAP_PRIVATE, 3, 0) = 0x70f5243f8000
+close(3)                                = 0
+openat(AT_FDCWD, "/lib/x86_64-linux-gnu/libc.so.6", O_RDONLY|O_CLOEXEC) = 3
+read(3, "\177ELF\2\1\1\3\0\0\0\0\0\0\0\0\3\0>\0\1\0\0\0P\237\2\0\0\0\0\0"..., 832) = 832
+pread64(3, "\6\0\0\0\4\0\0\0@\0\0\0\0\0\0\0@\0\0\0\0\0\0\0@\0\0\0\0\0\0\0"..., 784, 64) = 784
+pread64(3, "\4\0\0\0 \0\0\0\5\0\0\0GNU\0\2\0\0\300\4\0\0\0\3\0\0\0\0\0\0\0"..., 48, 848) = 48
+pread64(3, "\4\0\0\0\24\0\0\0\3\0\0\0GNU\0\226 \25\252\235\23<l\274\3731\3540\5\226\327"..., 68, 896) = 68
+newfstatat(3, "", {st_mode=S_IFREG|0755, st_size=2220400, ...}, AT_EMPTY_PATH) = 0
+pread64(3, "\6\0\0\0\4\0\0\0@\0\0\0\0\0\0\0@\0\0\0\0\0\0\0@\0\0\0\0\0\0\0"..., 784, 64) = 784
+mmap(NULL, 2264656, PROT_READ, MAP_PRIVATE|MAP_DENYWRITE, 3, 0) = 0x70f524000000
+mprotect(0x70f524028000, 2023424, PROT_NONE) = 0
+mmap(0x70f524028000, 1658880, PROT_READ|PROT_EXEC, MAP_PRIVATE|MAP_FIXED|MAP_DENYWRITE, 3, 0x28000) = 0x70f524028000
+mmap(0x70f5241bd000, 360448, PROT_READ, MAP_PRIVATE|MAP_FIXED|MAP_DENYWRITE, 3, 0x1bd000) = 0x70f5241bd000
+mmap(0x70f524216000, 24576, PROT_READ|PROT_WRITE, MAP_PRIVATE|MAP_FIXED|MAP_DENYWRITE, 3, 0x215000) = 0x70f524216000
+mmap(0x70f52421c000, 52816, PROT_READ|PROT_WRITE, MAP_PRIVATE|MAP_FIXED|MAP_ANONYMOUS, -1, 0) = 0x70f52421c000
+close(3)                                = 0
+mmap(NULL, 12288, PROT_READ|PROT_WRITE, MAP_PRIVATE|MAP_ANONYMOUS, -1, 0) = 0x70f5243f5000
+arch_prctl(ARCH_SET_FS, 0x70f5243f5740) = 0
+set_tid_address(0x70f5243f5a10)         = 49537
+set_robust_list(0x70f5243f5a20, 24)     = 0
+rseq(0x70f5243f60e0, 0x20, 0, 0x53053053) = 0
+mprotect(0x70f524216000, 16384, PROT_READ) = 0
+mprotect(0x613516fbe000, 8192, PROT_READ) = 0
+mprotect(0x70f524443000, 8192, PROT_READ) = 0
+prlimit64(0, RLIMIT_STACK, NULL, {rlim_cur=8192*1024, rlim_max=RLIM64_INFINITY}) = 0
+munmap(0x70f5243f8000, 68755)           = 0
+getrandom("\xa2\xfc\x59\x9b\xd6\x32\x28\x3c", 8, GRND_NONBLOCK) = 8
+brk(NULL)                               = 0x613518b9e000
+brk(0x613518bbf000)                     = 0x613518bbf000
+openat(AT_FDCWD, "/usr/lib/locale/locale-archive", O_RDONLY|O_CLOEXEC) = 3
+newfstatat(3, "", {st_mode=S_IFREG|0644, st_size=8876560, ...}, AT_EMPTY_PATH) = 0
+mmap(NULL, 8876560, PROT_READ, MAP_PRIVATE, 3, 0) = 0x70f523600000
+close(3)                                = 0
+rt_sigaction(SIGHUP, {sa_handler=0x613516f95cd0, sa_mask=[HUP], sa_flags=SA_RESTORER|SA_RESTART, sa_restorer=0x70f524042520}, {sa_handler=SIG_DFL, sa_mask=[], sa_flags=0}, 8) = 0
+rt_sigaction(SIGQUIT, {sa_handler=0x613516f95cd0, sa_mask=[QUIT], sa_flags=SA_RESTORER|SA_RESTART, sa_restorer=0x70f524042520}, {sa_handler=SIG_DFL, sa_mask=[], sa_flags=0}, 8) = 0
+rt_sigaction(SIGINT, {sa_handler=0x613516f95cd0, sa_mask=[INT], sa_flags=SA_RESTORER|SA_RESTART, sa_restorer=0x70f524042520}, {sa_handler=SIG_DFL, sa_mask=[], sa_flags=0}, 8) = 0
+rt_sigaction(SIGTERM, {sa_handler=0x613516f95cd0, sa_mask=[TERM], sa_flags=SA_RESTORER|SA_RESTART, sa_restorer=0x70f524042520}, {sa_handler=SIG_DFL, sa_mask=[], sa_flags=0}, 8) = 0
+rt_sigaction(SIGXCPU, {sa_handler=0x613516f95cd0, sa_mask=[XCPU], sa_flags=SA_RESTORER|SA_RESTART, sa_restorer=0x70f524042520}, {sa_handler=SIG_DFL, sa_mask=[], sa_flags=0}, 8) = 0
+rt_sigaction(SIGXFSZ, {sa_handler=0x613516f95cd0, sa_mask=[XFSZ], sa_flags=SA_RESTORER|SA_RESTART, sa_restorer=0x70f524042520}, {sa_handler=SIG_DFL, sa_mask=[], sa_flags=0}, 8) = 0
+rt_sigaction(SIGCHLD, {sa_handler=SIG_DFL, sa_mask=[CHLD], sa_flags=SA_RESTORER|SA_RESTART, sa_restorer=0x70f524042520}, {sa_handler=SIG_DFL, sa_mask=[], sa_flags=0}, 8) = 0
+fcntl(1, F_GETFL)                       = 0x8001 (flags O_WRONLY|O_LARGEFILE)
+fcntl(1, F_SETFL, O_WRONLY|O_APPEND|O_LARGEFILE) = 0
+fcntl(2, F_GETFL)                       = 0x8401 (flags O_WRONLY|O_APPEND|O_LARGEFILE)
+fcntl(2, F_SETFL, O_WRONLY|O_APPEND|O_LARGEFILE) = 0
+fcntl(1, F_GETFD)                       = 0
+getcwd("/home/kurumi/XS-BPU-RAS-cocotb-env", 4096) = 35
+ioctl(1, TCGETS, 0x7fff2a5263e0)        = -1 ENOTTY (Inappropriate ioctl for device)
+ioctl(2, TCGETS, 0x7fff2a5263e0)        = -1 ENOTTY (Inappropriate ioctl for device)
+newfstatat(AT_FDCWD, "/usr/gnu/include", 0x7fff2a5263a0, 0) = -1 ENOENT (No such file or directory)
+newfstatat(AT_FDCWD, "/usr/local/include", {st_mode=S_IFDIR|0755, st_size=4096, ...}, 0) = 0
+newfstatat(AT_FDCWD, "/usr/include", {st_mode=S_IFDIR|0755, st_size=12288, ...}, 0) = 0
+newfstatat(AT_FDCWD, "/usr/include", {st_mode=S_IFDIR|0755, st_size=12288, ...}, 0) = 0
+rt_sigaction(SIGCHLD, {sa_handler=0x613516f9bdc0, sa_mask=[CHLD], sa_flags=SA_RESTORER|SA_RESTART, sa_restorer=0x70f524042520}, {sa_handler=SIG_DFL, sa_mask=[CHLD], sa_flags=SA_RESTORER|SA_RESTART, sa_restorer=0x70f524042520}, 8) = 0
+rt_sigprocmask(SIG_SETMASK, [CHLD], NULL, 8) = 0
+rt_sigaction(SIGUSR1, {sa_handler=0x613516f9ba90, sa_mask=[USR1], sa_flags=SA_RESTORER|SA_RESTART, sa_restorer=0x70f524042520}, {sa_handler=SIG_DFL, sa_mask=[], sa_flags=0}, 8) = 0
+brk(0x613518be0000)                     = 0x613518be0000
+newfstatat(AT_FDCWD, ".", {st_mode=S_IFDIR|0775, st_size=4096, ...}, 0) = 0
+openat(AT_FDCWD, ".", O_RDONLY|O_NONBLOCK|O_CLOEXEC|O_DIRECTORY) = 3
+newfstatat(3, "", {st_mode=S_IFDIR|0775, st_size=4096, ...}, AT_EMPTY_PATH) = 0
+getdents64(3, 0x613518bc2960 /* 12 entries */, 32768) = 352
+getdents64(3, 0x613518bc2960 /* 0 entries */, 32768) = 0
+close(3)                                = 0
+openat(AT_FDCWD, "Makefile", O_RDONLY)  = 3
+fcntl(3, F_GETFD)                       = 0
+fcntl(3, F_SETFD, FD_CLOEXEC)           = 0
+newfstatat(3, "", {st_mode=S_IFREG|0664, st_size=758, ...}, AT_EMPTY_PATH) = 0
+read(3, "TOPLEVEL_LANG ?= verilog\n\nVERILO"..., 4096) = 758
+pipe2([4, 5], 0)                        = 0
+fcntl(5, F_GETFD)                       = 0
+fcntl(5, F_SETFD, FD_CLOEXEC)           = 0
+fcntl(4, F_GETFD)                       = 0
+fcntl(4, F_SETFD, FD_CLOEXEC)           = 0
+prlimit64(0, RLIMIT_NOFILE, NULL, {rlim_cur=8*1024, rlim_max=1024*1024}) = 0
+prlimit64(0, RLIMIT_NOFILE, NULL, {rlim_cur=8*1024, rlim_max=1024*1024}) = 0
+newfstatat(AT_FDCWD, "/home/kurumi/verible/bin/cocotb-config", 0x7fff2a525c10, 0) = -1 ENOENT (No such file or directory)
+newfstatat(AT_FDCWD, "/home/kurumi/.local/bin/cocotb-config", {st_mode=S_IFREG|0775, st_size=212, ...}, 0) = 0
+geteuid()                               = 1000
+getegid()                               = 1000
+getuid()                                = 1000
+getgid()                                = 1000
+access("/home/kurumi/.local/bin/cocotb-config", X_OK) = 0
+mmap(NULL, 36864, PROT_READ|PROT_WRITE, MAP_PRIVATE|MAP_ANONYMOUS|MAP_STACK, -1, 0) = 0x70f524400000
+rt_sigprocmask(SIG_BLOCK, ~[], [CHLD], 8) = 0
+clone3({flags=CLONE_VM|CLONE_VFORK, exit_signal=SIGCHLD, stack=0x70f524400000, stack_size=0x9000}, 88) = 49538
+munmap(0x70f524400000, 36864)           = 0
+rt_sigprocmask(SIG_SETMASK, [CHLD], NULL, 8) = 0
+close(5)                                = 0
+read(4, "/home/kurumi/.local/lib/python3."..., 200) = 72
+read(4, "", 128)                        = 0
+close(4)                                = 0
+wait4(-1, [{WIFEXITED(s) && WEXITSTATUS(s) == 0}], 0, NULL) = 49538
+openat(AT_FDCWD, "/home/kurumi/.local/lib/python3.10/site-packages/cocotb/share/makefiles/Makefile.sim", O_RDONLY) = 4
+fcntl(4, F_GETFD)                       = 0
+fcntl(4, F_SETFD, FD_CLOEXEC)           = 0
+newfstatat(4, "", {st_mode=S_IFREG|0664, st_size=5293, ...}, AT_EMPTY_PATH) = 0
+read(4, "################################"..., 4096) = 4096
+read(4, " hack to get newlines in output,"..., 4096) = 1197
+pipe2([5, 6], 0)                        = 0
+fcntl(6, F_GETFD)                       = 0
+fcntl(6, F_SETFD, FD_CLOEXEC)           = 0
+fcntl(5, F_GETFD)                       = 0
+fcntl(5, F_SETFD, FD_CLOEXEC)           = 0
+prlimit64(0, RLIMIT_NOFILE, NULL, {rlim_cur=8*1024, rlim_max=1024*1024}) = 0
+prlimit64(0, RLIMIT_NOFILE, NULL, {rlim_cur=8*1024, rlim_max=1024*1024}) = 0
+newfstatat(AT_FDCWD, "/bin/sh", {st_mode=S_IFREG|0755, st_size=125688, ...}, 0) = 0
+geteuid()                               = 1000
+getegid()                               = 1000
+getuid()                                = 1000
+getgid()                                = 1000
+access("/bin/sh", X_OK)                 = 0
+mmap(NULL, 36864, PROT_READ|PROT_WRITE, MAP_PRIVATE|MAP_ANONYMOUS|MAP_STACK, -1, 0) = 0x70f524400000
+rt_sigprocmask(SIG_BLOCK, ~[], [CHLD], 8) = 0
+clone3({flags=CLONE_VM|CLONE_VFORK, exit_signal=SIGCHLD, stack=0x70f524400000, stack_size=0x9000}, 88) = 49539
+munmap(0x70f524400000, 36864)           = 0
+rt_sigprocmask(SIG_SETMASK, [CHLD], NULL, 8) = 0
+close(6)                                = 0
+read(5, "verilator\n", 200)             = 10
+read(5, "", 190)                        = 0
+close(5)                                = 0
+wait4(-1, [{WIFEXITED(s) && WEXITSTATUS(s) == 0}], 0, NULL) = 49539
+pipe2([5, 6], 0)                        = 0
+fcntl(6, F_GETFD)                       = 0
+fcntl(6, F_SETFD, FD_CLOEXEC)           = 0
+fcntl(5, F_GETFD)                       = 0
+fcntl(5, F_SETFD, FD_CLOEXEC)           = 0
+prlimit64(0, RLIMIT_NOFILE, NULL, {rlim_cur=8*1024, rlim_max=1024*1024}) = 0
+prlimit64(0, RLIMIT_NOFILE, NULL, {rlim_cur=8*1024, rlim_max=1024*1024}) = 0
+newfstatat(AT_FDCWD, "/home/kurumi/verible/bin/cocotb-config", 0x7fff2a525880, 0) = -1 ENOENT (No such file or directory)
+newfstatat(AT_FDCWD, "/home/kurumi/.local/bin/cocotb-config", {st_mode=S_IFREG|0775, st_size=212, ...}, 0) = 0
+geteuid()                               = 1000
+getegid()                               = 1000
+getuid()                                = 1000
+getgid()                                = 1000
+access("/home/kurumi/.local/bin/cocotb-config", X_OK) = 0
+mmap(NULL, 36864, PROT_READ|PROT_WRITE, MAP_PRIVATE|MAP_ANONYMOUS|MAP_STACK, -1, 0) = 0x70f524400000
+rt_sigprocmask(SIG_BLOCK, ~[], [CHLD], 8) = 0
+clone3({flags=CLONE_VM|CLONE_VFORK, exit_signal=SIGCHLD, stack=0x70f524400000, stack_size=0x9000}, 88) = 49542
+munmap(0x70f524400000, 36864)           = 0
+rt_sigprocmask(SIG_SETMASK, [CHLD], NULL, 8) = 0
+close(6)                                = 0
+read(5, "/home/kurumi/.local/lib/python3."..., 200) = 72
+read(5, "", 128)                        = 0
+close(5)                                = 0
+wait4(-1, [{WIFEXITED(s) && WEXITSTATUS(s) == 0}], 0, NULL) = 49542
+openat(AT_FDCWD, "/home/kurumi/.local/lib/python3.10/site-packages/cocotb/share/makefiles/Makefile.deprecations", O_RDONLY) = 5
+fcntl(5, F_GETFD)                       = 0
+fcntl(5, F_SETFD, FD_CLOEXEC)           = 0
+newfstatat(5, "", {st_mode=S_IFREG|0664, st_size=416, ...}, AT_EMPTY_PATH) = 0
+read(5, "# Copyright cocotb contributors\n"..., 4096) = 416
+read(5, "", 4096)                       = 0
+close(5)                                = 0
+pipe2([5, 6], 0)                        = 0
+fcntl(6, F_GETFD)                       = 0
+fcntl(6, F_SETFD, FD_CLOEXEC)           = 0
+fcntl(5, F_GETFD)                       = 0
+fcntl(5, F_SETFD, FD_CLOEXEC)           = 0
+prlimit64(0, RLIMIT_NOFILE, NULL, {rlim_cur=8*1024, rlim_max=1024*1024}) = 0
+prlimit64(0, RLIMIT_NOFILE, NULL, {rlim_cur=8*1024, rlim_max=1024*1024}) = 0
+newfstatat(AT_FDCWD, "/bin/sh", {st_mode=S_IFREG|0755, st_size=125688, ...}, 0) = 0
+geteuid()                               = 1000
+getegid()                               = 1000
+getuid()                                = 1000
+getgid()                                = 1000
+access("/bin/sh", X_OK)                 = 0
+mmap(NULL, 36864, PROT_READ|PROT_WRITE, MAP_PRIVATE|MAP_ANONYMOUS|MAP_STACK, -1, 0) = 0x70f524400000
+rt_sigprocmask(SIG_BLOCK, ~[], [CHLD], 8) = 0
+clone3({flags=CLONE_VM|CLONE_VFORK, exit_signal=SIGCHLD, stack=0x70f524400000, stack_size=0x9000}, 88) = 49543
+munmap(0x70f524400000, 36864)           = 0
+rt_sigprocmask(SIG_SETMASK, [CHLD], NULL, 8) = 0
+close(6)                                = 0
+read(5, "1\n", 200)                     = 2
+read(5, "", 198)                        = 0
+close(5)                                = 0
+wait4(-1, [{WIFEXITED(s) && WEXITSTATUS(s) == 0}], 0, NULL) = 49543
+openat(AT_FDCWD, "/home/kurumi/.local/lib/python3.10/site-packages/cocotb/share/makefiles/simulators/Makefile.verilator", O_RDONLY) = 5
+fcntl(5, F_GETFD)                       = 0
+fcntl(5, F_SETFD, FD_CLOEXEC)           = 0
+newfstatat(5, "", {st_mode=S_IFREG|0664, st_size=2572, ...}, AT_EMPTY_PATH) = 0
+read(5, "# Copyright cocotb contributors\n"..., 4096) = 2572
+pipe2([6, 7], 0)                        = 0
+fcntl(7, F_GETFD)                       = 0
+fcntl(7, F_SETFD, FD_CLOEXEC)           = 0
+fcntl(6, F_GETFD)                       = 0
+fcntl(6, F_SETFD, FD_CLOEXEC)           = 0
+prlimit64(0, RLIMIT_NOFILE, NULL, {rlim_cur=8*1024, rlim_max=1024*1024}) = 0
+prlimit64(0, RLIMIT_NOFILE, NULL, {rlim_cur=8*1024, rlim_max=1024*1024}) = 0
+newfstatat(AT_FDCWD, "/home/kurumi/verible/bin/cocotb-config", 0x7fff2a525750, 0) = -1 ENOENT (No such file or directory)
+newfstatat(AT_FDCWD, "/home/kurumi/.local/bin/cocotb-config", {st_mode=S_IFREG|0775, st_size=212, ...}, 0) = 0
+geteuid()                               = 1000
+getegid()                               = 1000
+getuid()                                = 1000
+getgid()                                = 1000
+access("/home/kurumi/.local/bin/cocotb-config", X_OK) = 0
+mmap(NULL, 36864, PROT_READ|PROT_WRITE, MAP_PRIVATE|MAP_ANONYMOUS|MAP_STACK, -1, 0) = 0x70f524400000
+rt_sigprocmask(SIG_BLOCK, ~[], [CHLD], 8) = 0
+clone3({flags=CLONE_VM|CLONE_VFORK, exit_signal=SIGCHLD, stack=0x70f524400000, stack_size=0x9000}, 88) = 49544
+munmap(0x70f524400000, 36864)           = 0
+rt_sigprocmask(SIG_SETMASK, [CHLD], NULL, 8) = 0
+close(7)                                = 0
+read(6, "/home/kurumi/.local/lib/python3."..., 200) = 72
+read(6, "", 128)                        = 0
+close(6)                                = 0
+wait4(-1, [{WIFEXITED(s) && WEXITSTATUS(s) == 0}], 0, NULL) = 49544
+openat(AT_FDCWD, "/home/kurumi/.local/lib/python3.10/site-packages/cocotb/share/makefiles/Makefile.inc", O_RDONLY) = 6
+fcntl(6, F_GETFD)                       = 0
+fcntl(6, F_SETFD, FD_CLOEXEC)           = 0
+newfstatat(6, "", {st_mode=S_IFREG|0664, st_size=6710, ...}, AT_EMPTY_PATH) = 0
+read(6, "################################"..., 4096) = 4096
+pipe2([7, 8], 0)                        = 0
+fcntl(8, F_GETFD)                       = 0
+fcntl(8, F_SETFD, FD_CLOEXEC)           = 0
+fcntl(7, F_GETFD)                       = 0
+fcntl(7, F_SETFD, FD_CLOEXEC)           = 0
+prlimit64(0, RLIMIT_NOFILE, NULL, {rlim_cur=8*1024, rlim_max=1024*1024}) = 0
+prlimit64(0, RLIMIT_NOFILE, NULL, {rlim_cur=8*1024, rlim_max=1024*1024}) = 0
+newfstatat(AT_FDCWD, "/home/kurumi/verible/bin/bash", 0x7fff2a5253c0, 0) = -1 ENOENT (No such file or directory)
+newfstatat(AT_FDCWD, "/home/kurumi/.local/bin/bash", 0x7fff2a5253c0, 0) = -1 ENOENT (No such file or directory)
+newfstatat(AT_FDCWD, "/home/kurumi/verible/bin/bash", 0x7fff2a5253c0, 0) = -1 ENOENT (No such file or directory)
+newfstatat(AT_FDCWD, "/home/kurumi/.local/bin/bash", 0x7fff2a5253c0, 0) = -1 ENOENT (No such file or directory)
+newfstatat(AT_FDCWD, "/usr/local/sbin/bash", 0x7fff2a5253c0, 0) = -1 ENOENT (No such file or directory)
+newfstatat(AT_FDCWD, "/usr/local/bin/bash", 0x7fff2a5253c0, 0) = -1 ENOENT (No such file or directory)
+newfstatat(AT_FDCWD, "/usr/sbin/bash", 0x7fff2a5253c0, 0) = -1 ENOENT (No such file or directory)
+newfstatat(AT_FDCWD, "/usr/bin/bash", {st_mode=S_IFREG|0755, st_size=1396520, ...}, 0) = 0
+geteuid()                               = 1000
+getegid()                               = 1000
+getuid()                                = 1000
+getgid()                                = 1000
+access("/usr/bin/bash", X_OK)           = 0
+mmap(NULL, 36864, PROT_READ|PROT_WRITE, MAP_PRIVATE|MAP_ANONYMOUS|MAP_STACK, -1, 0) = 0x70f524400000
+rt_sigprocmask(SIG_BLOCK, ~[], [CHLD], 8) = 0
+clone3({flags=CLONE_VM|CLONE_VFORK, exit_signal=SIGCHLD, stack=0x70f524400000, stack_size=0x9000}, 88) = 49545
+munmap(0x70f524400000, 36864)           = 0
+rt_sigprocmask(SIG_SETMASK, [CHLD], NULL, 8) = 0
+close(8)                                = 0
+read(7, "/home/kurumi/.local/lib/python3."..., 200) = 49
+read(7, "", 151)                        = 0
+close(7)                                = 0
+wait4(-1, [{WIFEXITED(s) && WEXITSTATUS(s) == 0}], 0, NULL) = 49545
+pipe2([7, 8], 0)                        = 0
+fcntl(8, F_GETFD)                       = 0
+fcntl(8, F_SETFD, FD_CLOEXEC)           = 0
+fcntl(7, F_GETFD)                       = 0
+fcntl(7, F_SETFD, FD_CLOEXEC)           = 0
+prlimit64(0, RLIMIT_NOFILE, NULL, {rlim_cur=8*1024, rlim_max=1024*1024}) = 0
+prlimit64(0, RLIMIT_NOFILE, NULL, {rlim_cur=8*1024, rlim_max=1024*1024}) = 0
+newfstatat(AT_FDCWD, "/home/kurumi/verible/bin/bash", 0x7fff2a5251b0, 0) = -1 ENOENT (No such file or directory)
+newfstatat(AT_FDCWD, "/home/kurumi/.local/bin/bash", 0x7fff2a5251b0, 0) = -1 ENOENT (No such file or directory)
+newfstatat(AT_FDCWD, "/home/kurumi/verible/bin/bash", 0x7fff2a5251b0, 0) = -1 ENOENT (No such file or directory)
+newfstatat(AT_FDCWD, "/home/kurumi/.local/bin/bash", 0x7fff2a5251b0, 0) = -1 ENOENT (No such file or directory)
+newfstatat(AT_FDCWD, "/usr/local/sbin/bash", 0x7fff2a5251b0, 0) = -1 ENOENT (No such file or directory)
+newfstatat(AT_FDCWD, "/usr/local/bin/bash", 0x7fff2a5251b0, 0) = -1 ENOENT (No such file or directory)
+newfstatat(AT_FDCWD, "/usr/sbin/bash", 0x7fff2a5251b0, 0) = -1 ENOENT (No such file or directory)
+newfstatat(AT_FDCWD, "/usr/bin/bash", {st_mode=S_IFREG|0755, st_size=1396520, ...}, 0) = 0
+geteuid()                               = 1000
+getegid()                               = 1000
+getuid()                                = 1000
+getgid()                                = 1000
+access("/usr/bin/bash", X_OK)           = 0
+mmap(NULL, 36864, PROT_READ|PROT_WRITE, MAP_PRIVATE|MAP_ANONYMOUS|MAP_STACK, -1, 0) = 0x70f524400000
+rt_sigprocmask(SIG_BLOCK, ~[], [CHLD], 8) = 0
+clone3({flags=CLONE_VM|CLONE_VFORK, exit_signal=SIGCHLD, stack=0x70f524400000, stack_size=0x9000}, 88) = 49546
+munmap(0x70f524400000, 36864)           = 0
+rt_sigprocmask(SIG_SETMASK, [CHLD], NULL, 8) = 0
+close(8)                                = 0
+read(7, "Linux\n", 200)                 = 6
+read(7, "", 194)                        = 0
+close(7)                                = 0
+wait4(-1, [{WIFEXITED(s) && WEXITSTATUS(s) == 0}], 0, NULL) = 49546
+pipe2([7, 8], 0)                        = 0
+fcntl(8, F_GETFD)                       = 0
+fcntl(8, F_SETFD, FD_CLOEXEC)           = 0
+fcntl(7, F_GETFD)                       = 0
+fcntl(7, F_SETFD, FD_CLOEXEC)           = 0
+prlimit64(0, RLIMIT_NOFILE, NULL, {rlim_cur=8*1024, rlim_max=1024*1024}) = 0
+prlimit64(0, RLIMIT_NOFILE, NULL, {rlim_cur=8*1024, rlim_max=1024*1024}) = 0
+newfstatat(AT_FDCWD, "/home/kurumi/verible/bin/bash", 0x7fff2a525140, 0) = -1 ENOENT (No such file or directory)
+newfstatat(AT_FDCWD, "/home/kurumi/.local/bin/bash", 0x7fff2a525140, 0) = -1 ENOENT (No such file or directory)
+newfstatat(AT_FDCWD, "/home/kurumi/verible/bin/bash", 0x7fff2a525140, 0) = -1 ENOENT (No such file or directory)
+newfstatat(AT_FDCWD, "/home/kurumi/.local/bin/bash", 0x7fff2a525140, 0) = -1 ENOENT (No such file or directory)
+newfstatat(AT_FDCWD, "/usr/local/sbin/bash", 0x7fff2a525140, 0) = -1 ENOENT (No such file or directory)
+newfstatat(AT_FDCWD, "/usr/local/bin/bash", 0x7fff2a525140, 0) = -1 ENOENT (No such file or directory)
+newfstatat(AT_FDCWD, "/usr/sbin/bash", 0x7fff2a525140, 0) = -1 ENOENT (No such file or directory)
+newfstatat(AT_FDCWD, "/usr/bin/bash", {st_mode=S_IFREG|0755, st_size=1396520, ...}, 0) = 0
+geteuid()                               = 1000
+getegid()                               = 1000
+getuid()                                = 1000
+getgid()                                = 1000
+access("/usr/bin/bash", X_OK)           = 0
+mmap(NULL, 36864, PROT_READ|PROT_WRITE, MAP_PRIVATE|MAP_ANONYMOUS|MAP_STACK, -1, 0) = 0x70f524400000
+rt_sigprocmask(SIG_BLOCK, ~[], [CHLD], 8) = 0
+clone3({flags=CLONE_VM|CLONE_VFORK, exit_signal=SIGCHLD, stack=0x70f524400000, stack_size=0x9000}, 88) = 49547
+munmap(0x70f524400000, 36864)           = 0
+rt_sigprocmask(SIG_SETMASK, [CHLD], NULL, 8) = 0
+close(8)                                = 0
+read(7, "Linux\n", 200)                 = 6
+read(7, "", 194)                        = 0
+close(7)                                = 0
+wait4(-1, [{WIFEXITED(s) && WEXITSTATUS(s) == 0}], 0, NULL) = 49547
+openat(AT_FDCWD, "/home/kurumi/.local/lib/python3.10/site-packages/cocotb/share/makefiles/Makefile.deprecations", O_RDONLY) = 7
+fcntl(7, F_GETFD)                       = 0
+fcntl(7, F_SETFD, FD_CLOEXEC)           = 0
+newfstatat(7, "", {st_mode=S_IFREG|0664, st_size=416, ...}, AT_EMPTY_PATH) = 0
+read(7, "# Copyright cocotb contributors\n"..., 4096) = 416
+read(7, "", 4096)                       = 0
+close(7)                                = 0
+pipe2([7, 8], 0)                        = 0
+fcntl(8, F_GETFD)                       = 0
+fcntl(8, F_SETFD, FD_CLOEXEC)           = 0
+fcntl(7, F_GETFD)                       = 0
+fcntl(7, F_SETFD, FD_CLOEXEC)           = 0
+prlimit64(0, RLIMIT_NOFILE, NULL, {rlim_cur=8*1024, rlim_max=1024*1024}) = 0
+prlimit64(0, RLIMIT_NOFILE, NULL, {rlim_cur=8*1024, rlim_max=1024*1024}) = 0
+newfstatat(AT_FDCWD, "/home/kurumi/verible/bin/bash", 0x7fff2a5250c0, 0) = -1 ENOENT (No such file or directory)
+newfstatat(AT_FDCWD, "/home/kurumi/.local/bin/bash", 0x7fff2a5250c0, 0) = -1 ENOENT (No such file or directory)
+newfstatat(AT_FDCWD, "/home/kurumi/verible/bin/bash", 0x7fff2a5250c0, 0) = -1 ENOENT (No such file or directory)
+newfstatat(AT_FDCWD, "/home/kurumi/.local/bin/bash", 0x7fff2a5250c0, 0) = -1 ENOENT (No such file or directory)
+newfstatat(AT_FDCWD, "/usr/local/sbin/bash", 0x7fff2a5250c0, 0) = -1 ENOENT (No such file or directory)
+newfstatat(AT_FDCWD, "/usr/local/bin/bash", 0x7fff2a5250c0, 0) = -1 ENOENT (No such file or directory)
+newfstatat(AT_FDCWD, "/usr/sbin/bash", 0x7fff2a5250c0, 0) = -1 ENOENT (No such file or directory)
+newfstatat(AT_FDCWD, "/usr/bin/bash", {st_mode=S_IFREG|0755, st_size=1396520, ...}, 0) = 0
+geteuid()                               = 1000
+getegid()                               = 1000
+getuid()                                = 1000
+getgid()                                = 1000
+access("/usr/bin/bash", X_OK)           = 0
+mmap(NULL, 36864, PROT_READ|PROT_WRITE, MAP_PRIVATE|MAP_ANONYMOUS|MAP_STACK, -1, 0) = 0x70f524400000
+rt_sigprocmask(SIG_BLOCK, ~[], [CHLD], 8) = 0
+clone3({flags=CLONE_VM|CLONE_VFORK, exit_signal=SIGCHLD, stack=0x70f524400000, stack_size=0x9000}, 88) = 49548
+munmap(0x70f524400000, 36864)           = 0
+rt_sigprocmask(SIG_SETMASK, [CHLD], NULL, 8) = 0
+close(8)                                = 0
+read(7, "/usr/bin/python3\n", 200)      = 17
+read(7, "", 183)                        = 0
+close(7)                                = 0
+wait4(-1, [{WIFEXITED(s) && WEXITSTATUS(s) == 0}], 0, NULL) = 49548
+pipe2([7, 8], 0)                        = 0
+fcntl(8, F_GETFD)                       = 0
+fcntl(8, F_SETFD, FD_CLOEXEC)           = 0
+fcntl(7, F_GETFD)                       = 0
+fcntl(7, F_SETFD, FD_CLOEXEC)           = 0
+prlimit64(0, RLIMIT_NOFILE, NULL, {rlim_cur=8*1024, rlim_max=1024*1024}) = 0
+prlimit64(0, RLIMIT_NOFILE, NULL, {rlim_cur=8*1024, rlim_max=1024*1024}) = 0
+newfstatat(AT_FDCWD, "/home/kurumi/verible/bin/bash", 0x7fff2a5253c0, 0) = -1 ENOENT (No such file or directory)
+newfstatat(AT_FDCWD, "/home/kurumi/.local/bin/bash", 0x7fff2a5253c0, 0) = -1 ENOENT (No such file or directory)
+newfstatat(AT_FDCWD, "/home/kurumi/verible/bin/bash", 0x7fff2a5253c0, 0) = -1 ENOENT (No such file or directory)
+newfstatat(AT_FDCWD, "/home/kurumi/.local/bin/bash", 0x7fff2a5253c0, 0) = -1 ENOENT (No such file or directory)
+newfstatat(AT_FDCWD, "/usr/local/sbin/bash", 0x7fff2a5253c0, 0) = -1 ENOENT (No such file or directory)
+newfstatat(AT_FDCWD, "/usr/local/bin/bash", 0x7fff2a5253c0, 0) = -1 ENOENT (No such file or directory)
+newfstatat(AT_FDCWD, "/usr/sbin/bash", 0x7fff2a5253c0, 0) = -1 ENOENT (No such file or directory)
+newfstatat(AT_FDCWD, "/usr/bin/bash", {st_mode=S_IFREG|0755, st_size=1396520, ...}, 0) = 0
+geteuid()                               = 1000
+getegid()                               = 1000
+getuid()                                = 1000
+getgid()                                = 1000
+access("/usr/bin/bash", X_OK)           = 0
+mmap(NULL, 36864, PROT_READ|PROT_WRITE, MAP_PRIVATE|MAP_ANONYMOUS|MAP_STACK, -1, 0) = 0x70f524400000
+rt_sigprocmask(SIG_BLOCK, ~[], [CHLD], 8) = 0
+clone3({flags=CLONE_VM|CLONE_VFORK, exit_signal=SIGCHLD, stack=0x70f524400000, stack_size=0x9000}, 88) = 49549
+munmap(0x70f524400000, 36864)           = 0
+rt_sigprocmask(SIG_SETMASK, [CHLD], NULL, 8) = 0
+close(8)                                = 0
+read(7, "64bit\n", 200)                 = 6
+read(7, "", 194)                        = 0
+close(7)                                = 0
+wait4(-1, [{WIFEXITED(s) && WEXITSTATUS(s) == 0}], 0, NULL) = 49549
+pipe2([7, 8], 0)                        = 0
+fcntl(8, F_GETFD)                       = 0
+fcntl(8, F_SETFD, FD_CLOEXEC)           = 0
+fcntl(7, F_GETFD)                       = 0
+fcntl(7, F_SETFD, FD_CLOEXEC)           = 0
+prlimit64(0, RLIMIT_NOFILE, NULL, {rlim_cur=8*1024, rlim_max=1024*1024}) = 0
+prlimit64(0, RLIMIT_NOFILE, NULL, {rlim_cur=8*1024, rlim_max=1024*1024}) = 0
+newfstatat(AT_FDCWD, "/home/kurumi/verible/bin/bash", 0x7fff2a525170, 0) = -1 ENOENT (No such file or directory)
+newfstatat(AT_FDCWD, "/home/kurumi/.local/bin/bash", 0x7fff2a525170, 0) = -1 ENOENT (No such file or directory)
+newfstatat(AT_FDCWD, "/home/kurumi/verible/bin/bash", 0x7fff2a525170, 0) = -1 ENOENT (No such file or directory)
+newfstatat(AT_FDCWD, "/home/kurumi/.local/bin/bash", 0x7fff2a525170, 0) = -1 ENOENT (No such file or directory)
+newfstatat(AT_FDCWD, "/usr/local/sbin/bash", 0x7fff2a525170, 0) = -1 ENOENT (No such file or directory)
+newfstatat(AT_FDCWD, "/usr/local/bin/bash", 0x7fff2a525170, 0) = -1 ENOENT (No such file or directory)
+newfstatat(AT_FDCWD, "/usr/sbin/bash", 0x7fff2a525170, 0) = -1 ENOENT (No such file or directory)
+newfstatat(AT_FDCWD, "/usr/bin/bash", {st_mode=S_IFREG|0755, st_size=1396520, ...}, 0) = 0
+geteuid()                               = 1000
+getegid()                               = 1000
+getuid()                                = 1000
+getgid()                                = 1000
+access("/usr/bin/bash", X_OK)           = 0
+mmap(NULL, 36864, PROT_READ|PROT_WRITE, MAP_PRIVATE|MAP_ANONYMOUS|MAP_STACK, -1, 0) = 0x70f524400000
+rt_sigprocmask(SIG_BLOCK, ~[], [CHLD], 8) = 0
+clone3({flags=CLONE_VM|CLONE_VFORK, exit_signal=SIGCHLD, stack=0x70f524400000, stack_size=0x9000}, 88) = 49551
+munmap(0x70f524400000, 36864)           = 0
+rt_sigprocmask(SIG_SETMASK, [CHLD], NULL, 8) = 0
+close(8)                                = 0
+read(7, "/usr/bin/python3\n", 200)      = 17
+read(7, "", 183)                        = 0
+close(7)                                = 0
+wait4(-1, [{WIFEXITED(s) && WEXITSTATUS(s) == 0}], 0, NULL) = 49551
+pipe2([7, 8], 0)                        = 0
+fcntl(8, F_GETFD)                       = 0
+fcntl(8, F_SETFD, FD_CLOEXEC)           = 0
+fcntl(7, F_GETFD)                       = 0
+fcntl(7, F_SETFD, FD_CLOEXEC)           = 0
+prlimit64(0, RLIMIT_NOFILE, NULL, {rlim_cur=8*1024, rlim_max=1024*1024}) = 0
+prlimit64(0, RLIMIT_NOFILE, NULL, {rlim_cur=8*1024, rlim_max=1024*1024}) = 0
+newfstatat(AT_FDCWD, "/home/kurumi/verible/bin/bash", 0x7fff2a525370, 0) = -1 ENOENT (No such file or directory)
+newfstatat(AT_FDCWD, "/home/kurumi/.local/bin/bash", 0x7fff2a525370, 0) = -1 ENOENT (No such file or directory)
+newfstatat(AT_FDCWD, "/home/kurumi/verible/bin/bash", 0x7fff2a525370, 0) = -1 ENOENT (No such file or directory)
+newfstatat(AT_FDCWD, "/home/kurumi/.local/bin/bash", 0x7fff2a525370, 0) = -1 ENOENT (No such file or directory)
+newfstatat(AT_FDCWD, "/usr/local/sbin/bash", 0x7fff2a525370, 0) = -1 ENOENT (No such file or directory)
+newfstatat(AT_FDCWD, "/usr/local/bin/bash", 0x7fff2a525370, 0) = -1 ENOENT (No such file or directory)
+newfstatat(AT_FDCWD, "/usr/sbin/bash", 0x7fff2a525370, 0) = -1 ENOENT (No such file or directory)
+newfstatat(AT_FDCWD, "/usr/bin/bash", {st_mode=S_IFREG|0755, st_size=1396520, ...}, 0) = 0
+geteuid()                               = 1000
+getegid()                               = 1000
+getuid()                                = 1000
+getgid()                                = 1000
+access("/usr/bin/bash", X_OK)           = 0
+mmap(NULL, 36864, PROT_READ|PROT_WRITE, MAP_PRIVATE|MAP_ANONYMOUS|MAP_STACK, -1, 0) = 0x70f524400000
+rt_sigprocmask(SIG_BLOCK, ~[], [CHLD], 8) = 0
+clone3({flags=CLONE_VM|CLONE_VFORK, exit_signal=SIGCHLD, stack=0x70f524400000, stack_size=0x9000}, 88) = 49564
+munmap(0x70f524400000, 36864)           = 0
+rt_sigprocmask(SIG_SETMASK, [CHLD], NULL, 8) = 0
+close(8)                                = 0
+read(7, "False\n", 200)                 = 6
+read(7, "", 194)                        = 0
+close(7)                                = 0
+wait4(-1, [{WIFEXITED(s) && WEXITSTATUS(s) == 0}], 0, NULL) = 49564
+pipe2([7, 8], 0)                        = 0
+fcntl(8, F_GETFD)                       = 0
+fcntl(8, F_SETFD, FD_CLOEXEC)           = 0
+fcntl(7, F_GETFD)                       = 0
+fcntl(7, F_SETFD, FD_CLOEXEC)           = 0
+prlimit64(0, RLIMIT_NOFILE, NULL, {rlim_cur=8*1024, rlim_max=1024*1024}) = 0
+prlimit64(0, RLIMIT_NOFILE, NULL, {rlim_cur=8*1024, rlim_max=1024*1024}) = 0
+newfstatat(AT_FDCWD, "/home/kurumi/verible/bin/bash", 0x7fff2a5250e0, 0) = -1 ENOENT (No such file or directory)
+newfstatat(AT_FDCWD, "/home/kurumi/.local/bin/bash", 0x7fff2a5250e0, 0) = -1 ENOENT (No such file or directory)
+newfstatat(AT_FDCWD, "/home/kurumi/verible/bin/bash", 0x7fff2a5250e0, 0) = -1 ENOENT (No such file or directory)
+newfstatat(AT_FDCWD, "/home/kurumi/.local/bin/bash", 0x7fff2a5250e0, 0) = -1 ENOENT (No such file or directory)
+newfstatat(AT_FDCWD, "/usr/local/sbin/bash", 0x7fff2a5250e0, 0) = -1 ENOENT (No such file or directory)
+newfstatat(AT_FDCWD, "/usr/local/bin/bash", 0x7fff2a5250e0, 0) = -1 ENOENT (No such file or directory)
+newfstatat(AT_FDCWD, "/usr/sbin/bash", 0x7fff2a5250e0, 0) = -1 ENOENT (No such file or directory)
+newfstatat(AT_FDCWD, "/usr/bin/bash", {st_mode=S_IFREG|0755, st_size=1396520, ...}, 0) = 0
+geteuid()                               = 1000
+getegid()                               = 1000
+getuid()                                = 1000
+getgid()                                = 1000
+access("/usr/bin/bash", X_OK)           = 0
+mmap(NULL, 36864, PROT_READ|PROT_WRITE, MAP_PRIVATE|MAP_ANONYMOUS|MAP_STACK, -1, 0) = 0x70f524400000
+rt_sigprocmask(SIG_BLOCK, ~[], [CHLD], 8) = 0
+clone3({flags=CLONE_VM|CLONE_VFORK, exit_signal=SIGCHLD, stack=0x70f524400000, stack_size=0x9000}, 88) = 49565
+munmap(0x70f524400000, 36864)           = 0
+rt_sigprocmask(SIG_SETMASK, [CHLD], NULL, 8) = 0
+close(8)                                = 0
+read(7, "/usr/bin/python3\n", 200)      = 17
+read(7, "", 183)                        = 0
+close(7)                                = 0
+wait4(-1, [{WIFEXITED(s) && WEXITSTATUS(s) == 0}], 0, NULL) = 49565
+pipe2([7, 8], 0)                        = 0
+fcntl(8, F_GETFD)                       = 0
+fcntl(8, F_SETFD, FD_CLOEXEC)           = 0
+fcntl(7, F_GETFD)                       = 0
+fcntl(7, F_SETFD, FD_CLOEXEC)           = 0
+prlimit64(0, RLIMIT_NOFILE, NULL, {rlim_cur=8*1024, rlim_max=1024*1024}) = 0
+prlimit64(0, RLIMIT_NOFILE, NULL, {rlim_cur=8*1024, rlim_max=1024*1024}) = 0
+newfstatat(AT_FDCWD, "/home/kurumi/verible/bin/bash", 0x7fff2a5253c0, 0) = -1 ENOENT (No such file or directory)
+newfstatat(AT_FDCWD, "/home/kurumi/.local/bin/bash", 0x7fff2a5253c0, 0) = -1 ENOENT (No such file or directory)
+newfstatat(AT_FDCWD, "/home/kurumi/verible/bin/bash", 0x7fff2a5253c0, 0) = -1 ENOENT (No such file or directory)
+newfstatat(AT_FDCWD, "/home/kurumi/.local/bin/bash", 0x7fff2a5253c0, 0) = -1 ENOENT (No such file or directory)
+newfstatat(AT_FDCWD, "/usr/local/sbin/bash", 0x7fff2a5253c0, 0) = -1 ENOENT (No such file or directory)
+newfstatat(AT_FDCWD, "/usr/local/bin/bash", 0x7fff2a5253c0, 0) = -1 ENOENT (No such file or directory)
+newfstatat(AT_FDCWD, "/usr/sbin/bash", 0x7fff2a5253c0, 0) = -1 ENOENT (No such file or directory)
+newfstatat(AT_FDCWD, "/usr/bin/bash", {st_mode=S_IFREG|0755, st_size=1396520, ...}, 0) = 0
+geteuid()                               = 1000
+getegid()                               = 1000
+getuid()                                = 1000
+getgid()                                = 1000
+access("/usr/bin/bash", X_OK)           = 0
+mmap(NULL, 36864, PROT_READ|PROT_WRITE, MAP_PRIVATE|MAP_ANONYMOUS|MAP_STACK, -1, 0) = 0x70f524400000
+rt_sigprocmask(SIG_BLOCK, ~[], [CHLD], 8) = 0
+clone3({flags=CLONE_VM|CLONE_VFORK, exit_signal=SIGCHLD, stack=0x70f524400000, stack_size=0x9000}, 88) = 49574
+munmap(0x70f524400000, 36864)           = 0
+rt_sigprocmask(SIG_SETMASK, [CHLD], NULL, 8) = 0
+close(8)                                = 0
+read(7, "/usr\n", 200)                  = 5
+read(7, "", 195)                        = 0
+close(7)                                = 0
+wait4(-1, [{WIFEXITED(s) && WEXITSTATUS(s) == 0}], 0, NULL) = 49574
+pipe2([7, 8], 0)                        = 0
+fcntl(8, F_GETFD)                       = 0
+fcntl(8, F_SETFD, FD_CLOEXEC)           = 0
+fcntl(7, F_GETFD)                       = 0
+fcntl(7, F_SETFD, FD_CLOEXEC)           = 0
+prlimit64(0, RLIMIT_NOFILE, NULL, {rlim_cur=8*1024, rlim_max=1024*1024}) = 0
+prlimit64(0, RLIMIT_NOFILE, NULL, {rlim_cur=8*1024, rlim_max=1024*1024}) = 0
+newfstatat(AT_FDCWD, "/home/kurumi/verible/bin/bash", 0x7fff2a525370, 0) = -1 ENOENT (No such file or directory)
+newfstatat(AT_FDCWD, "/home/kurumi/.local/bin/bash", 0x7fff2a525370, 0) = -1 ENOENT (No such file or directory)
+newfstatat(AT_FDCWD, "/home/kurumi/verible/bin/bash", 0x7fff2a525370, 0) = -1 ENOENT (No such file or directory)
+newfstatat(AT_FDCWD, "/home/kurumi/.local/bin/bash", 0x7fff2a525370, 0) = -1 ENOENT (No such file or directory)
+newfstatat(AT_FDCWD, "/usr/local/sbin/bash", 0x7fff2a525370, 0) = -1 ENOENT (No such file or directory)
+newfstatat(AT_FDCWD, "/usr/local/bin/bash", 0x7fff2a525370, 0) = -1 ENOENT (No such file or directory)
+newfstatat(AT_FDCWD, "/usr/sbin/bash", 0x7fff2a525370, 0) = -1 ENOENT (No such file or directory)
+newfstatat(AT_FDCWD, "/usr/bin/bash", {st_mode=S_IFREG|0755, st_size=1396520, ...}, 0) = 0
+geteuid()                               = 1000
+getegid()                               = 1000
+getuid()                                = 1000
+getgid()                                = 1000
+access("/usr/bin/bash", X_OK)           = 0
+mmap(NULL, 36864, PROT_READ|PROT_WRITE, MAP_PRIVATE|MAP_ANONYMOUS|MAP_STACK, -1, 0) = 0x70f524400000
+rt_sigprocmask(SIG_BLOCK, ~[], [CHLD], 8) = 0
+clone3({flags=CLONE_VM|CLONE_VFORK, exit_signal=SIGCHLD, stack=0x70f524400000, stack_size=0x9000}, 88) = 49575
+munmap(0x70f524400000, 36864)           = 0
+rt_sigprocmask(SIG_SETMASK, [CHLD], NULL, 8) = 0
+close(8)                                = 0
+read(7, "Linux\n", 200)                 = 6
+read(7, "", 194)                        = 0
+close(7)                                = 0
+wait4(-1, [{WIFEXITED(s) && WEXITSTATUS(s) == 0}], 0, NULL) = 49575
+read(6, "ESULTS_FILE ?= results.xml\nCOCOT"..., 4096) = 2614
+pipe2([7, 8], 0)                        = 0
+fcntl(8, F_GETFD)                       = 0
+fcntl(8, F_SETFD, FD_CLOEXEC)           = 0
+fcntl(7, F_GETFD)                       = 0
+fcntl(7, F_SETFD, FD_CLOEXEC)           = 0
+prlimit64(0, RLIMIT_NOFILE, NULL, {rlim_cur=8*1024, rlim_max=1024*1024}) = 0
+prlimit64(0, RLIMIT_NOFILE, NULL, {rlim_cur=8*1024, rlim_max=1024*1024}) = 0
+newfstatat(AT_FDCWD, "/home/kurumi/verible/bin/bash", 0x7fff2a5253c0, 0) = -1 ENOENT (No such file or directory)
+newfstatat(AT_FDCWD, "/home/kurumi/.local/bin/bash", 0x7fff2a5253c0, 0) = -1 ENOENT (No such file or directory)
+newfstatat(AT_FDCWD, "/home/kurumi/verible/bin/bash", 0x7fff2a5253c0, 0) = -1 ENOENT (No such file or directory)
+newfstatat(AT_FDCWD, "/home/kurumi/.local/bin/bash", 0x7fff2a5253c0, 0) = -1 ENOENT (No such file or directory)
+newfstatat(AT_FDCWD, "/usr/local/sbin/bash", 0x7fff2a5253c0, 0) = -1 ENOENT (No such file or directory)
+newfstatat(AT_FDCWD, "/usr/local/bin/bash", 0x7fff2a5253c0, 0) = -1 ENOENT (No such file or directory)
+newfstatat(AT_FDCWD, "/usr/sbin/bash", 0x7fff2a5253c0, 0) = -1 ENOENT (No such file or directory)
+newfstatat(AT_FDCWD, "/usr/bin/bash", {st_mode=S_IFREG|0755, st_size=1396520, ...}, 0) = 0
+geteuid()                               = 1000
+getegid()                               = 1000
+getuid()                                = 1000
+getgid()                                = 1000
+access("/usr/bin/bash", X_OK)           = 0
+mmap(NULL, 36864, PROT_READ|PROT_WRITE, MAP_PRIVATE|MAP_ANONYMOUS|MAP_STACK, -1, 0) = 0x70f524400000
+rt_sigprocmask(SIG_BLOCK, ~[], [CHLD], 8) = 0
+clone3({flags=CLONE_VM|CLONE_VFORK, exit_signal=SIGCHLD, stack=0x70f524400000, stack_size=0x9000}, 88) = 49576
+munmap(0x70f524400000, 36864)           = 0
+rt_sigprocmask(SIG_SETMASK, [CHLD], NULL, 8) = 0
+close(8)                                = 0
+read(7, "/usr/lib/x86_64-linux-gnu/libpyt"..., 200) = 47
+read(7, "0\n", 153)                     = 2
+read(7, "", 151)                        = 0
+close(7)                                = 0
+wait4(-1, [{WIFEXITED(s) && WEXITSTATUS(s) == 0}], 0, NULL) = 49576
+read(6, "", 4096)                       = 0
+close(6)                                = 0
+pipe2([6, 7], 0)                        = 0
+fcntl(7, F_GETFD)                       = 0
+fcntl(7, F_SETFD, FD_CLOEXEC)           = 0
+fcntl(6, F_GETFD)                       = 0
+fcntl(6, F_SETFD, FD_CLOEXEC)           = 0
+prlimit64(0, RLIMIT_NOFILE, NULL, {rlim_cur=8*1024, rlim_max=1024*1024}) = 0
+prlimit64(0, RLIMIT_NOFILE, NULL, {rlim_cur=8*1024, rlim_max=1024*1024}) = 0
+newfstatat(AT_FDCWD, "/home/kurumi/verible/bin/bash", 0x7fff2a525620, 0) = -1 ENOENT (No such file or directory)
+newfstatat(AT_FDCWD, "/home/kurumi/.local/bin/bash", 0x7fff2a525620, 0) = -1 ENOENT (No such file or directory)
+newfstatat(AT_FDCWD, "/home/kurumi/verible/bin/bash", 0x7fff2a525620, 0) = -1 ENOENT (No such file or directory)
+newfstatat(AT_FDCWD, "/home/kurumi/.local/bin/bash", 0x7fff2a525620, 0) = -1 ENOENT (No such file or directory)
+newfstatat(AT_FDCWD, "/usr/local/sbin/bash", 0x7fff2a525620, 0) = -1 ENOENT (No such file or directory)
+newfstatat(AT_FDCWD, "/usr/local/bin/bash", 0x7fff2a525620, 0) = -1 ENOENT (No such file or directory)
+newfstatat(AT_FDCWD, "/usr/sbin/bash", 0x7fff2a525620, 0) = -1 ENOENT (No such file or directory)
+newfstatat(AT_FDCWD, "/usr/bin/bash", {st_mode=S_IFREG|0755, st_size=1396520, ...}, 0) = 0
+geteuid()                               = 1000
+getegid()                               = 1000
+getuid()                                = 1000
+getgid()                                = 1000
+access("/usr/bin/bash", X_OK)           = 0
+mmap(NULL, 36864, PROT_READ|PROT_WRITE, MAP_PRIVATE|MAP_ANONYMOUS|MAP_STACK, -1, 0) = 0x70f524400000
+rt_sigprocmask(SIG_BLOCK, ~[], [CHLD], 8) = 0
+clone3({flags=CLONE_VM|CLONE_VFORK, exit_signal=SIGCHLD, stack=0x70f524400000, stack_size=0x9000}, 88) = 49579
+munmap(0x70f524400000, 36864)           = 0
+rt_sigprocmask(SIG_SETMASK, [CHLD], NULL, 8) = 0
+close(7)                                = 0
+read(6, "/usr/local/bin/verilator\n", 200) = 25
+read(6, "", 175)                        = 0
+close(6)                                = 0
+wait4(-1, [{WIFEXITED(s) && WEXITSTATUS(s) == 0}], 0, NULL) = 49579
+pipe2([6, 7], 0)                        = 0
+fcntl(7, F_GETFD)                       = 0
+fcntl(7, F_SETFD, FD_CLOEXEC)           = 0
+fcntl(6, F_GETFD)                       = 0
+fcntl(6, F_SETFD, FD_CLOEXEC)           = 0
+prlimit64(0, RLIMIT_NOFILE, NULL, {rlim_cur=8*1024, rlim_max=1024*1024}) = 0
+prlimit64(0, RLIMIT_NOFILE, NULL, {rlim_cur=8*1024, rlim_max=1024*1024}) = 0
+newfstatat(AT_FDCWD, "/home/kurumi/verible/bin/bash", 0x7fff2a525620, 0) = -1 ENOENT (No such file or directory)
+newfstatat(AT_FDCWD, "/home/kurumi/.local/bin/bash", 0x7fff2a525620, 0) = -1 ENOENT (No such file or directory)
+newfstatat(AT_FDCWD, "/home/kurumi/verible/bin/bash", 0x7fff2a525620, 0) = -1 ENOENT (No such file or directory)
+newfstatat(AT_FDCWD, "/home/kurumi/.local/bin/bash", 0x7fff2a525620, 0) = -1 ENOENT (No such file or directory)
+newfstatat(AT_FDCWD, "/usr/local/sbin/bash", 0x7fff2a525620, 0) = -1 ENOENT (No such file or directory)
+newfstatat(AT_FDCWD, "/usr/local/bin/bash", 0x7fff2a525620, 0) = -1 ENOENT (No such file or directory)
+newfstatat(AT_FDCWD, "/usr/sbin/bash", 0x7fff2a525620, 0) = -1 ENOENT (No such file or directory)
+newfstatat(AT_FDCWD, "/usr/bin/bash", {st_mode=S_IFREG|0755, st_size=1396520, ...}, 0) = 0
+geteuid()                               = 1000
+getegid()                               = 1000
+getuid()                                = 1000
+getgid()                                = 1000
+access("/usr/bin/bash", X_OK)           = 0
+mmap(NULL, 36864, PROT_READ|PROT_WRITE, MAP_PRIVATE|MAP_ANONYMOUS|MAP_STACK, -1, 0) = 0x70f524400000
+rt_sigprocmask(SIG_BLOCK, ~[], [CHLD], 8) = 0
+clone3({flags=CLONE_VM|CLONE_VFORK, exit_signal=SIGCHLD, stack=0x70f524400000, stack_size=0x9000}, 88) = 49580
+munmap(0x70f524400000, 36864)           = 0
+rt_sigprocmask(SIG_SETMASK, [CHLD], NULL, 8) = 0
+close(7)                                = 0
+read(6, "5.027\n", 200)                 = 6
+read(6, "", 194)                        = 0
+close(6)                                = 0
+wait4(-1, [{WIFEXITED(s) && WEXITSTATUS(s) == 0}], 0, NULL) = 49580
+pipe2([6, 7], 0)                        = 0
+fcntl(7, F_GETFD)                       = 0
+fcntl(7, F_SETFD, FD_CLOEXEC)           = 0
+fcntl(6, F_GETFD)                       = 0
+fcntl(6, F_SETFD, FD_CLOEXEC)           = 0
+prlimit64(0, RLIMIT_NOFILE, NULL, {rlim_cur=8*1024, rlim_max=1024*1024}) = 0
+prlimit64(0, RLIMIT_NOFILE, NULL, {rlim_cur=8*1024, rlim_max=1024*1024}) = 0
+newfstatat(AT_FDCWD, "/home/kurumi/verible/bin/bash", 0x7fff2a525620, 0) = -1 ENOENT (No such file or directory)
+newfstatat(AT_FDCWD, "/home/kurumi/.local/bin/bash", 0x7fff2a525620, 0) = -1 ENOENT (No such file or directory)
+newfstatat(AT_FDCWD, "/home/kurumi/verible/bin/bash", 0x7fff2a525620, 0) = -1 ENOENT (No such file or directory)
+newfstatat(AT_FDCWD, "/home/kurumi/.local/bin/bash", 0x7fff2a525620, 0) = -1 ENOENT (No such file or directory)
+newfstatat(AT_FDCWD, "/usr/local/sbin/bash", 0x7fff2a525620, 0) = -1 ENOENT (No such file or directory)
+newfstatat(AT_FDCWD, "/usr/local/bin/bash", 0x7fff2a525620, 0) = -1 ENOENT (No such file or directory)
+newfstatat(AT_FDCWD, "/usr/sbin/bash", 0x7fff2a525620, 0) = -1 ENOENT (No such file or directory)
+newfstatat(AT_FDCWD, "/usr/bin/bash", {st_mode=S_IFREG|0755, st_size=1396520, ...}, 0) = 0
+geteuid()                               = 1000
+getegid()                               = 1000
+getuid()                                = 1000
+getgid()                                = 1000
+access("/usr/bin/bash", X_OK)           = 0
+mmap(NULL, 36864, PROT_READ|PROT_WRITE, MAP_PRIVATE|MAP_ANONYMOUS|MAP_STACK, -1, 0) = 0x70f524400000
+rt_sigprocmask(SIG_BLOCK, ~[], [CHLD], 8) = 0
+clone3({flags=CLONE_VM|CLONE_VFORK, exit_signal=SIGCHLD, stack=0x70f524400000, stack_size=0x9000}, 88) = 49585
+munmap(0x70f524400000, 36864)           = 0
+rt_sigprocmask(SIG_SETMASK, [CHLD], NULL, 8) = 0
+close(7)                                = 0
+read(6, "4.106\n", 200)                 = 6
+read(6, "", 194)                        = 0
+close(6)                                = 0
+wait4(-1, [{WIFEXITED(s) && WEXITSTATUS(s) == 0}], 0, NULL) = 49585
+pipe2([6, 7], 0)                        = 0
+fcntl(7, F_GETFD)                       = 0
+fcntl(7, F_SETFD, FD_CLOEXEC)           = 0
+fcntl(6, F_GETFD)                       = 0
+fcntl(6, F_SETFD, FD_CLOEXEC)           = 0
+prlimit64(0, RLIMIT_NOFILE, NULL, {rlim_cur=8*1024, rlim_max=1024*1024}) = 0
+prlimit64(0, RLIMIT_NOFILE, NULL, {rlim_cur=8*1024, rlim_max=1024*1024}) = 0
+newfstatat(AT_FDCWD, "/home/kurumi/verible/bin/bash", 0x7fff2a525640, 0) = -1 ENOENT (No such file or directory)
+newfstatat(AT_FDCWD, "/home/kurumi/.local/bin/bash", 0x7fff2a525640, 0) = -1 ENOENT (No such file or directory)
+newfstatat(AT_FDCWD, "/home/kurumi/verible/bin/bash", 0x7fff2a525640, 0) = -1 ENOENT (No such file or directory)
+newfstatat(AT_FDCWD, "/home/kurumi/.local/bin/bash", 0x7fff2a525640, 0) = -1 ENOENT (No such file or directory)
+newfstatat(AT_FDCWD, "/usr/local/sbin/bash", 0x7fff2a525640, 0) = -1 ENOENT (No such file or directory)
+newfstatat(AT_FDCWD, "/usr/local/bin/bash", 0x7fff2a525640, 0) = -1 ENOENT (No such file or directory)
+newfstatat(AT_FDCWD, "/usr/sbin/bash", 0x7fff2a525640, 0) = -1 ENOENT (No such file or directory)
+newfstatat(AT_FDCWD, "/usr/bin/bash", {st_mode=S_IFREG|0755, st_size=1396520, ...}, 0) = 0
+geteuid()                               = 1000
+getegid()                               = 1000
+getuid()                                = 1000
+getgid()                                = 1000
+access("/usr/bin/bash", X_OK)           = 0
+mmap(NULL, 36864, PROT_READ|PROT_WRITE, MAP_PRIVATE|MAP_ANONYMOUS|MAP_STACK, -1, 0) = 0x70f524400000
+rt_sigprocmask(SIG_BLOCK, ~[], [CHLD], 8) = 0
+clone3({flags=CLONE_VM|CLONE_VFORK, exit_signal=SIGCHLD, stack=0x70f524400000, stack_size=0x9000}, 88) = 49589
+munmap(0x70f524400000, 36864)           = 0
+rt_sigprocmask(SIG_SETMASK, [CHLD], NULL, 8) = 0
+close(7)                                = 0
+read(6, "/home/kurumi/XS-BPU-RAS-cocotb-e"..., 200) = 35
+read(6, "", 165)                        = 0
+close(6)                                = 0
+wait4(-1, [{WIFEXITED(s) && WEXITSTATUS(s) == 0}], 0, NULL) = 49589
+pipe2([6, 7], 0)                        = 0
+fcntl(7, F_GETFD)                       = 0
+fcntl(7, F_SETFD, FD_CLOEXEC)           = 0
+fcntl(6, F_GETFD)                       = 0
+fcntl(6, F_SETFD, FD_CLOEXEC)           = 0
+prlimit64(0, RLIMIT_NOFILE, NULL, {rlim_cur=8*1024, rlim_max=1024*1024}) = 0
+prlimit64(0, RLIMIT_NOFILE, NULL, {rlim_cur=8*1024, rlim_max=1024*1024}) = 0
+newfstatat(AT_FDCWD, "/home/kurumi/verible/bin/bash", 0x7fff2a525640, 0) = -1 ENOENT (No such file or directory)
+newfstatat(AT_FDCWD, "/home/kurumi/.local/bin/bash", 0x7fff2a525640, 0) = -1 ENOENT (No such file or directory)
+newfstatat(AT_FDCWD, "/home/kurumi/verible/bin/bash", 0x7fff2a525640, 0) = -1 ENOENT (No such file or directory)
+newfstatat(AT_FDCWD, "/home/kurumi/.local/bin/bash", 0x7fff2a525640, 0) = -1 ENOENT (No such file or directory)
+newfstatat(AT_FDCWD, "/usr/local/sbin/bash", 0x7fff2a525640, 0) = -1 ENOENT (No such file or directory)
+newfstatat(AT_FDCWD, "/usr/local/bin/bash", 0x7fff2a525640, 0) = -1 ENOENT (No such file or directory)
+newfstatat(AT_FDCWD, "/usr/sbin/bash", 0x7fff2a525640, 0) = -1 ENOENT (No such file or directory)
+newfstatat(AT_FDCWD, "/usr/bin/bash", {st_mode=S_IFREG|0755, st_size=1396520, ...}, 0) = 0
+geteuid()                               = 1000
+getegid()                               = 1000
+getuid()                                = 1000
+getgid()                                = 1000
+access("/usr/bin/bash", X_OK)           = 0
+mmap(NULL, 36864, PROT_READ|PROT_WRITE, MAP_PRIVATE|MAP_ANONYMOUS|MAP_STACK, -1, 0) = 0x70f524400000
+rt_sigprocmask(SIG_BLOCK, ~[], [CHLD], 8) = 0
+clone3({flags=CLONE_VM|CLONE_VFORK, exit_signal=SIGCHLD, stack=0x70f524400000, stack_size=0x9000}, 88) = 49590
+munmap(0x70f524400000, 36864)           = 0
+rt_sigprocmask(SIG_SETMASK, [CHLD], NULL, 8) = 0
+close(7)                                = 0
+read(6, "/home/kurumi/XS-BPU-RAS-cocotb-e"..., 200) = 35
+read(6, "", 165)                        = 0
+close(6)                                = 0
+wait4(-1, [{WIFEXITED(s) && WEXITSTATUS(s) == 0}], 0, NULL) = 49590
+pipe2([6, 7], 0)                        = 0
+fcntl(7, F_GETFD)                       = 0
+fcntl(7, F_SETFD, FD_CLOEXEC)           = 0
+fcntl(6, F_GETFD)                       = 0
+fcntl(6, F_SETFD, FD_CLOEXEC)           = 0
+prlimit64(0, RLIMIT_NOFILE, NULL, {rlim_cur=8*1024, rlim_max=1024*1024}) = 0
+prlimit64(0, RLIMIT_NOFILE, NULL, {rlim_cur=8*1024, rlim_max=1024*1024}) = 0
+newfstatat(AT_FDCWD, "/home/kurumi/verible/bin/bash", 0x7fff2a525640, 0) = -1 ENOENT (No such file or directory)
+newfstatat(AT_FDCWD, "/home/kurumi/.local/bin/bash", 0x7fff2a525640, 0) = -1 ENOENT (No such file or directory)
+newfstatat(AT_FDCWD, "/home/kurumi/verible/bin/bash", 0x7fff2a525640, 0) = -1 ENOENT (No such file or directory)
+newfstatat(AT_FDCWD, "/home/kurumi/.local/bin/bash", 0x7fff2a525640, 0) = -1 ENOENT (No such file or directory)
+newfstatat(AT_FDCWD, "/usr/local/sbin/bash", 0x7fff2a525640, 0) = -1 ENOENT (No such file or directory)
+newfstatat(AT_FDCWD, "/usr/local/bin/bash", 0x7fff2a525640, 0) = -1 ENOENT (No such file or directory)
+newfstatat(AT_FDCWD, "/usr/sbin/bash", 0x7fff2a525640, 0) = -1 ENOENT (No such file or directory)
+newfstatat(AT_FDCWD, "/usr/bin/bash", {st_mode=S_IFREG|0755, st_size=1396520, ...}, 0) = 0
+geteuid()                               = 1000
+getegid()                               = 1000
+getuid()                                = 1000
+getgid()                                = 1000
+access("/usr/bin/bash", X_OK)           = 0
+mmap(NULL, 36864, PROT_READ|PROT_WRITE, MAP_PRIVATE|MAP_ANONYMOUS|MAP_STACK, -1, 0) = 0x70f524400000
+rt_sigprocmask(SIG_BLOCK, ~[], [CHLD], 8) = 0
+clone3({flags=CLONE_VM|CLONE_VFORK, exit_signal=SIGCHLD, stack=0x70f524400000, stack_size=0x9000}, 88) = 49591
+munmap(0x70f524400000, 36864)           = 0
+rt_sigprocmask(SIG_SETMASK, [CHLD], NULL, 8) = 0
+close(7)                                = 0
+read(6, "/home/kurumi/XS-BPU-RAS-cocotb-e"..., 200) = 35
+read(6, "", 165)                        = 0
+close(6)                                = 0
+wait4(-1, [{WIFEXITED(s) && WEXITSTATUS(s) == 0}], 0, NULL) = 49591
+pipe2([6, 7], 0)                        = 0
+fcntl(7, F_GETFD)                       = 0
+fcntl(7, F_SETFD, FD_CLOEXEC)           = 0
+fcntl(6, F_GETFD)                       = 0
+fcntl(6, F_SETFD, FD_CLOEXEC)           = 0
+prlimit64(0, RLIMIT_NOFILE, NULL, {rlim_cur=8*1024, rlim_max=1024*1024}) = 0
+prlimit64(0, RLIMIT_NOFILE, NULL, {rlim_cur=8*1024, rlim_max=1024*1024}) = 0
+newfstatat(AT_FDCWD, "/home/kurumi/verible/bin/bash", 0x7fff2a525640, 0) = -1 ENOENT (No such file or directory)
+newfstatat(AT_FDCWD, "/home/kurumi/.local/bin/bash", 0x7fff2a525640, 0) = -1 ENOENT (No such file or directory)
+newfstatat(AT_FDCWD, "/home/kurumi/verible/bin/bash", 0x7fff2a525640, 0) = -1 ENOENT (No such file or directory)
+newfstatat(AT_FDCWD, "/home/kurumi/.local/bin/bash", 0x7fff2a525640, 0) = -1 ENOENT (No such file or directory)
+newfstatat(AT_FDCWD, "/usr/local/sbin/bash", 0x7fff2a525640, 0) = -1 ENOENT (No such file or directory)
+newfstatat(AT_FDCWD, "/usr/local/bin/bash", 0x7fff2a525640, 0) = -1 ENOENT (No such file or directory)
+newfstatat(AT_FDCWD, "/usr/sbin/bash", 0x7fff2a525640, 0) = -1 ENOENT (No such file or directory)
+newfstatat(AT_FDCWD, "/usr/bin/bash", {st_mode=S_IFREG|0755, st_size=1396520, ...}, 0) = 0
+geteuid()                               = 1000
+getegid()                               = 1000
+getuid()                                = 1000
+getgid()                                = 1000
+access("/usr/bin/bash", X_OK)           = 0
+mmap(NULL, 36864, PROT_READ|PROT_WRITE, MAP_PRIVATE|MAP_ANONYMOUS|MAP_STACK, -1, 0) = 0x70f524400000
+rt_sigprocmask(SIG_BLOCK, ~[], [CHLD], 8) = 0
+clone3({flags=CLONE_VM|CLONE_VFORK, exit_signal=SIGCHLD, stack=0x70f524400000, stack_size=0x9000}, 88) = 49592
+munmap(0x70f524400000, 36864)           = 0
+rt_sigprocmask(SIG_SETMASK, [CHLD], NULL, 8) = 0
+close(7)                                = 0
+read(6, "/home/kurumi/XS-BPU-RAS-cocotb-e"..., 200) = 35
+read(6, "", 165)                        = 0
+close(6)                                = 0
+wait4(-1, [{WIFEXITED(s) && WEXITSTATUS(s) == 0}], 0, NULL) = 49592
+pipe2([6, 7], 0)                        = 0
+fcntl(7, F_GETFD)                       = 0
+fcntl(7, F_SETFD, FD_CLOEXEC)           = 0
+fcntl(6, F_GETFD)                       = 0
+fcntl(6, F_SETFD, FD_CLOEXEC)           = 0
+prlimit64(0, RLIMIT_NOFILE, NULL, {rlim_cur=8*1024, rlim_max=1024*1024}) = 0
+prlimit64(0, RLIMIT_NOFILE, NULL, {rlim_cur=8*1024, rlim_max=1024*1024}) = 0
+newfstatat(AT_FDCWD, "/home/kurumi/verible/bin/bash", 0x7fff2a525330, 0) = -1 ENOENT (No such file or directory)
+newfstatat(AT_FDCWD, "/home/kurumi/.local/bin/bash", 0x7fff2a525330, 0) = -1 ENOENT (No such file or directory)
+newfstatat(AT_FDCWD, "/home/kurumi/verible/bin/bash", 0x7fff2a525330, 0) = -1 ENOENT (No such file or directory)
+newfstatat(AT_FDCWD, "/home/kurumi/.local/bin/bash", 0x7fff2a525330, 0) = -1 ENOENT (No such file or directory)
+newfstatat(AT_FDCWD, "/usr/local/sbin/bash", 0x7fff2a525330, 0) = -1 ENOENT (No such file or directory)
+newfstatat(AT_FDCWD, "/usr/local/bin/bash", 0x7fff2a525330, 0) = -1 ENOENT (No such file or directory)
+newfstatat(AT_FDCWD, "/usr/sbin/bash", 0x7fff2a525330, 0) = -1 ENOENT (No such file or directory)
+newfstatat(AT_FDCWD, "/usr/bin/bash", {st_mode=S_IFREG|0755, st_size=1396520, ...}, 0) = 0
+geteuid()                               = 1000
+getegid()                               = 1000
+getuid()                                = 1000
+getgid()                                = 1000
+access("/usr/bin/bash", X_OK)           = 0
+mmap(NULL, 36864, PROT_READ|PROT_WRITE, MAP_PRIVATE|MAP_ANONYMOUS|MAP_STACK, -1, 0) = 0x70f524400000
+rt_sigprocmask(SIG_BLOCK, ~[], [CHLD], 8) = 0
+clone3({flags=CLONE_VM|CLONE_VFORK, exit_signal=SIGCHLD, stack=0x70f524400000, stack_size=0x9000}, 88) = 49593
+munmap(0x70f524400000, 36864)           = 0
+rt_sigprocmask(SIG_SETMASK, [CHLD], NULL, 8) = 0
+close(7)                                = 0
+read(6, "/usr/bin/python3\n", 200)      = 17
+read(6, "", 183)                        = 0
+close(6)                                = 0
+wait4(-1, [{WIFEXITED(s) && WEXITSTATUS(s) == 0}], 0, NULL) = 49593
+pipe2([6, 7], 0)                        = 0
+fcntl(7, F_GETFD)                       = 0
+fcntl(7, F_SETFD, FD_CLOEXEC)           = 0
+fcntl(6, F_GETFD)                       = 0
+fcntl(6, F_SETFD, FD_CLOEXEC)           = 0
+prlimit64(0, RLIMIT_NOFILE, NULL, {rlim_cur=8*1024, rlim_max=1024*1024}) = 0
+prlimit64(0, RLIMIT_NOFILE, NULL, {rlim_cur=8*1024, rlim_max=1024*1024}) = 0
+newfstatat(AT_FDCWD, "/home/kurumi/verible/bin/bash", 0x7fff2a525640, 0) = -1 ENOENT (No such file or directory)
+newfstatat(AT_FDCWD, "/home/kurumi/.local/bin/bash", 0x7fff2a525640, 0) = -1 ENOENT (No such file or directory)
+newfstatat(AT_FDCWD, "/home/kurumi/verible/bin/bash", 0x7fff2a525640, 0) = -1 ENOENT (No such file or directory)
+newfstatat(AT_FDCWD, "/home/kurumi/.local/bin/bash", 0x7fff2a525640, 0) = -1 ENOENT (No such file or directory)
+newfstatat(AT_FDCWD, "/usr/local/sbin/bash", 0x7fff2a525640, 0) = -1 ENOENT (No such file or directory)
+newfstatat(AT_FDCWD, "/usr/local/bin/bash", 0x7fff2a525640, 0) = -1 ENOENT (No such file or directory)
+newfstatat(AT_FDCWD, "/usr/sbin/bash", 0x7fff2a525640, 0) = -1 ENOENT (No such file or directory)
+newfstatat(AT_FDCWD, "/usr/bin/bash", {st_mode=S_IFREG|0755, st_size=1396520, ...}, 0) = 0
+geteuid()                               = 1000
+getegid()                               = 1000
+getuid()                                = 1000
+getgid()                                = 1000
+access("/usr/bin/bash", X_OK)           = 0
+mmap(NULL, 36864, PROT_READ|PROT_WRITE, MAP_PRIVATE|MAP_ANONYMOUS|MAP_STACK, -1, 0) = 0x70f524400000
+rt_sigprocmask(SIG_BLOCK, ~[], [CHLD], 8) = 0
+clone3({flags=CLONE_VM|CLONE_VFORK, exit_signal=SIGCHLD, stack=0x70f524400000, stack_size=0x9000}, 88) = 49594
+munmap(0x70f524400000, 36864)           = 0
+rt_sigprocmask(SIG_SETMASK, [CHLD], NULL, 8) = 0
+close(7)                                = 0
+read(6, "/home/kurumi/.local/lib/python3."..., 200) = 200
+read(6, "kurumi/.local/lib/python3.10/sit"..., 512) = 512
+read(6, "ckages/cocotb/binary.py /home/ku"..., 512) = 512
+read(6, "lib/python3.10/site-packages/coc"..., 512) = 473
+read(6, "", 39)                         = 0
+close(6)                                = 0
+wait4(-1, [{WIFEXITED(s) && WEXITSTATUS(s) == 0}], 0, NULL) = 49594
+pipe2([6, 7], 0)                        = 0
+fcntl(7, F_GETFD)                       = 0
+fcntl(7, F_SETFD, FD_CLOEXEC)           = 0
+fcntl(6, F_GETFD)                       = 0
+fcntl(6, F_SETFD, FD_CLOEXEC)           = 0
+prlimit64(0, RLIMIT_NOFILE, NULL, {rlim_cur=8*1024, rlim_max=1024*1024}) = 0
+prlimit64(0, RLIMIT_NOFILE, NULL, {rlim_cur=8*1024, rlim_max=1024*1024}) = 0
+newfstatat(AT_FDCWD, "/home/kurumi/verible/bin/bash", 0x7fff2a525340, 0) = -1 ENOENT (No such file or directory)
+newfstatat(AT_FDCWD, "/home/kurumi/.local/bin/bash", 0x7fff2a525340, 0) = -1 ENOENT (No such file or directory)
+newfstatat(AT_FDCWD, "/home/kurumi/verible/bin/bash", 0x7fff2a525340, 0) = -1 ENOENT (No such file or directory)
+newfstatat(AT_FDCWD, "/home/kurumi/.local/bin/bash", 0x7fff2a525340, 0) = -1 ENOENT (No such file or directory)
+newfstatat(AT_FDCWD, "/usr/local/sbin/bash", 0x7fff2a525340, 0) = -1 ENOENT (No such file or directory)
+newfstatat(AT_FDCWD, "/usr/local/bin/bash", 0x7fff2a525340, 0) = -1 ENOENT (No such file or directory)
+newfstatat(AT_FDCWD, "/usr/sbin/bash", 0x7fff2a525340, 0) = -1 ENOENT (No such file or directory)
+newfstatat(AT_FDCWD, "/usr/bin/bash", {st_mode=S_IFREG|0755, st_size=1396520, ...}, 0) = 0
+geteuid()                               = 1000
+getegid()                               = 1000
+getuid()                                = 1000
+getgid()                                = 1000
+access("/usr/bin/bash", X_OK)           = 0
+mmap(NULL, 36864, PROT_READ|PROT_WRITE, MAP_PRIVATE|MAP_ANONYMOUS|MAP_STACK, -1, 0) = 0x70f524400000
+rt_sigprocmask(SIG_BLOCK, ~[], [CHLD], 8) = 0
+clone3({flags=CLONE_VM|CLONE_VFORK, exit_signal=SIGCHLD, stack=0x70f524400000, stack_size=0x9000}, 88) = 49595
+munmap(0x70f524400000, 36864)           = 0
+rt_sigprocmask(SIG_SETMASK, [CHLD], NULL, 8) = 0
+close(7)                                = 0
+read(6, "/usr/bin/python3\n", 200)      = 17
+read(6, "", 183)                        = 0
+close(6)                                = 0
+wait4(-1, [{WIFEXITED(s) && WEXITSTATUS(s) == 0}], 0, NULL) = 49595
+pipe2([6, 7], 0)                        = 0
+fcntl(7, F_GETFD)                       = 0
+fcntl(7, F_SETFD, FD_CLOEXEC)           = 0
+fcntl(6, F_GETFD)                       = 0
+fcntl(6, F_SETFD, FD_CLOEXEC)           = 0
+prlimit64(0, RLIMIT_NOFILE, NULL, {rlim_cur=8*1024, rlim_max=1024*1024}) = 0
+prlimit64(0, RLIMIT_NOFILE, NULL, {rlim_cur=8*1024, rlim_max=1024*1024}) = 0
+newfstatat(AT_FDCWD, "/home/kurumi/verible/bin/bash", 0x7fff2a525640, 0) = -1 ENOENT (No such file or directory)
+newfstatat(AT_FDCWD, "/home/kurumi/.local/bin/bash", 0x7fff2a525640, 0) = -1 ENOENT (No such file or directory)
+newfstatat(AT_FDCWD, "/home/kurumi/verible/bin/bash", 0x7fff2a525640, 0) = -1 ENOENT (No such file or directory)
+newfstatat(AT_FDCWD, "/home/kurumi/.local/bin/bash", 0x7fff2a525640, 0) = -1 ENOENT (No such file or directory)
+newfstatat(AT_FDCWD, "/usr/local/sbin/bash", 0x7fff2a525640, 0) = -1 ENOENT (No such file or directory)
+newfstatat(AT_FDCWD, "/usr/local/bin/bash", 0x7fff2a525640, 0) = -1 ENOENT (No such file or directory)
+newfstatat(AT_FDCWD, "/usr/sbin/bash", 0x7fff2a525640, 0) = -1 ENOENT (No such file or directory)
+newfstatat(AT_FDCWD, "/usr/bin/bash", {st_mode=S_IFREG|0755, st_size=1396520, ...}, 0) = 0
+geteuid()                               = 1000
+getegid()                               = 1000
+getuid()                                = 1000
+getgid()                                = 1000
+access("/usr/bin/bash", X_OK)           = 0
+mmap(NULL, 36864, PROT_READ|PROT_WRITE, MAP_PRIVATE|MAP_ANONYMOUS|MAP_STACK, -1, 0) = 0x70f524400000
+rt_sigprocmask(SIG_BLOCK, ~[], [CHLD], 8) = 0
+clone3({flags=CLONE_VM|CLONE_VFORK, exit_signal=SIGCHLD, stack=0x70f524400000, stack_size=0x9000}, 88) = 49596
+munmap(0x70f524400000, 36864)           = 0
+rt_sigprocmask(SIG_SETMASK, [CHLD], NULL, 8) = 0
+close(7)                                = 0
+read(6, "/home/kurumi/.local/lib/python3."..., 200) = 200
+read(6, "10/site-packages/cocotb/libs/lib"..., 512) = 512
+read(6, "ocotb/libs/libpygpilog.so /home/"..., 512) = 512
+read(6, "ome/kurumi/.local/lib/python3.10"..., 512) = 229
+read(6, "", 283)                        = 0
+close(6)                                = 0
+wait4(-1, [{WIFEXITED(s) && WEXITSTATUS(s) == 0}], 0, NULL) = 49596
+read(5, "", 4096)                       = 0
+close(5)                                = 0
+read(4, "", 4096)                       = 0
+close(4)                                = 0
+read(3, "", 4096)                       = 0
+close(3)                                = 0
+pipe2([3, 4], 0)                        = 0
+fcntl(3, F_GETFD)                       = 0
+fcntl(3, F_SETFD, FD_CLOEXEC)           = 0
+fcntl(4, F_GETFD)                       = 0
+fcntl(4, F_SETFD, FD_CLOEXEC)           = 0
+write(4, "+", 1)                        = 1
+write(4, "+", 1)                        = 1
+write(4, "+", 1)                        = 1
+write(4, "+", 1)                        = 1
+write(4, "+", 1)                        = 1
+write(4, "+", 1)                        = 1
+write(4, "+", 1)                        = 1
+write(4, "+", 1)                        = 1
+write(4, "+", 1)                        = 1
+write(4, "+", 1)                        = 1
+write(4, "+", 1)                        = 1
+write(4, "+", 1)                        = 1
+write(4, "+", 1)                        = 1
+write(4, "+", 1)                        = 1
+write(4, "+", 1)                        = 1
+write(4, "+", 1)                        = 1
+write(4, "+", 1)                        = 1
+write(4, "+", 1)                        = 1
+write(4, "+", 1)                        = 1
+fcntl(3, F_GETFL)                       = 0 (flags O_RDONLY)
+fcntl(3, F_SETFL, O_RDONLY|O_NONBLOCK)  = 0
+newfstatat(AT_FDCWD, "RCS", 0x7fff2a526330, 0) = -1 ENOENT (No such file or directory)
+newfstatat(AT_FDCWD, "SCCS", 0x7fff2a526330, 0) = -1 ENOENT (No such file or directory)
+newfstatat(AT_FDCWD, "/home/kurumi/.local/lib/python3.10/site-packages/cocotb/share/makefiles/Makefile.deprecations", {st_mode=S_IFREG|0664, st_size=416, ...}, 0) = 0
+newfstatat(AT_FDCWD, "/home/kurumi/.local/lib/python3.10/site-packages/cocotb/share/makefiles/Makefile.inc", {st_mode=S_IFREG|0664, st_size=6710, ...}, 0) = 0
+newfstatat(AT_FDCWD, "/home/kurumi/.local/lib/python3.10/site-packages/cocotb/share/makefiles/simulators/Makefile.verilator", {st_mode=S_IFREG|0664, st_size=2572, ...}, 0) = 0
+newfstatat(AT_FDCWD, "/home/kurumi/.local/lib/python3.10/site-packages/cocotb/share/makefiles/Makefile.sim", {st_mode=S_IFREG|0664, st_size=5293, ...}, 0) = 0
+newfstatat(AT_FDCWD, "Makefile", {st_mode=S_IFREG|0664, st_size=758, ...}, 0) = 0
+newfstatat(AT_FDCWD, "/home/kurumi/.local/lib/python3.10/site-packages/cocotb/share/makefiles", {st_mode=S_IFDIR|0775, st_size=4096, ...}, 0) = 0
+openat(AT_FDCWD, "/home/kurumi/.local/lib/python3.10/site-packages/cocotb/share/makefiles", O_RDONLY|O_NONBLOCK|O_CLOEXEC|O_DIRECTORY) = 5
+newfstatat(5, "", {st_mode=S_IFDIR|0775, st_size=4096, ...}, AT_EMPTY_PATH) = 0
+getdents64(5, 0x613518bd4240 /* 6 entries */, 32768) = 192
+getdents64(5, 0x613518bd4240 /* 0 entries */, 32768) = 0
+close(5)                                = 0
+newfstatat(AT_FDCWD, "/home/kurumi/.local/lib/python3.10/site-packages/cocotb/share/makefiles/RCS", 0x7fff2a524f40, 0) = -1 ENOENT (No such file or directory)
+newfstatat(AT_FDCWD, "/home/kurumi/.local/lib/python3.10/site-packages/cocotb/share/makefiles/SCCS", 0x7fff2a524f40, 0) = -1 ENOENT (No such file or directory)
+newfstatat(AT_FDCWD, "/home/kurumi/.local/lib/python3.10/site-packages/cocotb/share/makefiles/simulators", {st_mode=S_IFDIR|0775, st_size=4096, ...}, 0) = 0
+openat(AT_FDCWD, "/home/kurumi/.local/lib/python3.10/site-packages/cocotb/share/makefiles/simulators", O_RDONLY|O_NONBLOCK|O_CLOEXEC|O_DIRECTORY) = 5
+newfstatat(5, "", {st_mode=S_IFDIR|0775, st_size=4096, ...}, AT_EMPTY_PATH) = 0
+brk(0x613518c07000)                     = 0x613518c07000
+getdents64(5, 0x613518bde730 /* 14 entries */, 32768) = 496
+getdents64(5, 0x613518bde730 /* 0 entries */, 32768) = 0
+brk(0x613518bff000)                     = 0x613518bff000
+close(5)                                = 0
+newfstatat(AT_FDCWD, "/home/kurumi/.local/lib/python3.10/site-packages/cocotb/share/makefiles/simulators/RCS", 0x7fff2a524f40, 0) = -1 ENOENT (No such file or directory)
+newfstatat(AT_FDCWD, "/home/kurumi/.local/lib/python3.10/site-packages/cocotb/share/makefiles/simulators/SCCS", 0x7fff2a524f40, 0) = -1 ENOENT (No such file or directory)
+newfstatat(1, "", {st_mode=S_IFREG|0664, st_size=65092, ...}, AT_EMPTY_PATH) = 0
+write(1, "rm -f results.xml\n", 18rm -f results.xml
+)     = 18
+pipe2([5, 6], 0)                        = 0
+fcntl(6, F_GETFD)                       = 0
+fcntl(6, F_SETFD, FD_CLOEXEC)           = 0
+fcntl(5, F_GETFD)                       = 0
+fcntl(5, F_SETFD, FD_CLOEXEC)           = 0
+prlimit64(0, RLIMIT_NOFILE, NULL, {rlim_cur=8*1024, rlim_max=1024*1024}) = 0
+prlimit64(0, RLIMIT_NOFILE, NULL, {rlim_cur=8*1024, rlim_max=1024*1024}) = 0
+newfstatat(AT_FDCWD, "/home/kurumi/verible/bin/bash", 0x7fff2a525980, 0) = -1 ENOENT (No such file or directory)
+newfstatat(AT_FDCWD, "/home/kurumi/.local/bin/bash", 0x7fff2a525980, 0) = -1 ENOENT (No such file or directory)
+newfstatat(AT_FDCWD, "/home/kurumi/verible/bin/bash", 0x7fff2a525980, 0) = -1 ENOENT (No such file or directory)
+newfstatat(AT_FDCWD, "/home/kurumi/.local/bin/bash", 0x7fff2a525980, 0) = -1 ENOENT (No such file or directory)
+newfstatat(AT_FDCWD, "/usr/local/sbin/bash", 0x7fff2a525980, 0) = -1 ENOENT (No such file or directory)
+newfstatat(AT_FDCWD, "/usr/local/bin/bash", 0x7fff2a525980, 0) = -1 ENOENT (No such file or directory)
+newfstatat(AT_FDCWD, "/usr/sbin/bash", 0x7fff2a525980, 0) = -1 ENOENT (No such file or directory)
+newfstatat(AT_FDCWD, "/usr/bin/bash", {st_mode=S_IFREG|0755, st_size=1396520, ...}, 0) = 0
+geteuid()                               = 1000
+getegid()                               = 1000
+getuid()                                = 1000
+getgid()                                = 1000
+access("/usr/bin/bash", X_OK)           = 0
+mmap(NULL, 36864, PROT_READ|PROT_WRITE, MAP_PRIVATE|MAP_ANONYMOUS|MAP_STACK, -1, 0) = 0x70f524400000
+rt_sigprocmask(SIG_BLOCK, ~[], [CHLD], 8) = 0
+clone3({flags=CLONE_VM|CLONE_VFORK, exit_signal=SIGCHLD, stack=0x70f524400000, stack_size=0x9000}, 88) = 49597
+munmap(0x70f524400000, 36864)           = 0
+rt_sigprocmask(SIG_SETMASK, [CHLD], NULL, 8) = 0
+close(6)                                = 0
+read(5, "Linux\n", 200)                 = 6
+read(5, "", 194)                        = 0
+close(5)                                = 0
+wait4(-1, [{WIFEXITED(s) && WEXITSTATUS(s) == 0}], 0, NULL) = 49597
+rt_sigprocmask(SIG_BLOCK, [HUP INT QUIT TERM XCPU XFSZ], NULL, 8) = 0
+newfstatat(AT_FDCWD, "/home/kurumi/verible/bin/bash", 0x7fff2a525cb0, 0) = -1 ENOENT (No such file or directory)
+newfstatat(AT_FDCWD, "/home/kurumi/.local/bin/bash", 0x7fff2a525cb0, 0) = -1 ENOENT (No such file or directory)
+newfstatat(AT_FDCWD, "/home/kurumi/verible/bin/bash", 0x7fff2a525cb0, 0) = -1 ENOENT (No such file or directory)
+newfstatat(AT_FDCWD, "/home/kurumi/.local/bin/bash", 0x7fff2a525cb0, 0) = -1 ENOENT (No such file or directory)
+newfstatat(AT_FDCWD, "/usr/local/sbin/bash", 0x7fff2a525cb0, 0) = -1 ENOENT (No such file or directory)
+newfstatat(AT_FDCWD, "/usr/local/bin/bash", 0x7fff2a525cb0, 0) = -1 ENOENT (No such file or directory)
+newfstatat(AT_FDCWD, "/usr/sbin/bash", 0x7fff2a525cb0, 0) = -1 ENOENT (No such file or directory)
+newfstatat(AT_FDCWD, "/usr/bin/bash", {st_mode=S_IFREG|0755, st_size=1396520, ...}, 0) = 0
+geteuid()                               = 1000
+getegid()                               = 1000
+getuid()                                = 1000
+getgid()                                = 1000
+access("/usr/bin/bash", X_OK)           = 0
+mmap(NULL, 36864, PROT_READ|PROT_WRITE, MAP_PRIVATE|MAP_ANONYMOUS|MAP_STACK, -1, 0) = 0x70f524400000
+rt_sigprocmask(SIG_BLOCK, ~[], [HUP INT QUIT TERM CHLD XCPU XFSZ], 8) = 0
+clone3({flags=CLONE_VM|CLONE_VFORK, exit_signal=SIGCHLD, stack=0x70f524400000, stack_size=0x9000}, 88) = 49598
+munmap(0x70f524400000, 36864)           = 0
+rt_sigprocmask(SIG_SETMASK, [HUP INT QUIT TERM CHLD XCPU XFSZ], NULL, 8) = 0
+rt_sigprocmask(SIG_UNBLOCK, [HUP INT QUIT TERM XCPU XFSZ], NULL, 8) = 0
+wait4(-1, [{WIFEXITED(s) && WEXITSTATUS(s) == 0}], 0, NULL) = 49598
+write(1, "\"make\" -f Makefile results.xml\n", 31"make" -f Makefile results.xml
+) = 31
+rt_sigprocmask(SIG_BLOCK, [HUP INT QUIT TERM XCPU XFSZ], NULL, 8) = 0
+fcntl(3, F_GETFD)                       = 0x1 (flags FD_CLOEXEC)
+fcntl(3, F_SETFD, 0)                    = 0
+fcntl(4, F_GETFD)                       = 0x1 (flags FD_CLOEXEC)
+fcntl(4, F_SETFD, 0)                    = 0
+newfstatat(AT_FDCWD, "/home/kurumi/verible/bin/bash", 0x7fff2a525e90, 0) = -1 ENOENT (No such file or directory)
+newfstatat(AT_FDCWD, "/home/kurumi/.local/bin/bash", 0x7fff2a525e90, 0) = -1 ENOENT (No such file or directory)
+newfstatat(AT_FDCWD, "/home/kurumi/verible/bin/bash", 0x7fff2a525e90, 0) = -1 ENOENT (No such file or directory)
+newfstatat(AT_FDCWD, "/home/kurumi/.local/bin/bash", 0x7fff2a525e90, 0) = -1 ENOENT (No such file or directory)
+newfstatat(AT_FDCWD, "/usr/local/sbin/bash", 0x7fff2a525e90, 0) = -1 ENOENT (No such file or directory)
+newfstatat(AT_FDCWD, "/usr/local/bin/bash", 0x7fff2a525e90, 0) = -1 ENOENT (No such file or directory)
+newfstatat(AT_FDCWD, "/usr/sbin/bash", 0x7fff2a525e90, 0) = -1 ENOENT (No such file or directory)
+newfstatat(AT_FDCWD, "/usr/bin/bash", {st_mode=S_IFREG|0755, st_size=1396520, ...}, 0) = 0
+geteuid()                               = 1000
+getegid()                               = 1000
+getuid()                                = 1000
+getgid()                                = 1000
+access("/usr/bin/bash", X_OK)           = 0
+mmap(NULL, 36864, PROT_READ|PROT_WRITE, MAP_PRIVATE|MAP_ANONYMOUS|MAP_STACK, -1, 0) = 0x70f524400000
+rt_sigprocmask(SIG_BLOCK, ~[], [HUP INT QUIT TERM CHLD XCPU XFSZ], 8) = 0
+clone3({flags=CLONE_VM|CLONE_VFORK, exit_signal=SIGCHLD, stack=0x70f524400000, stack_size=0x9000}, 88) = 49599
+munmap(0x70f524400000, 36864)           = 0
+rt_sigprocmask(SIG_SETMASK, [HUP INT QUIT TERM CHLD XCPU XFSZ], NULL, 8) = 0
+fcntl(3, F_GETFD)                       = 0
+fcntl(3, F_SETFD, FD_CLOEXEC)           = 0
+fcntl(4, F_GETFD)                       = 0
+fcntl(4, F_SETFD, FD_CLOEXEC)           = 0
+rt_sigprocmask(SIG_UNBLOCK, [HUP INT QUIT TERM XCPU XFSZ], NULL, 8) = 0
+wait4(-1, make[1]: Entering directory '/home/kurumi/XS-BPU-RAS-cocotb-env'
+rm -f results.xml
+MODULE=test_ras TESTCASE= TOPLEVEL=RAS TOPLEVEL_LANG=verilog \
+         sim_build/Vtop  
+     -.--ns INFO     gpi                                ..mbed/gpi_embed.cpp:79   in set_program_name_in_venv        Did not detect Python virtual environment. Using system-wide Python interpreter
+     -.--ns INFO     gpi                                ../gpi/GpiCommon.cpp:101  in gpi_print_registered_impl       VPI registered
+     0.00ns INFO     cocotb                             Running on Verilator version 5.027 devel
+     0.00ns INFO     cocotb                             Running tests with cocotb v1.9.0 from /home/kurumi/.local/lib/python3.10/site-packages/cocotb
+     0.00ns INFO     cocotb                             Seeding Python random module with 1722842851
+     0.00ns INFO     cocotb.regression                  Found test test_ras.test_ras_push
+     0.00ns INFO     cocotb.regression                  Found test test_ras.test_ras_push_001
+     0.00ns INFO     cocotb.regression                  running test_ras_push (1/2)
+    10.00ns INFO     cocotb                             DUT reset done
+RAS reset done
+   100.00ns INFO     cocotb.regression                  test_ras_push passed
+   100.00ns INFO     cocotb.regression                  running test_ras_push_001 (2/2)
+                                                          Automatically generated test
+   110.00ns INFO     cocotb                             DUT reset done
+RAS reset done
+   200.00ns INFO     cocotb.regression                  test_ras_push_001 passed
+   200.00ns INFO     cocotb.regression                  **************************************************************************************
+                                                        ** TEST                          STATUS  SIM TIME (ns)  REAL TIME (s)  RATIO (ns/s) **
+                                                        **************************************************************************************
+                                                        ** test_ras.test_ras_push         PASS         100.00           0.01      15683.32  **
+                                                        ** test_ras.test_ras_push_001     PASS         100.00           0.00      37006.76  **
+                                                        **************************************************************************************
+                                                        ** TESTS=2 PASS=2 FAIL=0 SKIP=0                200.00           0.32        620.70  **
+                                                        **************************************************************************************
+                                                        
+- :0: Verilog $finish
+make[1]: Leaving directory '/home/kurumi/XS-BPU-RAS-cocotb-env'
+[{WIFEXITED(s) && WEXITSTATUS(s) == 0}], 0, NULL) = 49599
+rt_sigprocmask(SIG_BLOCK, [HUP INT QUIT TERM XCPU XFSZ], NULL, 8) = 0
+rt_sigprocmask(SIG_UNBLOCK, [HUP INT QUIT TERM XCPU XFSZ], NULL, 8) = 0
+fcntl(3, F_GETFL)                       = 0x800 (flags O_RDONLY|O_NONBLOCK)
+fcntl(3, F_SETFL, O_RDONLY)             = 0
+close(4)                                = 0
+read(3, "+", 1)                         = 1
+read(3, "+", 1)                         = 1
+read(3, "+", 1)                         = 1
+read(3, "+", 1)                         = 1
+read(3, "+", 1)                         = 1
+read(3, "+", 1)                         = 1
+read(3, "+", 1)                         = 1
+read(3, "+", 1)                         = 1
+read(3, "+", 1)                         = 1
+read(3, "+", 1)                         = 1
+read(3, "+", 1)                         = 1
+read(3, "+", 1)                         = 1
+read(3, "+", 1)                         = 1
+read(3, "+", 1)                         = 1
+read(3, "+", 1)                         = 1
+read(3, "+", 1)                         = 1
+read(3, "+", 1)                         = 1
+read(3, "+", 1)                         = 1
+read(3, "+", 1)                         = 1
+read(3, "", 1)                          = 0
+close(3)                                = 0
+chdir("/home/kurumi/XS-BPU-RAS-cocotb-env") = 0
+close(1)                                = 0
+exit_group(0)                           = ?
++++ exited with 0 +++
