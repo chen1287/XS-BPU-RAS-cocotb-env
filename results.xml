@@ -1,6 +1,8 @@
 <testsuites name="results">
   <testsuite name="all" package="all">
-    <property name="random_seed" value="1722849612" />
-    <testcase name="test_ras_push" classname="test_ras" file="/home/kurumi/XS-BPU-RAS-cocotb-env/test_ras.py" lineno="30" time="0.006786823272705078" sim_time_ns="100.001" ratio_time="14734.581406028245" />
+    <property name="random_seed" value="1722943769" />
+    <testcase name="test_ras_spec_pop" classname="test_ras" file="/home/kurumi/XS-BPU-RAS-cocotb-env/test_ras.py" lineno="59" time="0.011201858520507812" sim_time_ns="750.001" ratio_time="66953.26482002383">
+      <failure message="Test failed with RANDOM_SEED=1722943769" />
+    </testcase>
   </testsuite>
 </testsuites>

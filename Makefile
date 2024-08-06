@@ -3,7 +3,7 @@ TOPLEVEL_LANG ?= verilog
 VERILOG_SOURCES = $(shell pwd)/hdl/RAS.sv \
                   $(shell pwd)/hdl/DelayN_2.sv \
                   $(shell pwd)/hdl/RASStack.sv \
-                  $(shell pwd)/hdl/DelayNWithValid.v
+                  $(shell pwd)/hdl/ext_sram.v
 
 TOPLEVEL = RAS
 MODULE = test_ras
