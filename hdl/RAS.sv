@@ -480,6 +480,7 @@ module RAS(	// @[src/main/scala/xiangshan/frontend/newRAS.scala:75:7]
       s3_top <= _RASStack_io_spec_pop_addr;	// @[src/main/scala/xiangshan/frontend/newRAS.scala:536:21, :574:25]
       s3_spec_new_addr <= _s2_spec_new_addr_T_1;	// @[src/main/scala/xiangshan/frontend/newRAS.scala:542:55, :575:35]
       s3_pushed_in_s2 <= s2_spec_push;	// @[src/main/scala/xiangshan/frontend/newRAS.scala:548:67, :592:34]
+      // $display("newRAS: s3_pushed_in_s2 = %d, s2_spec_push = %d", s3_pushed_in_s2, s2_spec_push);
       s3_popped_in_s2 <= s2_spec_pop;	// @[src/main/scala/xiangshan/frontend/newRAS.scala:549:67, :593:34]
       s3_meta_ssp <= _RASStack_io_ssp;	// @[src/main/scala/xiangshan/frontend/newRAS.scala:536:21, :603:26]
       s3_meta_sctr <= _RASStack_io_sctr;	// @[src/main/scala/xiangshan/frontend/newRAS.scala:536:21, :603:26]

@@ -1,7 +1,8 @@
 import cocotb
 import random
 from cocotb.regression import TestFactory
-from cocotb.triggers import Timer, FallingEdge
+from cocotb.triggers import Timer, FallingEdge, RisingEdge
+
 from ras_wrapper import *
 
 #######################################################################################
@@ -63,13 +64,14 @@ def s2_push(dut, addr):
     dut.io_in_bits_resp_in_0_s2_full_pred_2_is_ret.value = 0
     dut.io_in_bits_resp_in_0_s2_full_pred_2_is_br_sharing.value = 0
     dut.io_in_bits_resp_in_0_s2_full_pred_2_hit.value = 1
+    dut.io_in_bits_resp_in_0_s2_full_pred_2_last_may_be_rvi_call.value = 0
 
     # s3 set zero
     dut.io_in_bits_resp_in_0_s3_full_pred_2_br_taken_mask_0.value = 0
     dut.io_in_bits_resp_in_0_s3_full_pred_2_br_taken_mask_1.value = 0
     dut.io_in_bits_resp_in_0_s3_full_pred_2_slot_valids_0.value = 0
     dut.io_in_bits_resp_in_0_s3_full_pred_2_slot_valids_1.value = 0
-    dut.io_in_bits_resp_in_0_s3_full_pred_2_fallThroughAddr.value = 0
+    dut.io_in_bits_resp_in_0_s3_full_pred_2_fallThroughAddr.value = addr
     dut.io_in_bits_resp_in_0_s3_full_pred_2_is_call.value = 0
     dut.io_in_bits_resp_in_0_s3_full_pred_2_is_ret.value = 0
     dut.io_in_bits_resp_in_0_s3_full_pred_2_is_br_sharing.value = 0
@@ -86,11 +88,12 @@ def s3_push(dut, addr):
     dut.io_in_bits_resp_in_0_s2_full_pred_2_br_taken_mask_1.value = 0
     dut.io_in_bits_resp_in_0_s2_full_pred_2_slot_valids_0.value = 0
     dut.io_in_bits_resp_in_0_s2_full_pred_2_slot_valids_1.value = 0
-    dut.io_in_bits_resp_in_0_s2_full_pred_2_fallThroughAddr.value = 0
+    dut.io_in_bits_resp_in_0_s2_full_pred_2_fallThroughAddr.value = addr
     dut.io_in_bits_resp_in_0_s2_full_pred_2_is_call.value = 0
     dut.io_in_bits_resp_in_0_s2_full_pred_2_is_ret.value = 0
     dut.io_in_bits_resp_in_0_s2_full_pred_2_is_br_sharing.value = 0
     dut.io_in_bits_resp_in_0_s2_full_pred_2_hit.value = 0
+    dut.io_in_bits_resp_in_0_s2_full_pred_2_last_may_be_rvi_call.value = 0
 
     # s3
     dut.io_in_bits_resp_in_0_s3_full_pred_2_br_taken_mask_0.value = 1
@@ -161,7 +164,7 @@ def s2_pop(dut):
     dut.io_s2_fire_2.value = 1
     dut.io_s3_fire_2.value = 1
 
-    #s2 set zero
+    #s2
     dut.io_in_bits_resp_in_0_s2_full_pred_2_br_taken_mask_0.value = 0
     dut.io_in_bits_resp_in_0_s2_full_pred_2_br_taken_mask_1.value = 1
     dut.io_in_bits_resp_in_0_s2_full_pred_2_slot_valids_0.value = 0
@@ -207,10 +210,9 @@ def s3_pop(dut):
     dut.io_in_bits_resp_in_0_s3_full_pred_2_slot_valids_1.value = 1
     dut.io_in_bits_resp_in_0_s3_full_pred_2_fallThroughAddr.value = 0
     dut.io_in_bits_resp_in_0_s3_full_pred_2_is_call.value = 0
-    dut.io_in_bits_resp_in_0_s3_full_pred_2_is_ret.value = 0
+    dut.io_in_bits_resp_in_0_s3_full_pred_2_is_ret.value = 1
     dut.io_in_bits_resp_in_0_s3_full_pred_2_is_br_sharing.value = 0
     dut.io_in_bits_resp_in_0_s3_full_pred_2_hit.value = 1
-
 def set_pop_valid_zero(dut):
 
     dut.io_s3_redirect_2.value = 0
@@ -272,7 +274,7 @@ def commit_valid_zero(dut):
     dut.io_update_bits_jmp_taken.value = 0
     dut.io_update_bits_meta.value = 0
 
-def commit_pop(dut):
+def commit_pop_valid(dut, ssp):
     dut.io_s3_redirect_2.value = 0
     # fire
     dut.io_s2_fire_2.value = 1
@@ -286,9 +288,9 @@ def commit_pop(dut):
     dut.io_update_bits_cfi_idx_valid.value = 1
     dut.io_update_bits_cfi_idx_bits.value = 1
     dut.io_update_bits_jmp_taken.value = 1
-    dut.io_update_bits_meta.value = 0
+    dut.io_update_bits_meta.value = (ssp << 21)
 
-def ras_redirect(dut, pc, isRVC, isCall, isRet, meta ):
+def ras_redirect(dut, pc, isRVC, isCall, isRet, meta):
     dut.io_s3_redirect_2.value = 0
     # fire
     dut.io_s2_fire_2.value = 1
@@ -335,6 +337,7 @@ def ras_redirect_valid_zero(dut):
 class RASWrapper():
     def __init__(self, dut):
         self.dut = dut
+        self.dut.clock.value = 0
         self.dut.io_ctrl_ras_enable.value = 1
 
     def __getattr__(self, name):
@@ -342,41 +345,48 @@ class RASWrapper():
 
     async def reset(self):
         self.dut.reset.value = 1
+        self.dut.io_reset_vector.value = 1
+        self.dut.io_s2_fire_2.value = 1
         await Timer(20, units="ns")
         self.dut.reset.value = 0
-        await Timer(20, units="ns")
+        self.dut.io_reset_vector.value = 0
+        self.dut.io_s2_fire_2.value = 0
+        await Timer(40, units="ns")
         print("RAS reset done")
     async def push(self,addr):
         # s2 push
-        cmd_push(self.dut, addr)
+        # cmd_push(self.dut, addr)
         # cmd_push(self.dut, addr)
         # await Timer(20, units="ns")
-        await FallingEdge(self.dut.clock)
+        s2_push(self.dut, addr)
+        # # cmd_push(self.dut, addr)
+        await Timer(20, units="ns")
+        # await RisingEdge(self.dut.clock)
         meta = get_meta(self.dut)
         # s3 push
-        # s3_push(self.dut, addr)
+        s3_push(self.dut, addr)
         # # cmd_push(self.dut, addr)
-        # await Timer(20, units="ns")
+        await Timer(20, units="ns")
         # # set_push_valid_zero(self.dut)
-        # set_push_valid_zero(self.dut)
-        # #s2 set zero
-        # await Timer(40, units="ns")
+        set_push_valid_zero(self.dut)
+        await Timer(20, units="ns")
+        #s2 set zero
         return meta
 
     async def pop(self):
         # s2 pop
         s2_pop(self.dut)
         await Timer(20, units="ns")
-        meta = get_meta(self.dut)
+        # meta = get_meta(self.dut)
         # s3 pop
-        # s3_pop(self.dut)
-        set_pop_valid_zero(self.dut)
+        s3_pop(self.dut)
+        pop_value = self.dut.io_out_last_stage_spec_info_topAddr.value
         await Timer(20, units="ns")
         #s2 set zero
         set_pop_valid_zero(self.dut)
-        pop_value = self.dut.io_out_last_stage_spec_info_topAddr.value
         await Timer(20, units="ns")
-        return pop_value, meta
+        # print(pop_value)
+        return pop_value
     
     async def commit_push(self, meta):
         commit_push(self.dut, meta["TOSW_value"], meta["ssp"]),
@@ -385,9 +395,10 @@ class RASWrapper():
         await Timer(40, units="ns")
 
     async def commit_pop(self, meta):
-        commit_pop(self.dut, meta["ssp"]),
+        commit_pop_valid(self.dut, meta["ssp"]),
         await Timer(20, units="ns")
         commit_valid_zero(self.dut)
+        await Timer(40, units="ns")
 
     
     async def keep_after_push(self, addr):   # spec_push
@@ -431,9 +442,10 @@ class RASWrapper():
         await Timer(20, units="ns")
         # s3
         s3_push(self.dut, addr)
-        await Timer(20, units="ns")
+        print(self.dut.RASStack.io_s3_cancel)
+        await Timer(40, units="ns")
         meta = get_meta(self.dut)
-        set_push_valid_zero()
+        set_push_valid_zero(self.dut)
         await Timer(40, units="ns")
         return meta
 
@@ -442,14 +454,14 @@ class RASWrapper():
         ras_redirect(self.dut, pc, isRVC, 1, 0, meta )
         await Timer(20, units="ns")
         new_meta = get_meta(self.dut)
-        ras_redirect_valid_zero()
+        ras_redirect_valid_zero(self.dut)
         await Timer(60, units="ns")
         return new_meta
     
-    async def redirect_pop(self, pc, meta):
-        ras_redirect(self.dut, pc, 0, 0, 1, meta )
+    async def redirect_pop(self, meta):
+        ras_redirect(self.dut, 0, 0, 0, 1, meta )
         await Timer(20, units="ns")
         pop_value = self.dut.io_out_last_stage_spec_info_topAddr.value
-        await Timer(40, units="ns")
+        await Timer(60, units="ns")
 
         return pop_value
