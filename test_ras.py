@@ -5,7 +5,7 @@ from cocotb.regression import TestFactory
 from cocotb.triggers import Timer, FallingEdge
 import cocotb.triggers
 from ras_wrapper import *
-
+import time
 
 # async def reset_dut(dut, duration_ns=10):
 
@@ -21,7 +21,9 @@ async def gen_rst(dut):
     dut.reset.value = 0
     await Timer(20, units="ns")
     print("RAS reset done")
+cocotb_time = 0 
 ###################################################################################
+
 @cocotb.test()
 async def test_ras_push(dut):
     await gen_rst(dut)
@@ -71,7 +73,7 @@ async def test_ras_spec_pop(dut):  # spec pop
         push_addr[i] = 0x80000000 + i*4
         await ras.push(push_addr[i])
     for i in range(push_num-1, -1, -1):
-        pop_addr, _ = await ras.pop()
+        pop_addr = await ras.pop()
         assert(pop_addr == push_addr[i])
     clk_gen.kill()
 
@@ -127,7 +129,6 @@ async def test_ras_spec_overflow_commit_push(dut):
     ras = RASWrapper(dut)
     clk_gen = cocotb.start_soon(Clock(dut.clock, 20, 'ns').start())
     await ras.reset()
-    await ras.reset()
     # set coverage
     size = 32    #max sctr
     meta = {}
@@ -141,9 +142,8 @@ async def test_ras_spec_overflow_commit_push(dut):
         commit_stack_addr[i] = -1
         push_addr[i] = 0x80000000 + i*4
 
-
     for i in range(16):
-        atter_name  = f"RASStack.commit_stack_{meta[i+1%16]['ssp']}_retAddr"
+        atter_name  = f"RASStack.commit_stack_{int(meta[i+1%16]['ssp'])}_retAddr"
         commit_obj = getattr(ras.dut, atter_name)
         await ras.commit_push(meta[i])
         assert(commit_obj.value == push_addr[i])
@@ -176,16 +176,15 @@ async def test_ras_commit_random(dut):
     ras = RASWrapper(dut)
     clk_gen = cocotb.start_soon(Clock(dut.clock, 20, 'ns').start())
     await ras.reset()
-    commit_addr = random.randint(3,29)
+    commit_addr = random.randint(2,30)
     meta = {}
     for i in range(32):
         meta[i] = await ras.push(0x80000000 + i*4)
     # set coverage
-    atter_name  = f"RASStack.commit_stack_{meta[commit_addr]['ssp']+1}_retAddr"
+    atter_name  = f"RASStack.commit_stack_{int(meta[commit_addr]['ssp']+1%16)}_retAddr"
     commit_obj = getattr(ras.dut, atter_name)
-
     await ras.commit_push(meta[commit_addr])
-    assert(commit_obj.value == 0x80000000 + meta[commit_addr]['ssp']*4)
+    assert(commit_obj.value == 0x80000000 + int(meta[commit_addr]['ssp'])*4)
     clk_gen.kill()
 
 # 测试commit栈彻底被使用过一次之后BOS能否回归原位
@@ -424,7 +423,7 @@ async def test_ras_update_push_1_spec_full(dut): # 测试spec push
     for i in range(32):
         await ras.push(0x80000000+i*4)
     await ras.keep_after_pop()  
-    assert(await ras.RASStack.spec_queue_31_retAddr.value == 0x8000007c) 
+    assert(ras.RASStack.spec_queue_31_retAddr.value == 0x8000007c) 
     clk_gen.kill()
 
 # spec还剩一个空间  S2 pop，S3 keep -> spec push
@@ -654,7 +653,7 @@ async def test_ras_full_redirect_pop_1st(dut):
     redirect_num = 1
     pop_value = [-1]
     await ras.redirect_pop(meta[redirect_num])
-    pop_value, _ = await ras.pop()
+    pop_value = await ras.pop()
 
     assert(pop_value == 0x80000000 + (int(meta[redirect_num]['TOSR_value'])-2)*4)
     clk_gen.kill()
@@ -673,7 +672,7 @@ async def test_ras_full_redirect_pop_31st(dut):
     redirect_num = 31
     pop_value = [-1]
     await ras.redirect_pop(meta[redirect_num])
-    pop_value, _ = await ras.pop()
+    pop_value = await ras.pop()
 
     assert(pop_value == 0x80000000 + (int(meta[redirect_num]['TOSR_value'])-2)*4)
     clk_gen.kill()

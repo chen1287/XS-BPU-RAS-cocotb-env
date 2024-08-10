@@ -1,69 +1,63 @@
 <testsuites name="results">
   <testsuite name="all" package="all">
-    <property name="random_seed" value="1723208169" />
-    <testcase name="test_ras_push" classname="test_ras" file="/home/kurumi/XS-BPU-RAS-cocotb-env/test_ras.py" lineno="25" time="0.011454343795776367" sim_time_ns="820.001" ratio_time="71588.6492164103" />
-    <testcase name="test_ras_spec_push_overflow" classname="test_ras" file="/home/kurumi/XS-BPU-RAS-cocotb-env/test_ras.py" lineno="44" time="0.025125503540039062" sim_time_ns="2080.001" ratio_time="82784.45033690125">
-      <failure message="Test failed with RANDOM_SEED=1723208169" />
+    <property name="random_seed" value="1723263340" />
+    <testcase name="test_ras_push" classname="test_ras" file="/home/kurumi/XS-BPU-RAS-cocotb-env/test_ras.py" lineno="27" time="0.01713109016418457" sim_time_ns="1180.001" ratio_time="68880.67184813439" />
+    <testcase name="test_ras_spec_push_overflow" classname="test_ras" file="/home/kurumi/XS-BPU-RAS-cocotb-env/test_ras.py" lineno="46" time="0.027350425720214844" sim_time_ns="2080.001" ratio_time="76050.04109543569">
+      <failure message="Test failed with RANDOM_SEED=1723263340" />
     </testcase>
-    <testcase name="test_ras_spec_pop" classname="test_ras" file="/home/kurumi/XS-BPU-RAS-cocotb-env/test_ras.py" lineno="61" time="0.01178431510925293" sim_time_ns="1000.0010000000002" ratio_time="84858.64394569771">
-      <failure message="Test failed with RANDOM_SEED=1723208169" />
+    <testcase name="test_ras_spec_pop" classname="test_ras" file="/home/kurumi/XS-BPU-RAS-cocotb-env/test_ras.py" lineno="63" time="0.013315200805664062" sim_time_ns="1060.0009999999997" ratio_time="79608.33752872079" />
+    <testcase name="test_ras_check_tosr_same_addr" classname="test_ras" file="/home/kurumi/XS-BPU-RAS-cocotb-env/test_ras.py" lineno="80" time="0.008605480194091797" sim_time_ns="640.0010000000002" ratio_time="74371.32914899985">
+      <failure message="Test failed with RANDOM_SEED=1723263340" />
     </testcase>
-    <testcase name="test_ras_check_tosr_same_addr" classname="test_ras" file="/home/kurumi/XS-BPU-RAS-cocotb-env/test_ras.py" lineno="79" time="0.008067607879638672" sim_time_ns="640.0009999999997" ratio_time="79329.7108074945">
-      <failure message="Test failed with RANDOM_SEED=1723208169" />
+    <testcase name="test_ras_commit_push" classname="test_ras" file="/home/kurumi/XS-BPU-RAS-cocotb-env/test_ras.py" lineno="98" time="0.03714299201965332" sim_time_ns="2980.001" ratio_time="80230.50481294571" />
+    <testcase name="test_ras_spec_overflow_commit_push" classname="test_ras" file="/home/kurumi/XS-BPU-RAS-cocotb-env/test_ras.py" lineno="126" time="0.027558326721191406" sim_time_ns="2140.0009999999993" ratio_time="77653.51727085855">
+      <failure message="Test failed with RANDOM_SEED=1723263340" />
     </testcase>
-    <testcase name="test_ras_commit_push" classname="test_ras" file="/home/kurumi/XS-BPU-RAS-cocotb-env/test_ras.py" lineno="97" time="0.03469443321228027" sim_time_ns="2980.001" ratio_time="85892.77080177846" />
-    <testcase name="test_ras_spec_overflow_commit_push" classname="test_ras" file="/home/kurumi/XS-BPU-RAS-cocotb-env/test_ras.py" lineno="125" time="0.0257415771484375" sim_time_ns="2140.0009999999993" ratio_time="83134.02817783043">
-      <failure message="Test failed with RANDOM_SEED=1723208169" />
+    <testcase name="test_ras_spec_push_same_addr_and_commit_and_check_commit_count_and_top_ptr" classname="test_ras" file="/home/kurumi/XS-BPU-RAS-cocotb-env/test_ras.py" lineno="154" time="0.01187586784362793" sim_time_ns="1060.0010000000002" ratio_time="89256.71908421836" />
+    <testcase name="test_ras_commit_random" classname="test_ras" file="/home/kurumi/XS-BPU-RAS-cocotb-env/test_ras.py" lineno="173" time="0.026647090911865234" sim_time_ns="2080.001" ratio_time="78057.33867458798" />
+    <testcase name="test_ras_commit_full_use" classname="test_ras" file="/home/kurumi/XS-BPU-RAS-cocotb-env/test_ras.py" lineno="191" time="0.6626760959625244" sim_time_ns="61660.001000000004" ratio_time="93046.96725244031">
+      <failure message="Test failed with RANDOM_SEED=1723263340" />
     </testcase>
-    <testcase name="test_ras_spec_push_same_addr_and_commit_and_check_commit_count_and_top_ptr" classname="test_ras" file="/home/kurumi/XS-BPU-RAS-cocotb-env/test_ras.py" lineno="155" time="0.011092185974121094" sim_time_ns="1060.0010000000002" ratio_time="95562.85861714385" />
-    <testcase name="test_ras_commit_random" classname="test_ras" file="/home/kurumi/XS-BPU-RAS-cocotb-env/test_ras.py" lineno="174" time="0.023772001266479492" sim_time_ns="2020.0010000000002" ratio_time="84973.95643539572">
-      <failure message="Test failed with RANDOM_SEED=1723208169" />
+    <testcase name="test_ras_update_pop_1" classname="test_ras" file="/home/kurumi/XS-BPU-RAS-cocotb-env/test_ras.py" lineno="226" time="0.02625250816345215" sim_time_ns="2080.0009999999893" ratio_time="79230.56292562919" />
+    <testcase name="test_ras_update_pop_1_spec_31_element" classname="test_ras" file="/home/kurumi/XS-BPU-RAS-cocotb-env/test_ras.py" lineno="240" time="0.025255918502807617" sim_time_ns="2020.0010000000038" ratio_time="79981.29229691041" />
+    <testcase name="test_ras_update_pop_1_spec_full" classname="test_ras" file="/home/kurumi/XS-BPU-RAS-cocotb-env/test_ras.py" lineno="255" time="0.02692723274230957" sim_time_ns="2140.001000000004" ratio_time="79473.4839810522" />
+    <testcase name="test_ras_spec_pop_update_pop_1_spec_31_element" classname="test_ras" file="/home/kurumi/XS-BPU-RAS-cocotb-env/test_ras.py" lineno="271" time="0.03281688690185547" sim_time_ns="2080.001000000004" ratio_time="63382.03273883363" />
+    <testcase name="test_ras_spec_pop_update_pop_1_spec_empty" classname="test_ras" file="/home/kurumi/XS-BPU-RAS-cocotb-env/test_ras.py" lineno="289" time="0.0022759437561035156" sim_time_ns="220.0009999999893" ratio_time="96663.63652880317" />
+    <testcase name="test_ras_spec_pop_update_pop_1_spec_1_element" classname="test_ras" file="/home/kurumi/XS-BPU-RAS-cocotb-env/test_ras.py" lineno="305" time="0.002972126007080078" sim_time_ns="280.00100000000384" ratio_time="94208.99360693214" />
+    <testcase name="test_ras_update_pop_2_spec_full" classname="test_ras" file="/home/kurumi/XS-BPU-RAS-cocotb-env/test_ras.py" lineno="322" time="0.026978731155395508" sim_time_ns="2160.001000000004" ratio_time="80063.1055463119" />
+    <testcase name="test_ras_update_pop_2_spec_31_element" classname="test_ras" file="/home/kurumi/XS-BPU-RAS-cocotb-env/test_ras.py" lineno="338" time="0.026300430297851562" sim_time_ns="2100.001000000004" ratio_time="79846.6403863951" />
+    <testcase name="test_ras_spec_pop_with_update_pop_2_spec_full" classname="test_ras" file="/home/kurumi/XS-BPU-RAS-cocotb-env/test_ras.py" lineno="353" time="0.02765345573425293" sim_time_ns="2160.0009999999893" ratio_time="78109.62292587923" />
+    <testcase name="test_ras_spec_pop_update_pop_2_spec_31_element" classname="test_ras" file="/home/kurumi/XS-BPU-RAS-cocotb-env/test_ras.py" lineno="370" time="0.026781797409057617" sim_time_ns="2100.001000000004" ratio_time="78411.50345233298" />
+    <testcase name="test_ras_spec_pop_update_pop_2_empty" classname="test_ras" file="/home/kurumi/XS-BPU-RAS-cocotb-env/test_ras.py" lineno="385" time="0.002524137496948242" sim_time_ns="240.00100000000384" ratio_time="95082.37973968226" />
+    <testcase name="test_ras_spec_pop_update_pop_2_spec_1_element" classname="test_ras" file="/home/kurumi/XS-BPU-RAS-cocotb-env/test_ras.py" lineno="399" time="0.003329038619995117" sim_time_ns="300.0009999999893" ratio_time="90116.4072408476" />
+    <testcase name="test_ras_update_push_1_spec_full" classname="test_ras" file="/home/kurumi/XS-BPU-RAS-cocotb-env/test_ras.py" lineno="417" time="0.026648521423339844" sim_time_ns="2100.001000000004" ratio_time="78803.65918391025" />
+    <testcase name="test_ras_update_push_1_spec_31_element" classname="test_ras" file="/home/kurumi/XS-BPU-RAS-cocotb-env/test_ras.py" lineno="430" time="0.026580333709716797" sim_time_ns="2100.001000000004" ratio_time="79005.81771974971" />
+    <testcase name="test_ras_spec_pop_with_update_push_1_spec_full" classname="test_ras" file="/home/kurumi/XS-BPU-RAS-cocotb-env/test_ras.py" lineno="445" time="0.02677750587463379" sim_time_ns="2160.001000000004" ratio_time="80664.7568340621">
+      <failure message="Test failed with RANDOM_SEED=1723263340" />
     </testcase>
-    <testcase name="test_ras_commit_full_use" classname="test_ras" file="/home/kurumi/XS-BPU-RAS-cocotb-env/test_ras.py" lineno="193" time="0.603304386138916" sim_time_ns="61660.001000000004" ratio_time="102203.80029824987">
-      <failure message="Test failed with RANDOM_SEED=1723208169" />
+    <testcase name="test_ras_spec_pop_with_update_push_1_spec_31_element" classname="test_ras" file="/home/kurumi/XS-BPU-RAS-cocotb-env/test_ras.py" lineno="460" time="0.02621006965637207" sim_time_ns="2100.0009999999893" ratio_time="80121.91602434168" />
+    <testcase name="test_ras_spec_pop_with_update_push_1_empty" classname="test_ras" file="/home/kurumi/XS-BPU-RAS-cocotb-env/test_ras.py" lineno="476" time="0.002529621124267578" sim_time_ns="240.00100000000384" ratio_time="94876.26336512876" />
+    <testcase name="test_ras_spec_pop_with_update_push_spec_1_element" classname="test_ras" file="/home/kurumi/XS-BPU-RAS-cocotb-env/test_ras.py" lineno="490" time="0.003285646438598633" sim_time_ns="300.00100000000384" ratio_time="91306.53757376215">
+      <failure message="Test failed with RANDOM_SEED=1723263340" />
     </testcase>
-    <testcase name="test_ras_update_pop_1" classname="test_ras" file="/home/kurumi/XS-BPU-RAS-cocotb-env/test_ras.py" lineno="228" time="0.02429986000061035" sim_time_ns="2080.0009999999893" ratio_time="85597.24212187827" />
-    <testcase name="test_ras_update_pop_1_spec_31_element" classname="test_ras" file="/home/kurumi/XS-BPU-RAS-cocotb-env/test_ras.py" lineno="242" time="0.023817062377929688" sim_time_ns="2020.0010000000038" ratio_time="84813.18845903756" />
-    <testcase name="test_ras_update_pop_1_spec_full" classname="test_ras" file="/home/kurumi/XS-BPU-RAS-cocotb-env/test_ras.py" lineno="257" time="0.025458335876464844" sim_time_ns="2140.001000000004" ratio_time="84058.95068649575" />
-    <testcase name="test_ras_spec_pop_update_pop_1_spec_31_element" classname="test_ras" file="/home/kurumi/XS-BPU-RAS-cocotb-env/test_ras.py" lineno="273" time="0.024372577667236328" sim_time_ns="2080.001000000004" ratio_time="85341.85544092517" />
-    <testcase name="test_ras_spec_pop_update_pop_1_spec_empty" classname="test_ras" file="/home/kurumi/XS-BPU-RAS-cocotb-env/test_ras.py" lineno="291" time="0.0022449493408203125" sim_time_ns="220.0009999999893" ratio_time="97998.20245369106" />
-    <testcase name="test_ras_spec_pop_update_pop_1_spec_1_element" classname="test_ras" file="/home/kurumi/XS-BPU-RAS-cocotb-env/test_ras.py" lineno="307" time="0.0028731822967529297" sim_time_ns="280.00100000000384" ratio_time="97453.2664761444" />
-    <testcase name="test_ras_update_pop_2_spec_full" classname="test_ras" file="/home/kurumi/XS-BPU-RAS-cocotb-env/test_ras.py" lineno="324" time="0.025322675704956055" sim_time_ns="2160.001000000004" ratio_time="85299.08233896692" />
-    <testcase name="test_ras_update_pop_2_spec_31_element" classname="test_ras" file="/home/kurumi/XS-BPU-RAS-cocotb-env/test_ras.py" lineno="340" time="0.024853229522705078" sim_time_ns="2100.001000000004" ratio_time="84496.10132484043" />
-    <testcase name="test_ras_spec_pop_with_update_pop_2_spec_full" classname="test_ras" file="/home/kurumi/XS-BPU-RAS-cocotb-env/test_ras.py" lineno="355" time="0.026053667068481445" sim_time_ns="2160.0009999999893" ratio_time="82905.83411242947" />
-    <testcase name="test_ras_spec_pop_update_pop_2_spec_31_element" classname="test_ras" file="/home/kurumi/XS-BPU-RAS-cocotb-env/test_ras.py" lineno="372" time="0.02526259422302246" sim_time_ns="2100.001000000004" ratio_time="83126.89431104499" />
-    <testcase name="test_ras_spec_pop_update_pop_2_empty" classname="test_ras" file="/home/kurumi/XS-BPU-RAS-cocotb-env/test_ras.py" lineno="387" time="0.0025491714477539062" sim_time_ns="240.00100000000384" ratio_time="94148.63021923084" />
-    <testcase name="test_ras_spec_pop_update_pop_2_spec_1_element" classname="test_ras" file="/home/kurumi/XS-BPU-RAS-cocotb-env/test_ras.py" lineno="401" time="0.003200054168701172" sim_time_ns="300.0009999999893" ratio_time="93748.72554790307" />
-    <testcase name="test_ras_update_push_1_spec_full" classname="test_ras" file="/home/kurumi/XS-BPU-RAS-cocotb-env/test_ras.py" lineno="419" time="0.024962663650512695" sim_time_ns="2100.001000000004" ratio_time="84125.67782833036">
-      <failure message="Test failed with RANDOM_SEED=1723208169" />
+    <testcase name="test_ras_update_push_spec_full" classname="test_ras" file="/home/kurumi/XS-BPU-RAS-cocotb-env/test_ras.py" lineno="506" time="0.026787757873535156" sim_time_ns="2120.001000000004" ratio_time="79140.66604635281" />
+    <testcase name="test_ras_update_push_2_spec_31_element" classname="test_ras" file="/home/kurumi/XS-BPU-RAS-cocotb-env/test_ras.py" lineno="519" time="0.025443315505981445" sim_time_ns="2060.0009999999893" ratio_time="80964.33027824953" />
+    <testcase name="test_ras_spec_pop_with_update_push_2_spec_full" classname="test_ras" file="/home/kurumi/XS-BPU-RAS-cocotb-env/test_ras.py" lineno="534" time="0.027256011962890625" sim_time_ns="2180.001000000004" ratio_time="79982.39078292526">
+      <failure message="Test failed with RANDOM_SEED=1723263340" />
     </testcase>
-    <testcase name="test_ras_update_push_1_spec_31_element" classname="test_ras" file="/home/kurumi/XS-BPU-RAS-cocotb-env/test_ras.py" lineno="432" time="0.02511453628540039" sim_time_ns="2100.001000000004" ratio_time="83616.95299231062" />
-    <testcase name="test_ras_spec_pop_with_update_push_1_spec_full" classname="test_ras" file="/home/kurumi/XS-BPU-RAS-cocotb-env/test_ras.py" lineno="447" time="0.025696516036987305" sim_time_ns="2160.001000000004" ratio_time="84058.12666942555">
-      <failure message="Test failed with RANDOM_SEED=1723208169" />
+    <testcase name="test_ras_spec_pop_with_update_push_2_spec_31_element" classname="test_ras" file="/home/kurumi/XS-BPU-RAS-cocotb-env/test_ras.py" lineno="549" time="0.02677607536315918" sim_time_ns="2120.001000000004" ratio_time="79175.19544021314" />
+    <testcase name="test_ras_spec_pop_with_update_push_2_empty" classname="test_ras" file="/home/kurumi/XS-BPU-RAS-cocotb-env/test_ras.py" lineno="563" time="0.0027582645416259766" sim_time_ns="260.00100000000384" ratio_time="94262.53213795627" />
+    <testcase name="test_ras_spec_pop_with_update_push_2_spec_1_element" classname="test_ras" file="/home/kurumi/XS-BPU-RAS-cocotb-env/test_ras.py" lineno="576" time="0.0035223960876464844" sim_time_ns="320.0009999999893" ratio_time="90847.53447299005" />
+    <testcase name="test_ras_redirect_push" classname="test_ras" file="/home/kurumi/XS-BPU-RAS-cocotb-env/test_ras.py" lineno="592" time="0.009119272232055664" sim_time_ns="720.0010000000038" ratio_time="78953.77851196151" />
+    <testcase name="test_ras_redirect_push_with_overflow" classname="test_ras" file="/home/kurumi/XS-BPU-RAS-cocotb-env/test_ras.py" lineno="610" time="0.02782750129699707" sim_time_ns="2160.001000000004" ratio_time="77621.09062350828" />
+    <testcase name="test_ras_redirect_pop" classname="test_ras" file="/home/kurumi/XS-BPU-RAS-cocotb-env/test_ras.py" lineno="628" time="0.02540302276611328" sim_time_ns="2040.0009999999893" ratio_time="80305.44312707846">
+      <failure message="Test failed with RANDOM_SEED=1723263340" />
     </testcase>
-    <testcase name="test_ras_spec_pop_with_update_push_1_spec_31_element" classname="test_ras" file="/home/kurumi/XS-BPU-RAS-cocotb-env/test_ras.py" lineno="462" time="0.02495121955871582" sim_time_ns="2100.0009999999893" ratio_time="84164.26279517983" />
-    <testcase name="test_ras_spec_pop_with_update_push_1_empty" classname="test_ras" file="/home/kurumi/XS-BPU-RAS-cocotb-env/test_ras.py" lineno="478" time="0.002626180648803711" sim_time_ns="240.00100000000384" ratio_time="91387.84877930241" />
-    <testcase name="test_ras_spec_pop_with_update_push_spec_1_element" classname="test_ras" file="/home/kurumi/XS-BPU-RAS-cocotb-env/test_ras.py" lineno="492" time="0.0035257339477539062" sim_time_ns="300.00100000000384" ratio_time="85088.95011522966">
-      <failure message="Test failed with RANDOM_SEED=1723208169" />
+    <testcase name="test_ras_full_redirect_pop_1st" classname="test_ras" file="/home/kurumi/XS-BPU-RAS-cocotb-env/test_ras.py" lineno="643" time="0.026529788970947266" sim_time_ns="2160.001000000004" ratio_time="81417.9487958015">
+      <failure message="Test failed with RANDOM_SEED=1723263340" />
     </testcase>
-    <testcase name="test_ras_update_push_spec_full" classname="test_ras" file="/home/kurumi/XS-BPU-RAS-cocotb-env/test_ras.py" lineno="508" time="0.026144981384277344" sim_time_ns="2120.001000000004" ratio_time="81086.34574415481" />
-    <testcase name="test_ras_update_push_2_spec_31_element" classname="test_ras" file="/home/kurumi/XS-BPU-RAS-cocotb-env/test_ras.py" lineno="521" time="0.024723052978515625" sim_time_ns="2060.0009999999893" ratio_time="83323.08318839641" />
-    <testcase name="test_ras_spec_pop_with_update_push_2_spec_full" classname="test_ras" file="/home/kurumi/XS-BPU-RAS-cocotb-env/test_ras.py" lineno="536" time="0.026007652282714844" sim_time_ns="2180.001000000004" ratio_time="83821.52207751838">
-      <failure message="Test failed with RANDOM_SEED=1723208169" />
-    </testcase>
-    <testcase name="test_ras_spec_pop_with_update_push_2_spec_31_element" classname="test_ras" file="/home/kurumi/XS-BPU-RAS-cocotb-env/test_ras.py" lineno="551" time="0.024964094161987305" sim_time_ns="2120.001000000004" ratio_time="84922.00783428058" />
-    <testcase name="test_ras_spec_pop_with_update_push_2_empty" classname="test_ras" file="/home/kurumi/XS-BPU-RAS-cocotb-env/test_ras.py" lineno="565" time="0.002754688262939453" sim_time_ns="260.00100000000384" ratio_time="94384.90862939382" />
-    <testcase name="test_ras_spec_pop_with_update_push_2_spec_1_element" classname="test_ras" file="/home/kurumi/XS-BPU-RAS-cocotb-env/test_ras.py" lineno="578" time="0.003229856491088867" sim_time_ns="320.0009999999893" ratio_time="99075.91897128183" />
-    <testcase name="test_ras_redirect_push" classname="test_ras" file="/home/kurumi/XS-BPU-RAS-cocotb-env/test_ras.py" lineno="594" time="0.004486083984375" sim_time_ns="420.00100000000384" ratio_time="93623.08005442262" />
-    <testcase name="test_ras_redirect_push_with_overflow" classname="test_ras" file="/home/kurumi/XS-BPU-RAS-cocotb-env/test_ras.py" lineno="612" time="0.025758028030395508" sim_time_ns="2160.001000000004" ratio_time="83857.38991552909" />
-    <testcase name="test_ras_redirect_pop" classname="test_ras" file="/home/kurumi/XS-BPU-RAS-cocotb-env/test_ras.py" lineno="630" time="0.02404618263244629" sim_time_ns="2040.0009999999893" ratio_time="84836.79223359762">
-      <failure message="Test failed with RANDOM_SEED=1723208169" />
-    </testcase>
-    <testcase name="test_ras_full_redirect_pop_1st" classname="test_ras" file="/home/kurumi/XS-BPU-RAS-cocotb-env/test_ras.py" lineno="645" time="0.025213003158569336" sim_time_ns="2160.001000000004" ratio_time="85670.11975587952">
-      <failure message="Test failed with RANDOM_SEED=1723208169" />
-    </testcase>
-    <testcase name="test_ras_full_redirect_pop_31st" classname="test_ras" file="/home/kurumi/XS-BPU-RAS-cocotb-env/test_ras.py" lineno="664" time="0.025237083435058594" sim_time_ns="2160.001000000004" ratio_time="85588.37654748154">
-      <failure message="Test failed with RANDOM_SEED=1723208169" />
+    <testcase name="test_ras_full_redirect_pop_31st" classname="test_ras" file="/home/kurumi/XS-BPU-RAS-cocotb-env/test_ras.py" lineno="662" time="0.026558876037597656" sim_time_ns="2160.001000000004" ratio_time="81328.78051549442">
+      <failure message="Test failed with RANDOM_SEED=1723263340" />
     </testcase>
   </testsuite>
 </testsuites>
